@@ -1,0 +1,63 @@
+================================================================================
+TRAIN GOAL_V1 STATE MLP
+================================================================================
+Data      : goal_v1/data/push_goal_v1.npz
+Checkpoint: goal_v1/checkpoints/goal_v1_state_mlp.pt
+Eval out  : goal_v1/eval/goal_v1_state_mlp_eval.npz
+Device    : cuda
+================================================================================
+Train samples: 58
+Val samples  : 15
+Goal steps   : [25 55 99]
+Epoch 0001 | train_loss=0.986198 | train_mae=0.130252 rad | val_loss=1.023856 | val_mae=0.154040 rad | best_val_mae=0.154040 @ 1
+Epoch 0050 | train_loss=0.010933 | train_mae=0.011251 rad | val_loss=0.633775 | val_mae=0.107750 rad | best_val_mae=0.101185 @ 13
+Epoch 0100 | train_loss=0.000661 | train_mae=0.003441 rad | val_loss=0.657102 | val_mae=0.109040 rad | best_val_mae=0.101185 @ 13
+Epoch 0150 | train_loss=0.001820 | train_mae=0.004970 rad | val_loss=0.644798 | val_mae=0.108420 rad | best_val_mae=0.101185 @ 13
+Epoch 0200 | train_loss=0.000243 | train_mae=0.002236 rad | val_loss=0.641933 | val_mae=0.107533 rad | best_val_mae=0.101185 @ 13
+Epoch 0250 | train_loss=0.004235 | train_mae=0.010460 rad | val_loss=0.671819 | val_mae=0.111308 rad | best_val_mae=0.101185 @ 13
+Epoch 0300 | train_loss=0.000097 | train_mae=0.000931 rad | val_loss=0.651617 | val_mae=0.108109 rad | best_val_mae=0.101185 @ 13
+Epoch 0350 | train_loss=0.000956 | train_mae=0.004763 rad | val_loss=0.648672 | val_mae=0.107864 rad | best_val_mae=0.101185 @ 13
+Epoch 0400 | train_loss=0.000293 | train_mae=0.002143 rad | val_loss=0.643331 | val_mae=0.105446 rad | best_val_mae=0.101185 @ 13
+Epoch 0450 | train_loss=0.000007 | train_mae=0.000302 rad | val_loss=0.641543 | val_mae=0.105318 rad | best_val_mae=0.101185 @ 13
+Epoch 0500 | train_loss=0.000014 | train_mae=0.000538 rad | val_loss=0.641963 | val_mae=0.105405 rad | best_val_mae=0.101185 @ 13
+Epoch 0550 | train_loss=0.000523 | train_mae=0.002522 rad | val_loss=0.646229 | val_mae=0.105939 rad | best_val_mae=0.101185 @ 13
+Epoch 0600 | train_loss=0.000275 | train_mae=0.001745 rad | val_loss=0.646945 | val_mae=0.106085 rad | best_val_mae=0.101185 @ 13
+Epoch 0650 | train_loss=0.005957 | train_mae=0.011024 rad | val_loss=0.651636 | val_mae=0.106215 rad | best_val_mae=0.101185 @ 13
+Epoch 0700 | train_loss=0.000016 | train_mae=0.000478 rad | val_loss=0.658723 | val_mae=0.106351 rad | best_val_mae=0.101185 @ 13
+Epoch 0750 | train_loss=0.000000 | train_mae=0.000073 rad | val_loss=0.658712 | val_mae=0.106325 rad | best_val_mae=0.101185 @ 13
+Epoch 0800 | train_loss=0.000013 | train_mae=0.000658 rad | val_loss=0.658513 | val_mae=0.106286 rad | best_val_mae=0.101185 @ 13
+
+================================================================================
+FINAL RESULT - BEST CHECKPOINT
+================================================================================
+Best epoch: 13
+Best val MAE: 0.10118509083986282 rad
+Checkpoint: goal_v1/checkpoints/goal_v1_state_mlp.pt
+Eval file : goal_v1/eval/goal_v1_state_mlp_eval.npz
+
+Train MAE all: 0.04837462306022644 rad
+Val MAE all  : 0.10118509083986282 rad
+
+Val MAE by goal step:
+  goal 1 - approach-ish : 0.12223807722330093 rad
+  goal 2 - contact-ish  : 0.11671032011508942 rad
+  goal 3 - end-push     : 0.06460689008235931 rad
+
+Val norm error by goal:
+  goal 1 - approach-ish : 0.34789425134658813
+  goal 2 - contact-ish  : 0.33610212802886963
+  goal 3 - end-push     : 0.2068830281496048
+
+Val MAE by joint:
+  j1: 0.072009 rad
+  j2: 0.080191 rad
+  j3: 0.098644 rad
+  j4: 0.142464 rad
+  j5: 0.107076 rad
+  j6: 0.106726 rad
+
+Đọc nhanh:
+  val_mae < 0.03 rad  : rất tốt cho kiểm chứng offline
+  val_mae 0.03-0.06   : có khả năng dùng, cần test kỹ
+  val_mae > 0.08 rad  : model còn yếu hoặc dữ liệu/mốc goal chưa tốt
+================================================================================

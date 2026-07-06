@@ -1,0 +1,82 @@
+====================================================================================================
+GOAL_V1 SAFE FALLBACK INTERPOLATION EVALUATION
+====================================================================================================
+Dataset      : goal_v1/data/push_goal_v1.npz
+Train samples: 58
+Val samples  : 15
+Goal steps   : [25 55 99]
+====================================================================================================
+
+[1] SAFE FALLBACK RESULTS
+====================================================================================================
+
+Feature: cy_area
+----------------------------------------------------------------------------------------------------
+cy_area_global_k2_p1 | mae=0.092875 | g1=0.113709 g2=0.095125 g3=0.069791
+cy_area_agree100_clfK2_zoneK5_globalK2        | mae=0.088206 | g1=0.107470 g2=0.090075 g3=0.067072 | zone_acc=0.800 | zone_use=0.867
+cy_area_agree100_ratio085_clfK2_zoneK5_globalK2 | mae=0.091439 | g1=0.114120 g2=0.092125 g3=0.068073 | zone_acc=0.800 | zone_use=0.400
+cy_area_agree100_ratio075_clfK2_zoneK5_globalK2 | mae=0.091526 | g1=0.112376 g2=0.093887 g3=0.068316 | zone_acc=0.800 | zone_use=0.267
+cy_area_always_zone_clfK2_zoneK5_globalK2     | mae=0.089801 | g1=0.113376 g2=0.093459 g3=0.062566 | zone_acc=0.800 | zone_use=1.000
+
+Feature: xy_area
+----------------------------------------------------------------------------------------------------
+xy_area_global_k2_p1 | mae=0.089445 | g1=0.108746 g2=0.093640 g3=0.065949
+xy_area_agree100_clfK2_zoneK5_globalK2        | mae=0.089440 | g1=0.108729 g2=0.091859 g3=0.067731 | zone_acc=0.800 | zone_use=0.867
+xy_area_agree100_ratio085_clfK2_zoneK5_globalK2 | mae=0.089791 | g1=0.110713 g2=0.091490 g3=0.067170 | zone_acc=0.800 | zone_use=0.600
+xy_area_agree100_ratio075_clfK2_zoneK5_globalK2 | mae=0.088978 | g1=0.107823 g2=0.092089 g3=0.067022 | zone_acc=0.800 | zone_use=0.333
+xy_area_always_zone_clfK2_zoneK5_globalK2     | mae=0.090742 | g1=0.114202 g2=0.094912 g3=0.063112 | zone_acc=0.800 | zone_use=1.000
+
+====================================================================================================
+[2] BEST SAFE FALLBACK SUMMARY
+====================================================================================================
+Best key       : cy_area_agree100_clfK2_zoneK5_globalK2
+Feature        : cy_area
+Config         : {'name': 'agree100', 'min_agree': 1.0, 'min_margin': None, 'max_ratio': None}
+MAE            : 0.08820568770170212
+Goal MAE       : [0.10747024 0.09007502 0.06707185]
+Norm mean      : [0.31301075 0.2764867  0.19730304]
+Norm max       : [0.8726485  0.5323344  0.38938048]
+Zone acc       : 0.8
+Zone use rate  : 0.8666666666666667
+
+====================================================================================================
+[3] BEST SAFE FALLBACK DETAIL
+====================================================================================================
+✅ ep_004.npz   | true=near_center    pred=near_center    | used=zone                     | mae=0.052598 | agree=1.00 margin=0.00584 ratio=0.613 | obj=[0.68805957 0.55592185 0.0010498 ]
+✅ ep_018.npz   | true=near_right     pred=near_right     | used=zone                     | mae=0.080304 | agree=1.00 margin=0.00373 ratio=0.736 | obj=[0.7452235  0.68850285 0.00404568]
+✅ ep_021.npz   | true=near_right     pred=near_right     | used=zone                     | mae=0.044845 | agree=1.00 margin=0.01207 ratio=0.899 | obj=[0.754088   0.65436953 0.00370063]
+✅ ep_024.npz   | true=near_right     pred=near_right     | used=zone                     | mae=0.075332 | agree=1.00 margin=0.00300 ratio=0.809 | obj=[0.74982697 0.68674034 0.00417263]
+✅ ep_026.npz   | true=mid_center     pred=mid_center     | used=zone                     | mae=0.075078 | agree=1.00 margin=0.00050 ratio=0.933 | obj=[0.7673067  0.45228928 0.00358995]
+✅ ep_029.npz   | true=mid_center     pred=mid_center     | used=zone                     | mae=0.052278 | agree=1.00 margin=0.01702 ratio=0.838 | obj=[0.7799309  0.4463513  0.00110514]
+✅ ep_033.npz   | true=mid_left       pred=mid_left       | used=zone                     | mae=0.065688 | agree=1.00 margin=0.02327 ratio=0.522 | obj=[0.71262693 0.30343968 0.00154026]
+❌ ep_039.npz   | true=mid_left       pred=far_left       | used=zone                     | mae=0.129999 | agree=1.00 margin=0.00229 ratio=0.963 | obj=[0.7667918  0.23974265 0.00290961]
+✅ ep_045.npz   | true=mid_right      pred=mid_right      | used=zone                     | mae=0.080091 | agree=1.00 margin=0.00136 ratio=0.918 | obj=[0.8340358  0.597873   0.00424479]
+❌ ep_048.npz   | true=mid_right      pred=far_right      | used=zone                     | mae=0.117528 | agree=1.00 margin=0.00308 ratio=0.949 | obj=[0.72043854 0.9191579  0.00874186]
+✅ ep_051.npz   | true=far_center     pred=far_center     | used=global_fallback_lowconf  | mae=0.081896 | agree=0.50 margin=0.27682 ratio=0.201 | obj=[0.70976937 0.9315759  0.01392578]
+❌ ep_055.npz   | true=far_center     pred=far_right      | used=global_fallback_lowconf  | mae=0.083390 | agree=0.50 margin=0.03950 ratio=0.856 | obj=[0.7508517  0.89977604 0.00577691]
+✅ ep_057.npz   | true=far_left       pred=far_left       | used=zone                     | mae=0.185216 | agree=1.00 margin=0.00099 ratio=0.732 | obj=[0.77839696 0.2455373  0.00371202]
+✅ ep_063.npz   | true=far_left       pred=far_left       | used=zone                     | mae=0.084298 | agree=1.00 margin=0.00008 ratio=0.985 | obj=[0.77558327 0.24599484 0.00378092]
+✅ ep_069.npz   | true=far_right      pred=far_right      | used=zone                     | mae=0.114546 | agree=1.00 margin=0.00226 ratio=0.920 | obj=[0.92048806 0.5161933  0.00433594]
+
+====================================================================================================
+[4] WORST SAMPLES
+====================================================================================================
+#01 ep_057.npz   true=far_left       pred=far_left       used=zone                     mae=0.185216 norm=[0.8726485  0.5323344  0.09183871]
+#02 ep_039.npz   true=mid_left       pred=far_left       used=zone                     mae=0.129999 norm=[0.49826917 0.3800639  0.2746996 ]
+#03 ep_048.npz   true=mid_right      pred=far_right      used=zone                     mae=0.117528 norm=[0.356948   0.38142028 0.2647798 ]
+#04 ep_069.npz   true=far_right      pred=far_right      used=zone                     mae=0.114546 norm=[0.56209534 0.25303045 0.16718696]
+#05 ep_063.npz   true=far_left       pred=far_left       used=zone                     mae=0.084298 norm=[0.25852042 0.31948078 0.15237267]
+#06 ep_055.npz   true=far_center     pred=far_right      used=global_fallback_lowconf  mae=0.083390 norm=[0.16091324 0.21810013 0.38938048]
+#07 ep_051.npz   true=far_center     pred=far_center     used=global_fallback_lowconf  mae=0.081896 norm=[0.32388788 0.3495486  0.06883844]
+#08 ep_018.npz   true=near_right     pred=near_right     used=zone                     mae=0.080304 norm=[0.2934596  0.20469575 0.22590269]
+#09 ep_045.npz   true=mid_right      pred=mid_right      used=zone                     mae=0.080091 norm=[0.2384316  0.20464553 0.30677155]
+#10 ep_024.npz   true=near_right     pred=near_right     used=zone                     mae=0.075332 norm=[0.21987727 0.41012147 0.06777061]
+
+====================================================================================================
+SAVED: goal_v1/eval/goal_v1_safe_fallback_interp_eval.npz
+====================================================================================================
+
+ĐỌC NHANH:
+- Nếu safe fallback tốt hơn global/classifier-zone: dùng nó cho bước mô phỏng.
+- Nếu không tốt hơn: dùng global interpolation vì đơn giản và ít rủi ro hơn.
+====================================================================================================

@@ -1,0 +1,104 @@
+====================================================================================================
+GOAL_V1 OFFLINE DRY RUN
+====================================================================================================
+Episode: ep_026.npz
+Index  : 26
+true_zone: mid_center
+object_feature [cx, cy, area]: [0.7673067  0.45228928 0.00358995]
+start_joints: [ 0.033221 -0.144926 -1.179502  0.010831 -0.128947 -0.124725]
+max_step_rad: 0.025
+
+====================================================================================================
+DRY RUN: main_classifier_zone
+====================================================================================================
+Pred zone : mid_center
+Zone agree: 1.0
+
+Selected demos:
+  ep_031.npz   zone=mid_center     dist=0.006993 weight=0.328
+  ep_030.npz   zone=mid_center     dist=0.007496 weight=0.306
+  ep_025.npz   zone=mid_center     dist=0.010229 weight=0.224
+  ep_032.npz   zone=mid_center     dist=0.019908 weight=0.115
+  ep_028.npz   zone=mid_center     dist=0.086645 weight=0.026
+
+Predicted goals:
+  goal 1: [-0.033098 -0.481628 -0.895026 -0.051429  0.27339  -0.047862]
+  goal 2: [-0.027551 -0.78092  -0.421723 -0.06942   0.308894 -0.057181]
+  goal 3: [ 0.021709 -0.155113 -1.140132 -0.078905  0.018387 -0.042169]
+
+Segment info:
+  segment 1: max_abs_jump=0.402337 rad, interpolated_steps=18
+  segment 2: max_abs_jump=0.473303 rad, interpolated_steps=20
+  segment 3: max_abs_jump=0.718409 rad, interpolated_steps=30
+
+Path:
+  waypoints: 69
+  max_delta_all: 0.023947060108184814
+  max_delta_per_joint: [0.003684 0.02086  0.023947 0.003459 0.022352 0.00427 ]
+
+Dataset-envelope limit check:
+  q_min: [-0.654075 -1.22972  -1.46998  -0.847603 -0.384792 -0.812818]
+  q_max: [0.602823 0.4238   0.191318 0.791297 0.954007 0.577344]
+  ok_limits: True
+  ok_step  : True
+
+Compare with true goals:
+  MAE all: 0.07507839053869247
+  norm goal 1: 0.20039458572864532
+  norm goal 2: 0.23256121575832367
+  norm goal 3: 0.27233925461769104
+
+OFFLINE SAFETY RESULT:
+  ✅ PASS offline dry-run checks
+
+====================================================================================================
+DRY RUN: backup_global
+====================================================================================================
+
+Selected demos:
+  ep_030.npz   zone=mid_center     dist=0.007514 weight=0.515
+  ep_031.npz   zone=mid_center     dist=0.007982 weight=0.485
+
+Predicted goals:
+  goal 1: [-0.030716 -0.446805 -0.957488 -0.0919    0.357935 -0.007061]
+  goal 2: [-0.033399 -0.814357 -0.426622 -0.093696  0.447278 -0.017191]
+  goal 3: [ 0.005625 -0.175907 -1.139979 -0.103242  0.057126 -0.012078]
+
+Segment info:
+  segment 1: max_abs_jump=0.486882 rad, interpolated_steps=21
+  segment 2: max_abs_jump=0.530866 rad, interpolated_steps=23
+  segment 3: max_abs_jump=0.713357 rad, interpolated_steps=30
+
+Path:
+  waypoints: 75
+  max_delta_all: 0.023778676986694336
+  max_delta_per_joint: [0.003045 0.021282 0.023779 0.004892 0.023185 0.005603]
+
+Dataset-envelope limit check:
+  q_min: [-0.654075 -1.22972  -1.46998  -0.847603 -0.384792 -0.812818]
+  q_max: [0.602823 0.4238   0.191318 0.791297 0.954007 0.577344]
+  ok_limits: True
+  ok_step  : True
+
+Compare with true goals:
+  MAE all: 0.097151979804039
+  norm goal 1: 0.30285942554473877
+  norm goal 2: 0.3751899302005768
+  norm goal 3: 0.2748001217842102
+
+OFFLINE SAFETY RESULT:
+  ✅ PASS offline dry-run checks
+
+Saved dry-run paths: goal_v1/eval/dry_run_ep026.npz
+
+====================================================================================================
+FINAL DECISION
+====================================================================================================
+✅ Main policy passed offline dry-run.
+✅ Backup policy passed offline dry-run.
+
+Nhắc lại:
+- PASS ở đây chưa có nghĩa là được chạy robot.
+- Đây mới là kiểm tra offline theo biên dataset.
+- Muốn chạy robot thật cần thêm kiểm tra joint limit chính thức và tốc độ thấp.
+====================================================================================================

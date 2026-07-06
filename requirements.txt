@@ -1,0 +1,23 @@
+# Core numerical and image processing libraries
+numpy
+opencv-python
+Pillow
+matplotlib
+tqdm
+
+# Dataset formats
+h5py
+
+# Environment variable loading
+python-dotenv
+
+# Robot control
+pyniryo
+
+# Deep learning
+torch
+torchvision
+
+# Notes:
+# Exact package versions should be updated after verifying the working environment.
+# Do not mix the ROS 2 / MoveIt environment with the PyTorch training environment unless required.

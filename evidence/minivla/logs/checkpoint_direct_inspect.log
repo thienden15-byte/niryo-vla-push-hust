@@ -1,0 +1,32 @@
+===== DIRECT CHECKPOINT INSPECT =====
+path: checkpoints/minivla_push_trim_v5_direct.pt
+exists: True
+size_MB: 1.140070915222168
+type: <class 'dict'>
+
+===== KEYS =====
+model_state_dict: dict_keys=['img_encoder.conv1.weight', 'img_encoder.conv1.bias', 'img_encoder.conv2.weight', 'img_encoder.conv2.bias', 'img_encoder.conv3.weight', 'img_encoder.conv3.bias', 'img_encoder.proj.weight', 'img_encoder.proj.bias', 'img_encoder.ln.weight', 'img_encoder.ln.bias', 'txt_encoder.embed.weight', 'txt_encoder.gru.weight_ih_l0', 'txt_encoder.gru.weight_hh_l0', 'txt_encoder.gru.bias_ih_l0', 'txt_encoder.gru.bias_hh_l0', 'txt_encoder.ln.weight', 'txt_encoder.ln.bias', 'state_encoder.net.0.weight', 'state_encoder.net.0.bias', 'state_encoder.net.2.weight', 'state_encoder.net.2.bias', 'state_encoder.ln.weight', 'state_encoder.ln.bias', 'fusion.net.0.weight', 'fusion.net.0.bias', 'fusion.net.2.weight', 'fusion.net.2.bias', 'fusion.ln.weight', 'fusion.ln.bias', 'action_head.0.weight', 'action_head.0.bias', 'action_head.2.weight', 'action_head.2.bias', 'action_head.4.weight', 'action_head.4.bias']
+vocab: dict_keys=['<pad>', '<unk>', 'push', 'the', 'object']
+state_dim: 6
+action_dim: 6
+d_model: 128
+action_mean: shape=(6,), type=<class 'numpy.ndarray'>
+action_std: shape=(6,), type=<class 'numpy.ndarray'>
+normalize_action: True
+model_type: direct_mse
+
+===== IMPORTANT VALUES =====
+model_type = direct_mse
+state_dim = 6
+action_dim = 6
+d_model = 128
+normalize_action = True
+action_mean = [-0.000511 -0.011151  0.013208 -0.000402  0.005832  0.000186]
+action_std = [0.008653 0.009073 0.011213 0.013441 0.011462 0.011119]
+epoch = <NOT FOUND>
+epochs = <NOT FOUND>
+loss = <NOT FOUND>
+loss_history = <NOT FOUND>
+train_args = <NOT FOUND>
+batch_size = <NOT FOUND>
+lr = <NOT FOUND>

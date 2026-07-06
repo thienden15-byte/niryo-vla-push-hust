@@ -1,0 +1,277 @@
+/home/thien/.local/lib/python3.10/site-packages/diffusers/utils/outputs.py:63: FutureWarning: `torch.utils._pytree._register_pytree_node` is deprecated. Please use `torch.utils._pytree.register_pytree_node` instead.
+  torch.utils._pytree._register_pytree_node(
+Special tokens have been added in the vocabulary, make sure the associated word embeddings are fine-tuned or trained.
+Some weights of the model checkpoint at /home/thien/TinyVLA/pretrained/Llava-Pythia-400M were not used when initializing LlavaPythiaForCausalLM: ['embed_out.weight']
+- This IS expected if you are initializing LlavaPythiaForCausalLM from the checkpoint of a model trained on another task or with another architecture (e.g. initializing a BertForSequenceClassification model from a BertForPreTraining model).
+- This IS NOT expected if you are initializing LlavaPythiaForCausalLM from the checkpoint of a model that you expect to be exactly identical (initializing a BertForSequenceClassification model from a BertForSequenceClassification model).
+Some weights of LlavaPythiaForCausalLM were not initialized from the model checkpoint at /home/thien/TinyVLA/pretrained/Llava-Pythia-400M and are newly initialized: ['embed_out.combine.bias', 'embed_out.combine.weight', 'embed_out.diffusion_step_encoder.1.bias', 'embed_out.diffusion_step_encoder.1.weight', 'embed_out.diffusion_step_encoder.3.bias', 'embed_out.diffusion_step_encoder.3.weight', 'embed_out.down_modules.0.0.blocks.0.block.0.bias', 'embed_out.down_modules.0.0.blocks.0.block.0.weight', 'embed_out.down_modules.0.0.blocks.0.block.1.bias', 'embed_out.down_modules.0.0.blocks.0.block.1.weight', 'embed_out.down_modules.0.0.blocks.1.block.0.bias', 'embed_out.down_modules.0.0.blocks.1.block.0.weight', 'embed_out.down_modules.0.0.blocks.1.block.1.bias', 'embed_out.down_modules.0.0.blocks.1.block.1.weight', 'embed_out.down_modules.0.0.cond_encoder.1.bias', 'embed_out.down_modules.0.0.cond_encoder.1.weight', 'embed_out.down_modules.0.0.residual_conv.bias', 'embed_out.down_modules.0.0.residual_conv.weight', 'embed_out.down_modules.0.1.blocks.0.block.0.bias', 'embed_out.down_modules.0.1.blocks.0.block.0.weight', 'embed_out.down_modules.0.1.blocks.0.block.1.bias', 'embed_out.down_modules.0.1.blocks.0.block.1.weight', 'embed_out.down_modules.0.1.blocks.1.block.0.bias', 'embed_out.down_modules.0.1.blocks.1.block.0.weight', 'embed_out.down_modules.0.1.blocks.1.block.1.bias', 'embed_out.down_modules.0.1.blocks.1.block.1.weight', 'embed_out.down_modules.0.1.cond_encoder.1.bias', 'embed_out.down_modules.0.1.cond_encoder.1.weight', 'embed_out.down_modules.0.2.conv.bias', 'embed_out.down_modules.0.2.conv.weight', 'embed_out.down_modules.1.0.blocks.0.block.0.bias', 'embed_out.down_modules.1.0.blocks.0.block.0.weight', 'embed_out.down_modules.1.0.blocks.0.block.1.bias', 'embed_out.down_modules.1.0.blocks.0.block.1.weight', 'embed_out.down_modules.1.0.blocks.1.block.0.bias', 'embed_out.down_modules.1.0.blocks.1.block.0.weight', 'embed_out.down_modules.1.0.blocks.1.block.1.bias', 'embed_out.down_modules.1.0.blocks.1.block.1.weight', 'embed_out.down_modules.1.0.cond_encoder.1.bias', 'embed_out.down_modules.1.0.cond_encoder.1.weight', 'embed_out.down_modules.1.0.residual_conv.bias', 'embed_out.down_modules.1.0.residual_conv.weight', 'embed_out.down_modules.1.1.blocks.0.block.0.bias', 'embed_out.down_modules.1.1.blocks.0.block.0.weight', 'embed_out.down_modules.1.1.blocks.0.block.1.bias', 'embed_out.down_modules.1.1.blocks.0.block.1.weight', 'embed_out.down_modules.1.1.blocks.1.block.0.bias', 'embed_out.down_modules.1.1.blocks.1.block.0.weight', 'embed_out.down_modules.1.1.blocks.1.block.1.bias', 'embed_out.down_modules.1.1.blocks.1.block.1.weight', 'embed_out.down_modules.1.1.cond_encoder.1.bias', 'embed_out.down_modules.1.1.cond_encoder.1.weight', 'embed_out.down_modules.1.2.conv.bias', 'embed_out.down_modules.1.2.conv.weight', 'embed_out.down_modules.2.0.blocks.0.block.0.bias', 'embed_out.down_modules.2.0.blocks.0.block.0.weight', 'embed_out.down_modules.2.0.blocks.0.block.1.bias', 'embed_out.down_modules.2.0.blocks.0.block.1.weight', 'embed_out.down_modules.2.0.blocks.1.block.0.bias', 'embed_out.down_modules.2.0.blocks.1.block.0.weight', 'embed_out.down_modules.2.0.blocks.1.block.1.bias', 'embed_out.down_modules.2.0.blocks.1.block.1.weight', 'embed_out.down_modules.2.0.cond_encoder.1.bias', 'embed_out.down_modules.2.0.cond_encoder.1.weight', 'embed_out.down_modules.2.0.residual_conv.bias', 'embed_out.down_modules.2.0.residual_conv.weight', 'embed_out.down_modules.2.1.blocks.0.block.0.bias', 'embed_out.down_modules.2.1.blocks.0.block.0.weight', 'embed_out.down_modules.2.1.blocks.0.block.1.bias', 'embed_out.down_modules.2.1.blocks.0.block.1.weight', 'embed_out.down_modules.2.1.blocks.1.block.0.bias', 'embed_out.down_modules.2.1.blocks.1.block.0.weight', 'embed_out.down_modules.2.1.blocks.1.block.1.bias', 'embed_out.down_modules.2.1.blocks.1.block.1.weight', 'embed_out.down_modules.2.1.cond_encoder.1.bias', 'embed_out.down_modules.2.1.cond_encoder.1.weight', 'embed_out.final_conv.0.block.0.bias', 'embed_out.final_conv.0.block.0.weight', 'embed_out.final_conv.0.block.1.bias', 'embed_out.final_conv.0.block.1.weight', 'embed_out.final_conv.1.bias', 'embed_out.final_conv.1.weight', 'embed_out.mid_modules.0.blocks.0.block.0.bias', 'embed_out.mid_modules.0.blocks.0.block.0.weight', 'embed_out.mid_modules.0.blocks.0.block.1.bias', 'embed_out.mid_modules.0.blocks.0.block.1.weight', 'embed_out.mid_modules.0.blocks.1.block.0.bias', 'embed_out.mid_modules.0.blocks.1.block.0.weight', 'embed_out.mid_modules.0.blocks.1.block.1.bias', 'embed_out.mid_modules.0.blocks.1.block.1.weight', 'embed_out.mid_modules.0.cond_encoder.1.bias', 'embed_out.mid_modules.0.cond_encoder.1.weight', 'embed_out.mid_modules.1.blocks.0.block.0.bias', 'embed_out.mid_modules.1.blocks.0.block.0.weight', 'embed_out.mid_modules.1.blocks.0.block.1.bias', 'embed_out.mid_modules.1.blocks.0.block.1.weight', 'embed_out.mid_modules.1.blocks.1.block.0.bias', 'embed_out.mid_modules.1.blocks.1.block.0.weight', 'embed_out.mid_modules.1.blocks.1.block.1.bias', 'embed_out.mid_modules.1.blocks.1.block.1.weight', 'embed_out.mid_modules.1.cond_encoder.1.bias', 'embed_out.mid_modules.1.cond_encoder.1.weight', 'embed_out.norm_after_pool.bias', 'embed_out.norm_after_pool.weight', 'embed_out.up_modules.0.0.blocks.0.block.0.bias', 'embed_out.up_modules.0.0.blocks.0.block.0.weight', 'embed_out.up_modules.0.0.blocks.0.block.1.bias', 'embed_out.up_modules.0.0.blocks.0.block.1.weight', 'embed_out.up_modules.0.0.blocks.1.block.0.bias', 'embed_out.up_modules.0.0.blocks.1.block.0.weight', 'embed_out.up_modules.0.0.blocks.1.block.1.bias', 'embed_out.up_modules.0.0.blocks.1.block.1.weight', 'embed_out.up_modules.0.0.cond_encoder.1.bias', 'embed_out.up_modules.0.0.cond_encoder.1.weight', 'embed_out.up_modules.0.0.residual_conv.bias', 'embed_out.up_modules.0.0.residual_conv.weight', 'embed_out.up_modules.0.1.blocks.0.block.0.bias', 'embed_out.up_modules.0.1.blocks.0.block.0.weight', 'embed_out.up_modules.0.1.blocks.0.block.1.bias', 'embed_out.up_modules.0.1.blocks.0.block.1.weight', 'embed_out.up_modules.0.1.blocks.1.block.0.bias', 'embed_out.up_modules.0.1.blocks.1.block.0.weight', 'embed_out.up_modules.0.1.blocks.1.block.1.bias', 'embed_out.up_modules.0.1.blocks.1.block.1.weight', 'embed_out.up_modules.0.1.cond_encoder.1.bias', 'embed_out.up_modules.0.1.cond_encoder.1.weight', 'embed_out.up_modules.0.2.conv.bias', 'embed_out.up_modules.0.2.conv.weight', 'embed_out.up_modules.1.0.blocks.0.block.0.bias', 'embed_out.up_modules.1.0.blocks.0.block.0.weight', 'embed_out.up_modules.1.0.blocks.0.block.1.bias', 'embed_out.up_modules.1.0.blocks.0.block.1.weight', 'embed_out.up_modules.1.0.blocks.1.block.0.bias', 'embed_out.up_modules.1.0.blocks.1.block.0.weight', 'embed_out.up_modules.1.0.blocks.1.block.1.bias', 'embed_out.up_modules.1.0.blocks.1.block.1.weight', 'embed_out.up_modules.1.0.cond_encoder.1.bias', 'embed_out.up_modules.1.0.cond_encoder.1.weight', 'embed_out.up_modules.1.0.residual_conv.bias', 'embed_out.up_modules.1.0.residual_conv.weight', 'embed_out.up_modules.1.1.blocks.0.block.0.bias', 'embed_out.up_modules.1.1.blocks.0.block.0.weight', 'embed_out.up_modules.1.1.blocks.0.block.1.bias', 'embed_out.up_modules.1.1.blocks.0.block.1.weight', 'embed_out.up_modules.1.1.blocks.1.block.0.bias', 'embed_out.up_modules.1.1.blocks.1.block.0.weight', 'embed_out.up_modules.1.1.blocks.1.block.1.bias', 'embed_out.up_modules.1.1.blocks.1.block.1.weight', 'embed_out.up_modules.1.1.cond_encoder.1.bias', 'embed_out.up_modules.1.1.cond_encoder.1.weight', 'embed_out.up_modules.1.2.conv.bias', 'embed_out.up_modules.1.2.conv.weight']
+You should probably TRAIN this model on a down-stream task to be able to use it for predictions and inference.
+/home/thien/TinyVLA/llava-pythia/llava_pythia/model/builder.py:75: FutureWarning: You are using `torch.load` with `weights_only=False` (the current default value), which uses the default pickle module implicitly. It is possible to construct malicious pickle data which will execute arbitrary code during unpickling (See https://github.com/pytorch/pytorch/blob/main/SECURITY.md#untrusted-models for more details). In a future release, the default value for `weights_only` will be flipped to `True`. This limits the functions that could be executed during unpickling. Arbitrary objects will no longer be allowed to be loaded via this mode unless they are explicitly allowlisted by the user via `torch.serialization.add_safe_globals`. We recommend you start setting `weights_only=True` for any use case where you don't have full control of the loaded file. Please open an issue on GitHub for any issues related to this experimental feature.
+  non_lora_trainables = torch.load(os.path.join(model_path, 'non_lora_trainables.bin'), map_location='cpu')
+/home/thien/.local/lib/python3.10/site-packages/peft/peft_model.py:556: FutureWarning: You are using `torch.load` with `weights_only=False` (the current default value), which uses the default pickle module implicitly. It is possible to construct malicious pickle data which will execute arbitrary code during unpickling (See https://github.com/pytorch/pytorch/blob/main/SECURITY.md#untrusted-models for more details). In a future release, the default value for `weights_only` will be flipped to `True`. This limits the functions that could be executed during unpickling. Arbitrary objects will no longer be allowed to be loaded via this mode unless they are explicitly allowlisted by the user via `torch.serialization.add_safe_globals`. We recommend you start setting `weights_only=True` for any use case where you don't have full control of the loaded file. Please open an issue on GitHub for any issues related to this experimental feature.
+  adapters_weights = torch.load(
+===== AUTHOR-STYLE NIRYO DIFFERENTIAL IK ROLLOUT =====
+minmax decode + temporal aggregation + local differential IK + move_joints
+rot6d not used; orientation is not commanded directly
+steps: 14
+max_cart_step: 0.006
+max_dq: 0.035
+
+===== CAMERA OPEN =====
+camera candidates: [(0, 'Loopback video device'), (1, 'Integrated Webcam_HD: Integrate'), (2, 'Integrated Webcam_HD: Integrate'), (3, 'USB Camera2: USB Camera2')]
+auto selected: 3 USB Camera2: USB Camera2
+
+===== ROBOT CONNECT =====
+
+Connected to server (169.254.200.200) on port: 40001
+
+
+===== FK QUICK CHECK =====
+current joints: [-0.057054  0.262793 -1.231606 -0.89882  -0.032306  0.688285]
+FK pose: [ 0.142    -0.002     0.181    -0.248688  0.988444 -0.103032]
+real pose: [ 0.141711 -0.00189   0.181348 -0.253801  0.988444 -0.103032]
+FK-real xyz diff: [ 0.000289 -0.00011  -0.000348]
+
+===== LOAD MODEL ONCE =====
+Loading LLaVA-Pythia config from: /home/thien/tinyvla_niryo_ckpt/author_10d_full_5000steps
+Loading LLaVA-Pythia from base model...
+number of parameters: 7.283150e+07
+Loading additional LLaVA-Pythia weights...
+Loading LoRA weights...
+Merging LoRA weights...
+Model is loaded...
+{'device_map': 'cuda', 'torch_dtype': torch.float16}
+model loaded OK
+action_head_type: droid_diffusion
+chunk_size: 16
+
+===== DIFFIK ROLLOUT STEP 1/14 =====
+current xyz: [ 0.141711 -0.00189   0.181348]
+agg votes: 1
+target xyz raw: [ 0.161382 -0.015068  0.1816  ]
+raw dxyz: [ 0.019671 -0.013178  0.000253] norm: 0.023679
+used dxyz: [ 4.985e-03 -3.339e-03  6.400e-05] cart_clipped: True
+dq: [0. 0. 0. 0. 0. 0.] dq_clipped: False
+pred dxyz Jdq: [0. 0. 0.]
+pred xyz FK: [ 0.142 -0.002  0.181]
+pred actual dxyz FK: [ 0.000289 -0.00011  -0.000348]
+wrist dq j4/j5/j6: [0. 0. 0.]
+moving by joints...
+actual delta joints: [0. 0. 0. 0. 0. 0.]
+new xyz: [ 0.141711 -0.00189   0.181348]
+actual dxyz: [0. 0. 0.]
+
+===== DIFFIK ROLLOUT STEP 2/14 =====
+current xyz: [ 0.141711 -0.00189   0.181348]
+agg votes: 2
+target xyz raw: [ 0.170875 -0.021828  0.161161]
+raw dxyz: [ 0.029165 -0.019938 -0.020186] norm: 0.040689
+used dxyz: [ 0.004301 -0.00294  -0.002977] cart_clipped: True
+dq: [0. 0. 0. 0. 0. 0.] dq_clipped: False
+pred dxyz Jdq: [0. 0. 0.]
+pred xyz FK: [ 0.142 -0.002  0.181]
+pred actual dxyz FK: [ 0.000289 -0.00011  -0.000348]
+wrist dq j4/j5/j6: [0. 0. 0.]
+moving by joints...
+actual delta joints: [0. 0. 0. 0. 0. 0.]
+new xyz: [ 0.141711 -0.00189   0.181348]
+actual dxyz: [0. 0. 0.]
+
+===== DIFFIK ROLLOUT STEP 3/14 =====
+current xyz: [ 0.141711 -0.00189   0.181348]
+agg votes: 3
+target xyz raw: [0.161241 0.006407 0.167843]
+raw dxyz: [ 0.019531  0.008297 -0.013505] norm: 0.025153
+used dxyz: [ 0.004659  0.001979 -0.003221] cart_clipped: True
+dq: [0. 0. 0. 0. 0. 0.] dq_clipped: False
+pred dxyz Jdq: [0. 0. 0.]
+pred xyz FK: [ 0.142 -0.002  0.181]
+pred actual dxyz FK: [ 0.000289 -0.00011  -0.000348]
+wrist dq j4/j5/j6: [0. 0. 0.]
+moving by joints...
+actual delta joints: [0. 0. 0. 0. 0. 0.]
+new xyz: [ 0.141711 -0.00189   0.181348]
+actual dxyz: [0. 0. 0.]
+
+===== DIFFIK ROLLOUT STEP 4/14 =====
+current xyz: [ 0.141711 -0.00189   0.181348]
+agg votes: 4
+target xyz raw: [ 0.186788 -0.016581  0.145528]
+raw dxyz: [ 0.045077 -0.014691 -0.03582 ] norm: 0.059421
+used dxyz: [ 0.004552 -0.001483 -0.003617] cart_clipped: True
+dq: [0. 0. 0. 0. 0. 0.] dq_clipped: False
+pred dxyz Jdq: [0. 0. 0.]
+pred xyz FK: [ 0.142 -0.002  0.181]
+pred actual dxyz FK: [ 0.000289 -0.00011  -0.000348]
+wrist dq j4/j5/j6: [0. 0. 0.]
+moving by joints...
+actual delta joints: [ 0.        0.        0.        0.        0.       -0.005113]
+new xyz: [ 0.141711 -0.00189   0.181348]
+actual dxyz: [0. 0. 0.]
+
+===== DIFFIK ROLLOUT STEP 5/14 =====
+current xyz: [ 0.141711 -0.00189   0.181348]
+agg votes: 5
+target xyz raw: [ 0.199042 -0.032078  0.177829]
+raw dxyz: [ 0.057332 -0.030188 -0.003519] norm: 0.064889
+used dxyz: [ 0.005301 -0.002791 -0.000325] cart_clipped: True
+dq: [0. 0. 0. 0. 0. 0.] dq_clipped: False
+pred dxyz Jdq: [0. 0. 0.]
+pred xyz FK: [ 0.142 -0.002  0.181]
+pred actual dxyz FK: [ 0.000289 -0.00011  -0.000348]
+wrist dq j4/j5/j6: [0. 0. 0.]
+moving by joints...
+actual delta joints: [0.       0.       0.       0.       0.       0.005113]
+new xyz: [ 0.141711 -0.00189   0.181348]
+actual dxyz: [0. 0. 0.]
+
+===== DIFFIK ROLLOUT STEP 6/14 =====
+current xyz: [ 0.141711 -0.00189   0.181348]
+agg votes: 6
+target xyz raw: [ 0.168638 -0.010146  0.145067]
+raw dxyz: [ 0.026928 -0.008255 -0.03628 ] norm: 0.045929
+used dxyz: [ 0.003518 -0.001078 -0.004739] cart_clipped: True
+dq: [0. 0. 0. 0. 0. 0.] dq_clipped: False
+pred dxyz Jdq: [0. 0. 0.]
+pred xyz FK: [ 0.142 -0.002  0.181]
+pred actual dxyz FK: [ 0.000289 -0.00011  -0.000348]
+wrist dq j4/j5/j6: [0. 0. 0.]
+moving by joints...
+actual delta joints: [0. 0. 0. 0. 0. 0.]
+new xyz: [ 0.141711 -0.00189   0.181348]
+actual dxyz: [0. 0. 0.]
+
+===== DIFFIK ROLLOUT STEP 7/14 =====
+current xyz: [ 0.141711 -0.00189   0.181348]
+agg votes: 7
+target xyz raw: [ 0.198403 -0.018952  0.14978 ]
+raw dxyz: [ 0.056693 -0.017061 -0.031567] norm: 0.067094
+used dxyz: [ 0.00507  -0.001526 -0.002823] cart_clipped: True
+dq: [0. 0. 0. 0. 0. 0.] dq_clipped: False
+pred dxyz Jdq: [0. 0. 0.]
+pred xyz FK: [ 0.142 -0.002  0.181]
+pred actual dxyz FK: [ 0.000289 -0.00011  -0.000348]
+wrist dq j4/j5/j6: [0. 0. 0.]
+moving by joints...
+actual delta joints: [0. 0. 0. 0. 0. 0.]
+new xyz: [ 0.141711 -0.00189   0.181348]
+actual dxyz: [0. 0. 0.]
+
+===== DIFFIK ROLLOUT STEP 8/14 =====
+current xyz: [ 0.141711 -0.00189   0.181348]
+agg votes: 8
+target xyz raw: [ 0.197198 -0.03529   0.14801 ]
+raw dxyz: [ 0.055487 -0.0334   -0.033338] norm: 0.072841
+used dxyz: [ 0.004571 -0.002751 -0.002746] cart_clipped: True
+dq: [0. 0. 0. 0. 0. 0.] dq_clipped: False
+pred dxyz Jdq: [0. 0. 0.]
+pred xyz FK: [ 0.142 -0.002  0.181]
+pred actual dxyz FK: [ 0.000289 -0.00011  -0.000348]
+wrist dq j4/j5/j6: [0. 0. 0.]
+moving by joints...
+actual delta joints: [ 0.        0.        0.        0.        0.       -0.005113]
+new xyz: [ 0.141711 -0.00189   0.181348]
+actual dxyz: [0. 0. 0.]
+
+===== DIFFIK ROLLOUT STEP 9/14 =====
+current xyz: [ 0.141711 -0.00189   0.181348]
+agg votes: 9
+target xyz raw: [ 0.193654 -0.010507  0.152687]
+raw dxyz: [ 0.051944 -0.008617 -0.02866 ] norm: 0.059948
+used dxyz: [ 0.005199 -0.000862 -0.002869] cart_clipped: True
+dq: [0. 0. 0. 0. 0. 0.] dq_clipped: False
+pred dxyz Jdq: [0. 0. 0.]
+pred xyz FK: [ 0.142 -0.002  0.181]
+pred actual dxyz FK: [ 0.000289 -0.00011  -0.000348]
+wrist dq j4/j5/j6: [0. 0. 0.]
+moving by joints...
+actual delta joints: [0.       0.       0.       0.       0.       0.005113]
+new xyz: [ 0.141711 -0.00189   0.181348]
+actual dxyz: [0. 0. 0.]
+
+===== DIFFIK ROLLOUT STEP 10/14 =====
+current xyz: [ 0.141711 -0.00189   0.181348]
+agg votes: 10
+target xyz raw: [ 0.204431 -0.009038  0.142126]
+raw dxyz: [ 0.06272  -0.007147 -0.039222] norm: 0.074318
+used dxyz: [ 0.005064 -0.000577 -0.003167] cart_clipped: True
+dq: [0. 0. 0. 0. 0. 0.] dq_clipped: False
+pred dxyz Jdq: [0. 0. 0.]
+pred xyz FK: [ 0.142 -0.002  0.181]
+pred actual dxyz FK: [ 0.000289 -0.00011  -0.000348]
+wrist dq j4/j5/j6: [0. 0. 0.]
+moving by joints...
+actual delta joints: [0.       0.       0.       0.       0.       0.005113]
+new xyz: [ 0.141711 -0.00189   0.181348]
+actual dxyz: [0. 0. 0.]
+
+===== DIFFIK ROLLOUT STEP 11/14 =====
+current xyz: [ 0.141711 -0.00189   0.181348]
+agg votes: 11
+target xyz raw: [ 0.214359 -0.005352  0.141947]
+raw dxyz: [ 0.072648 -0.003462 -0.0394  ] norm: 0.082717
+used dxyz: [ 0.00527  -0.000251 -0.002858] cart_clipped: True
+dq: [0. 0. 0. 0. 0. 0.] dq_clipped: False
+pred dxyz Jdq: [0. 0. 0.]
+pred xyz FK: [ 0.142 -0.002  0.181]
+pred actual dxyz FK: [ 0.000289 -0.00011  -0.000348]
+wrist dq j4/j5/j6: [0. 0. 0.]
+moving by joints...
+actual delta joints: [ 0.        0.        0.        0.        0.       -0.005113]
+new xyz: [ 0.141711 -0.00189   0.181348]
+actual dxyz: [0. 0. 0.]
+
+===== DIFFIK ROLLOUT STEP 12/14 =====
+current xyz: [ 0.141711 -0.00189   0.181348]
+agg votes: 12
+target xyz raw: [ 0.192569 -0.010306  0.142617]
+raw dxyz: [ 0.050858 -0.008416 -0.038731] norm: 0.064478
+used dxyz: [ 0.004733 -0.000783 -0.003604] cart_clipped: True
+dq: [0. 0. 0. 0. 0. 0.] dq_clipped: False
+pred dxyz Jdq: [0. 0. 0.]
+pred xyz FK: [ 0.142 -0.002  0.181]
+pred actual dxyz FK: [ 0.000289 -0.00011  -0.000348]
+wrist dq j4/j5/j6: [0. 0. 0.]
+moving by joints...
+actual delta joints: [ 0.        0.        0.        0.        0.       -0.005113]
+new xyz: [ 0.141711 -0.00189   0.181348]
+actual dxyz: [0. 0. 0.]
+
+===== DIFFIK ROLLOUT STEP 13/14 =====
+current xyz: [ 0.141711 -0.00189   0.181348]
+agg votes: 13
+target xyz raw: [ 0.19773  -0.000307  0.141677]
+raw dxyz: [ 0.05602   0.001583 -0.039671] norm: 0.068662
+used dxyz: [ 0.004895  0.000138 -0.003467] cart_clipped: True
+dq: [0. 0. 0. 0. 0. 0.] dq_clipped: False
+pred dxyz Jdq: [0. 0. 0.]
+pred xyz FK: [ 0.142 -0.002  0.181]
+pred actual dxyz FK: [ 0.000289 -0.00011  -0.000348]
+wrist dq j4/j5/j6: [0. 0. 0.]
+moving by joints...
+actual delta joints: [0. 0. 0. 0. 0. 0.]
+new xyz: [ 0.141711 -0.00189   0.181348]
+actual dxyz: [0. 0. 0.]
+
+===== DIFFIK ROLLOUT STEP 14/14 =====
+current xyz: [ 0.141711 -0.00189   0.181348]
+agg votes: 14
+target xyz raw: [ 0.197699 -0.015972  0.136784]
+raw dxyz: [ 0.055988 -0.014082 -0.044564] norm: 0.072931
+used dxyz: [ 0.004606 -0.001159 -0.003666] cart_clipped: True
+dq: [0. 0. 0. 0. 0. 0.] dq_clipped: False
+pred dxyz Jdq: [0. 0. 0.]
+pred xyz FK: [ 0.142 -0.002  0.181]
+pred actual dxyz FK: [ 0.000289 -0.00011  -0.000348]
+wrist dq j4/j5/j6: [0. 0. 0.]
+moving by joints...
+actual delta joints: [0. 0. 0. 0. 0. 0.]
+new xyz: [ 0.141711 -0.00189   0.181348]
+actual dxyz: [0. 0. 0.]
+
+DIFFIK ROLLOUT DONE
+
+Disconnected from robot
+
+QObject::killTimer: Timers cannot be stopped from another thread
+QObject::~QObject: Timers cannot be stopped from another thread

@@ -1,0 +1,45 @@
+device: cuda
+dataset: data/niryo_push_real_v5_trim_minivla.npz
+images: (3991, 224, 224, 3) uint8
+states: (3991, 6) float32
+actions: (3991, 6) float32
+text_ids: (3991, 16) int64
+
+Loaded Diffusion model OK
+checkpoint: checkpoints/minivla_push_trim_v5.pt
+state_dim: 6
+action_dim: 6
+d_model: 128
+diffusion_T: 50
+vocab: {'<pad>': 0, '<unk>': 1, 'push': 2, 'the': 3, 'object': 4}
+
+===== DIFFUSION POLICY LOCAL OFFLINE EVAL 300 SAMPLES SAME-IDX =====
+samples: 300
+sample selection: np.random.default_rng(0).choice(N, 300, replace=False)
+
+--- norm ---
+true norm mean: 0.031021082773804665
+pred norm mean: 0.06068836897611618
+true norm min/max: 0.0036132168024778366 0.0681491419672966
+pred norm min/max: 0.01609077863395214 0.11971735209226608
+
+--- error ---
+model L2 error mean: 0.06226428970694542
+model L2 error median: 0.06006194278597832
+zero baseline error mean: 0.031021082773804665
+mean-action baseline error mean: 0.02360454946756363
+
+--- cosine ---
+cosine mean: 0.18520638346672058
+cosine median: 0.24788221716880798
+cosine > 0 count: 202 / 300
+
+--- per joint pred mean/std ---
+pred mean: [-0.00597 -0.00892  0.00583  0.00649 -0.00183 -0.00452]
+pred std : [0.02461 0.02348 0.02639 0.02755 0.02402 0.02434]
+
+--- per joint true mean/std ---
+true mean: [-9.500e-04 -1.162e-02  1.400e-02  6.000e-05  6.350e-03 -1.500e-04]
+true std : [0.00779 0.00916 0.01189 0.01326 0.01163 0.00965]
+
+DONE

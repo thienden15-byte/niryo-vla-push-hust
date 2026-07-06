@@ -1,0 +1,124 @@
+/home/thien/.local/lib/python3.10/site-packages/diffusers/utils/outputs.py:63: FutureWarning: `torch.utils._pytree._register_pytree_node` is deprecated. Please use `torch.utils._pytree.register_pytree_node` instead.
+  torch.utils._pytree._register_pytree_node(
+Special tokens have been added in the vocabulary, make sure the associated word embeddings are fine-tuned or trained.
+Some weights of the model checkpoint at /home/thien/TinyVLA/pretrained/Llava-Pythia-400M were not used when initializing LlavaPythiaForCausalLM: ['embed_out.weight']
+- This IS expected if you are initializing LlavaPythiaForCausalLM from the checkpoint of a model trained on another task or with another architecture (e.g. initializing a BertForSequenceClassification model from a BertForPreTraining model).
+- This IS NOT expected if you are initializing LlavaPythiaForCausalLM from the checkpoint of a model that you expect to be exactly identical (initializing a BertForSequenceClassification model from a BertForSequenceClassification model).
+Some weights of LlavaPythiaForCausalLM were not initialized from the model checkpoint at /home/thien/TinyVLA/pretrained/Llava-Pythia-400M and are newly initialized: ['embed_out.combine.bias', 'embed_out.combine.weight', 'embed_out.diffusion_step_encoder.1.bias', 'embed_out.diffusion_step_encoder.1.weight', 'embed_out.diffusion_step_encoder.3.bias', 'embed_out.diffusion_step_encoder.3.weight', 'embed_out.down_modules.0.0.blocks.0.block.0.bias', 'embed_out.down_modules.0.0.blocks.0.block.0.weight', 'embed_out.down_modules.0.0.blocks.0.block.1.bias', 'embed_out.down_modules.0.0.blocks.0.block.1.weight', 'embed_out.down_modules.0.0.blocks.1.block.0.bias', 'embed_out.down_modules.0.0.blocks.1.block.0.weight', 'embed_out.down_modules.0.0.blocks.1.block.1.bias', 'embed_out.down_modules.0.0.blocks.1.block.1.weight', 'embed_out.down_modules.0.0.cond_encoder.1.bias', 'embed_out.down_modules.0.0.cond_encoder.1.weight', 'embed_out.down_modules.0.0.residual_conv.bias', 'embed_out.down_modules.0.0.residual_conv.weight', 'embed_out.down_modules.0.1.blocks.0.block.0.bias', 'embed_out.down_modules.0.1.blocks.0.block.0.weight', 'embed_out.down_modules.0.1.blocks.0.block.1.bias', 'embed_out.down_modules.0.1.blocks.0.block.1.weight', 'embed_out.down_modules.0.1.blocks.1.block.0.bias', 'embed_out.down_modules.0.1.blocks.1.block.0.weight', 'embed_out.down_modules.0.1.blocks.1.block.1.bias', 'embed_out.down_modules.0.1.blocks.1.block.1.weight', 'embed_out.down_modules.0.1.cond_encoder.1.bias', 'embed_out.down_modules.0.1.cond_encoder.1.weight', 'embed_out.down_modules.0.2.conv.bias', 'embed_out.down_modules.0.2.conv.weight', 'embed_out.down_modules.1.0.blocks.0.block.0.bias', 'embed_out.down_modules.1.0.blocks.0.block.0.weight', 'embed_out.down_modules.1.0.blocks.0.block.1.bias', 'embed_out.down_modules.1.0.blocks.0.block.1.weight', 'embed_out.down_modules.1.0.blocks.1.block.0.bias', 'embed_out.down_modules.1.0.blocks.1.block.0.weight', 'embed_out.down_modules.1.0.blocks.1.block.1.bias', 'embed_out.down_modules.1.0.blocks.1.block.1.weight', 'embed_out.down_modules.1.0.cond_encoder.1.bias', 'embed_out.down_modules.1.0.cond_encoder.1.weight', 'embed_out.down_modules.1.0.residual_conv.bias', 'embed_out.down_modules.1.0.residual_conv.weight', 'embed_out.down_modules.1.1.blocks.0.block.0.bias', 'embed_out.down_modules.1.1.blocks.0.block.0.weight', 'embed_out.down_modules.1.1.blocks.0.block.1.bias', 'embed_out.down_modules.1.1.blocks.0.block.1.weight', 'embed_out.down_modules.1.1.blocks.1.block.0.bias', 'embed_out.down_modules.1.1.blocks.1.block.0.weight', 'embed_out.down_modules.1.1.blocks.1.block.1.bias', 'embed_out.down_modules.1.1.blocks.1.block.1.weight', 'embed_out.down_modules.1.1.cond_encoder.1.bias', 'embed_out.down_modules.1.1.cond_encoder.1.weight', 'embed_out.down_modules.1.2.conv.bias', 'embed_out.down_modules.1.2.conv.weight', 'embed_out.down_modules.2.0.blocks.0.block.0.bias', 'embed_out.down_modules.2.0.blocks.0.block.0.weight', 'embed_out.down_modules.2.0.blocks.0.block.1.bias', 'embed_out.down_modules.2.0.blocks.0.block.1.weight', 'embed_out.down_modules.2.0.blocks.1.block.0.bias', 'embed_out.down_modules.2.0.blocks.1.block.0.weight', 'embed_out.down_modules.2.0.blocks.1.block.1.bias', 'embed_out.down_modules.2.0.blocks.1.block.1.weight', 'embed_out.down_modules.2.0.cond_encoder.1.bias', 'embed_out.down_modules.2.0.cond_encoder.1.weight', 'embed_out.down_modules.2.0.residual_conv.bias', 'embed_out.down_modules.2.0.residual_conv.weight', 'embed_out.down_modules.2.1.blocks.0.block.0.bias', 'embed_out.down_modules.2.1.blocks.0.block.0.weight', 'embed_out.down_modules.2.1.blocks.0.block.1.bias', 'embed_out.down_modules.2.1.blocks.0.block.1.weight', 'embed_out.down_modules.2.1.blocks.1.block.0.bias', 'embed_out.down_modules.2.1.blocks.1.block.0.weight', 'embed_out.down_modules.2.1.blocks.1.block.1.bias', 'embed_out.down_modules.2.1.blocks.1.block.1.weight', 'embed_out.down_modules.2.1.cond_encoder.1.bias', 'embed_out.down_modules.2.1.cond_encoder.1.weight', 'embed_out.final_conv.0.block.0.bias', 'embed_out.final_conv.0.block.0.weight', 'embed_out.final_conv.0.block.1.bias', 'embed_out.final_conv.0.block.1.weight', 'embed_out.final_conv.1.bias', 'embed_out.final_conv.1.weight', 'embed_out.mid_modules.0.blocks.0.block.0.bias', 'embed_out.mid_modules.0.blocks.0.block.0.weight', 'embed_out.mid_modules.0.blocks.0.block.1.bias', 'embed_out.mid_modules.0.blocks.0.block.1.weight', 'embed_out.mid_modules.0.blocks.1.block.0.bias', 'embed_out.mid_modules.0.blocks.1.block.0.weight', 'embed_out.mid_modules.0.blocks.1.block.1.bias', 'embed_out.mid_modules.0.blocks.1.block.1.weight', 'embed_out.mid_modules.0.cond_encoder.1.bias', 'embed_out.mid_modules.0.cond_encoder.1.weight', 'embed_out.mid_modules.1.blocks.0.block.0.bias', 'embed_out.mid_modules.1.blocks.0.block.0.weight', 'embed_out.mid_modules.1.blocks.0.block.1.bias', 'embed_out.mid_modules.1.blocks.0.block.1.weight', 'embed_out.mid_modules.1.blocks.1.block.0.bias', 'embed_out.mid_modules.1.blocks.1.block.0.weight', 'embed_out.mid_modules.1.blocks.1.block.1.bias', 'embed_out.mid_modules.1.blocks.1.block.1.weight', 'embed_out.mid_modules.1.cond_encoder.1.bias', 'embed_out.mid_modules.1.cond_encoder.1.weight', 'embed_out.norm_after_pool.bias', 'embed_out.norm_after_pool.weight', 'embed_out.up_modules.0.0.blocks.0.block.0.bias', 'embed_out.up_modules.0.0.blocks.0.block.0.weight', 'embed_out.up_modules.0.0.blocks.0.block.1.bias', 'embed_out.up_modules.0.0.blocks.0.block.1.weight', 'embed_out.up_modules.0.0.blocks.1.block.0.bias', 'embed_out.up_modules.0.0.blocks.1.block.0.weight', 'embed_out.up_modules.0.0.blocks.1.block.1.bias', 'embed_out.up_modules.0.0.blocks.1.block.1.weight', 'embed_out.up_modules.0.0.cond_encoder.1.bias', 'embed_out.up_modules.0.0.cond_encoder.1.weight', 'embed_out.up_modules.0.0.residual_conv.bias', 'embed_out.up_modules.0.0.residual_conv.weight', 'embed_out.up_modules.0.1.blocks.0.block.0.bias', 'embed_out.up_modules.0.1.blocks.0.block.0.weight', 'embed_out.up_modules.0.1.blocks.0.block.1.bias', 'embed_out.up_modules.0.1.blocks.0.block.1.weight', 'embed_out.up_modules.0.1.blocks.1.block.0.bias', 'embed_out.up_modules.0.1.blocks.1.block.0.weight', 'embed_out.up_modules.0.1.blocks.1.block.1.bias', 'embed_out.up_modules.0.1.blocks.1.block.1.weight', 'embed_out.up_modules.0.1.cond_encoder.1.bias', 'embed_out.up_modules.0.1.cond_encoder.1.weight', 'embed_out.up_modules.0.2.conv.bias', 'embed_out.up_modules.0.2.conv.weight', 'embed_out.up_modules.1.0.blocks.0.block.0.bias', 'embed_out.up_modules.1.0.blocks.0.block.0.weight', 'embed_out.up_modules.1.0.blocks.0.block.1.bias', 'embed_out.up_modules.1.0.blocks.0.block.1.weight', 'embed_out.up_modules.1.0.blocks.1.block.0.bias', 'embed_out.up_modules.1.0.blocks.1.block.0.weight', 'embed_out.up_modules.1.0.blocks.1.block.1.bias', 'embed_out.up_modules.1.0.blocks.1.block.1.weight', 'embed_out.up_modules.1.0.cond_encoder.1.bias', 'embed_out.up_modules.1.0.cond_encoder.1.weight', 'embed_out.up_modules.1.0.residual_conv.bias', 'embed_out.up_modules.1.0.residual_conv.weight', 'embed_out.up_modules.1.1.blocks.0.block.0.bias', 'embed_out.up_modules.1.1.blocks.0.block.0.weight', 'embed_out.up_modules.1.1.blocks.0.block.1.bias', 'embed_out.up_modules.1.1.blocks.0.block.1.weight', 'embed_out.up_modules.1.1.blocks.1.block.0.bias', 'embed_out.up_modules.1.1.blocks.1.block.0.weight', 'embed_out.up_modules.1.1.blocks.1.block.1.bias', 'embed_out.up_modules.1.1.blocks.1.block.1.weight', 'embed_out.up_modules.1.1.cond_encoder.1.bias', 'embed_out.up_modules.1.1.cond_encoder.1.weight', 'embed_out.up_modules.1.2.conv.bias', 'embed_out.up_modules.1.2.conv.weight']
+You should probably TRAIN this model on a down-stream task to be able to use it for predictions and inference.
+/home/thien/TinyVLA/llava-pythia/llava_pythia/model/builder.py:75: FutureWarning: You are using `torch.load` with `weights_only=False` (the current default value), which uses the default pickle module implicitly. It is possible to construct malicious pickle data which will execute arbitrary code during unpickling (See https://github.com/pytorch/pytorch/blob/main/SECURITY.md#untrusted-models for more details). In a future release, the default value for `weights_only` will be flipped to `True`. This limits the functions that could be executed during unpickling. Arbitrary objects will no longer be allowed to be loaded via this mode unless they are explicitly allowlisted by the user via `torch.serialization.add_safe_globals`. We recommend you start setting `weights_only=True` for any use case where you don't have full control of the loaded file. Please open an issue on GitHub for any issues related to this experimental feature.
+  non_lora_trainables = torch.load(os.path.join(model_path, 'non_lora_trainables.bin'), map_location='cpu')
+/home/thien/.local/lib/python3.10/site-packages/peft/peft_model.py:556: FutureWarning: You are using `torch.load` with `weights_only=False` (the current default value), which uses the default pickle module implicitly. It is possible to construct malicious pickle data which will execute arbitrary code during unpickling (See https://github.com/pytorch/pytorch/blob/main/SECURITY.md#untrusted-models for more details). In a future release, the default value for `weights_only` will be flipped to `True`. This limits the functions that could be executed during unpickling. Arbitrary objects will no longer be allowed to be loaded via this mode unless they are explicitly allowlisted by the user via `torch.serialization.add_safe_globals`. We recommend you start setting `weights_only=True` for any use case where you don't have full control of the loaded file. Please open an issue on GitHub for any issues related to this experimental feature.
+  adapters_weights = torch.load(
+===== OFFICIAL-STYLE DRY-RUN: NO MOVEMENT =====
+instruction: push the green object to the right
+dry_steps: 12
+query_frequency: 1
+temporal_k: 0.01
+
+===== CAMERA CAPTURE =====
+camera candidates: [(0, 'Loopback video device'), (1, 'Integrated Webcam_HD: Integrate'), (2, 'Integrated Webcam_HD: Integrate'), (3, 'USB Camera2: USB Camera2')]
+auto selected: 3 USB Camera2: USB Camera2
+saved frame: /home/thien/tinyvla_niryo_runtime/official_style_dryrun/official_style_frame_20260630_164049.jpg
+
+===== ROBOT READ ONLY =====
+
+Connected to server (169.254.200.200) on port: 40001
+
+
+Disconnected from robot
+
+current pose [x,y,z,r,p,y]:
+[ 0.118607 -0.007916  0.192652 -0.067051  1.002054 -0.108185]
+
+===== LOAD MODEL =====
+Loading LLaVA-Pythia config from: /home/thien/tinyvla_niryo_ckpt/author_10d_full_5000steps
+Loading LLaVA-Pythia from base model...
+number of parameters: 7.283150e+07
+Loading additional LLaVA-Pythia weights...
+Loading LoRA weights...
+Merging LoRA weights...
+Model is loaded...
+{'device_map': 'cuda', 'torch_dtype': torch.float16}
+model loaded OK
+config action_head_type: droid_diffusion
+config action_dim: 10
+config chunk_size: 16
+
+===== DRY ROLLOUT WITH TEMPORAL AGGREGATION =====
+NOTE: Robot is NOT moving. Observation is fixed.
+
+--- t=00 votes=1 ---
+agg raw first3: [-0.799316 -0.105286  0.190552]
+MINMAX xyz: [0.142048 0.02215  0.156562] dxyz: [ 0.023441  0.030066 -0.03609 ]
+OLD meanstd xyz: [0.15199  0.006436 0.144192] dxyz: [ 0.033383  0.014353 -0.04846 ]
+--- t=01 votes=2 ---
+agg raw first3: [-0.746682 -0.328535  0.39218 ]
+MINMAX xyz: [ 0.149913 -0.007554  0.173815] dxyz: [ 0.031306  0.000362 -0.018837]
+OLD meanstd xyz: [ 0.156259 -0.004978  0.155216] dxyz: [ 0.037652  0.002938 -0.037436]
+--- t=02 votes=3 ---
+agg raw first3: [-0.730463 -0.173627  0.181968]
+MINMAX xyz: [0.152336 0.013057 0.155828] dxyz: [ 0.033729  0.020973 -0.036825]
+OLD meanstd xyz: [0.157575 0.002942 0.143723] dxyz: [ 0.038968  0.010858 -0.048929]
+--- t=03 votes=4 ---
+agg raw first3: [-0.424087 -0.055388  0.259147]
+MINMAX xyz: [0.198114 0.028789 0.162432] dxyz: [ 0.079506  0.036705 -0.030221]
+OLD meanstd xyz: [0.182426 0.008988 0.147943] dxyz: [ 0.063819  0.016904 -0.04471 ]
+--- t=04 votes=5 ---
+agg raw first3: [-0.703473 -0.068247  0.343933]
+MINMAX xyz: [0.156369 0.027078 0.169687] dxyz: [ 0.037762  0.034994 -0.022965]
+OLD meanstd xyz: [0.159764 0.00833  0.152578] dxyz: [ 0.041157  0.016246 -0.040074]
+--- t=05 votes=6 ---
+agg raw first3: [-0.545318 -0.243547  0.376341]
+MINMAX xyz: [0.18     0.003754 0.17246 ] dxyz: [ 0.061393  0.01167  -0.020192]
+OLD meanstd xyz: [ 0.172593 -0.000632  0.15435 ] dxyz: [ 0.053985  0.007284 -0.038302]
+--- t=06 votes=7 ---
+agg raw first3: [-0.522447 -0.232257  0.367087]
+MINMAX xyz: [0.183417 0.005256 0.171668] dxyz: [ 0.06481   0.013172 -0.020984]
+OLD meanstd xyz: [ 1.74448e-01 -5.50000e-05  1.53844e-01] dxyz: [ 0.055841  0.007861 -0.038808]
+--- t=07 votes=8 ---
+agg raw first3: [-0.560722 -0.210392  0.374771]
+MINMAX xyz: [0.177698 0.008165 0.172326] dxyz: [ 0.059091  0.016081 -0.020327]
+OLD meanstd xyz: [0.171343 0.001063 0.154264] dxyz: [ 0.052736  0.008979 -0.038388]
+--- t=08 votes=9 ---
+agg raw first3: [-0.515767 -0.083966  0.331885]
+MINMAX xyz: [0.184415 0.024986 0.168656] dxyz: [ 0.065808  0.032902 -0.023996]
+OLD meanstd xyz: [0.17499  0.007526 0.15192 ] dxyz: [ 0.056382  0.015443 -0.040733]
+--- t=09 votes=10 ---
+agg raw first3: [-0.44087  -0.145725  0.333157]
+MINMAX xyz: [0.195606 0.016769 0.168765] dxyz: [ 0.076999  0.024685 -0.023888]
+OLD meanstd xyz: [0.181065 0.004369 0.151989] dxyz: [ 0.062457  0.012285 -0.040663]
+--- t=10 votes=11 ---
+agg raw first3: [-0.546368 -0.269734  0.235318]
+MINMAX xyz: [0.179843 0.000269 0.160393] dxyz: [ 0.061236  0.008185 -0.03226 ]
+OLD meanstd xyz: [ 0.172507 -0.001971  0.14664 ] dxyz: [ 0.0539    0.005945 -0.046012]
+--- t=11 votes=12 ---
+agg raw first3: [-0.485457 -0.288436  0.370148]
+MINMAX xyz: [ 0.188944 -0.002219  0.17193 ] dxyz: [ 0.070337  0.005697 -0.020722]
+OLD meanstd xyz: [ 0.177448 -0.002928  0.154012] dxyz: [ 0.058841  0.004989 -0.038641]
+
+===== LAST RAW CHUNK DECODED BY MINMAX =====
+first 16 xyz minmax:
+[[ 0.164592 -0.046805  0.186593]
+ [ 0.167292 -0.02712   0.182394]
+ [ 0.166708 -0.041348  0.179177]
+ [ 0.22252  -0.039139  0.196161]
+ [ 0.228174 -0.042647  0.163738]
+ [ 0.202566 -0.028127  0.183794]
+ [ 0.180497 -0.015653  0.184044]
+ [ 0.197094 -0.023449  0.163926]
+ [ 0.204135 -0.033812  0.154891]
+ [ 0.202931 -0.037255  0.179636]
+ [ 0.204901 -0.040243  0.179595]
+ [ 0.206725 -0.007435  0.152029]
+ [ 0.213546 -0.049079  0.162464]
+ [ 0.255013 -0.050313  0.159226]
+ [ 0.234904 -0.037969  0.17596 ]
+ [ 0.237804 -0.044076  0.164365]]
+xyz min: [ 0.164592 -0.050313  0.152029]
+xyz max: [ 0.255013 -0.007435  0.196161]
+
+IMPORTANT:
+This was dry-run only. Robot DID NOT move.
+Next step: if minmax + temporal aggregation looks sane, create 1-step execution.
+OFFICIAL-STYLE DRY-RUN DONE

@@ -1,0 +1,218 @@
+/home/thien/.local/lib/python3.10/site-packages/diffusers/utils/outputs.py:63: FutureWarning: `torch.utils._pytree._register_pytree_node` is deprecated. Please use `torch.utils._pytree.register_pytree_node` instead.
+  torch.utils._pytree._register_pytree_node(
+===== AUTO GREEN MONOTONIC PUSH =====
+HSV detects green object and automatically sets approach_x/approach_y.
+No model target. No backward X. No upward Z during approach.
+camera candidates: [(0, 'Loopback video device'), (1, 'Integrated Webcam_HD: Integrate'), (2, 'Integrated Webcam_HD: Integrate'), (3, 'USB Camera2: USB Camera2')]
+auto selected: 3 USB Camera2: USB Camera2
+
+===== GREEN OBJECT DETECTED =====
+bbox x,y,w,h: (759, 544, 64, 69)
+center cx,cy: (791.0, 578.5)
+area: 3229.0
+
+===== AUTO ROBOT TARGET =====
+approach_x: 0.30756
+approach_y: 0.02979
+contact_z : 0.085
+saved debug image: /home/thien/tinyvla_niryo_runtime/auto_green_debug/auto_green_20260630_182524.jpg
+
+===== CAMERA LIVE OPEN =====
+
+Connected to server (169.254.200.200) on port: 40001
+
+
+===== MOVE HOME =====
+
+[00] mode=approach_descend
+cur xyz : [ 1.30550e-01 -1.00000e-06  1.76284e-01]
+target  : [0.30756 0.02979 0.085  ]
+cmd dxyz: [ 0.006  0.003 -0.005]
+dq      : [ 0.027523 -0.035747  0.011345 -0.       -0.000368  0.      ] dq_clipped: False
+wrist dq: [-0.       -0.000368  0.      ]
+new xyz : [0.132828 0.003645 0.174694]
+actual  : [ 0.002278  0.003646 -0.001591]
+
+[01] mode=approach_descend
+cur xyz : [0.132828 0.003645 0.174694]
+target  : [0.30756 0.02979 0.085  ]
+cmd dxyz: [ 0.006  0.003 -0.005]
+dq      : [ 0.027094 -0.07      0.02708   0.        0.        0.      ] dq_clipped: True
+wrist dq: [0. 0. 0.]
+new xyz : [0.138717 0.007621 0.171103]
+actual  : [ 0.005888  0.003975 -0.00359 ]
+
+[02] mode=approach_descend
+cur xyz : [0.138717 0.007621 0.171103]
+target  : [0.30756 0.02979 0.085  ]
+cmd dxyz: [ 0.006  0.003 -0.005]
+dq      : [ 0.020977 -0.07      0.019096  0.        0.        0.      ] dq_clipped: True
+wrist dq: [0. 0. 0.]
+new xyz : [0.14242 0.01082 0.16561]
+actual  : [ 0.003704  0.003199 -0.005493]
+
+[03] mode=approach_descend
+cur xyz : [0.14242 0.01082 0.16561]
+target  : [0.30756 0.02979 0.085  ]
+cmd dxyz: [ 0.006  0.003 -0.005]
+dq      : [ 0.022676 -0.061691  0.038696  0.       -0.001234  0.      ] dq_clipped: False
+wrist dq: [ 0.       -0.001234  0.      ]
+new xyz : [0.150444 0.014933 0.163865]
+actual  : [ 0.008024  0.004113 -0.001746]
+
+[04] mode=approach_descend
+cur xyz : [0.150444 0.014933 0.163865]
+target  : [0.30756 0.02979 0.085  ]
+cmd dxyz: [ 0.006  0.003 -0.005]
+dq      : [ 0.027094 -0.07      0.02708   0.        0.        0.      ] dq_clipped: True
+wrist dq: [0. 0. 0.]
+new xyz : [0.155787 0.019794 0.158499]
+actual  : [ 0.005342  0.004861 -0.005365]
+
+[05] mode=approach_descend
+cur xyz : [0.155787 0.019794 0.158499]
+target  : [0.30756 0.02979 0.085  ]
+cmd dxyz: [ 0.006  0.003 -0.005]
+dq      : [ 0.027523 -0.051275  0.027941  0.       -0.001025  0.      ] dq_clipped: False
+wrist dq: [ 0.       -0.001025  0.      ]
+new xyz : [0.16085  0.02494  0.155449]
+actual  : [ 0.005064  0.005146 -0.00305 ]
+
+[06] mode=approach_descend
+cur xyz : [0.16085  0.02494  0.155449]
+target  : [0.30756 0.02979 0.085  ]
+cmd dxyz: [ 0.006  0.003 -0.005]
+dq      : [ 0.01467  -0.051275  0.027941  0.       -0.001025  0.      ] dq_clipped: False
+wrist dq: [ 0.       -0.001025  0.      ]
+new xyz : [0.166086 0.028214 0.152187]
+actual  : [ 0.005236  0.003274 -0.003262]
+
+[07] mode=approach_descend
+cur xyz : [0.166086 0.028214 0.152187]
+target  : [0.30756 0.02979 0.085  ]
+cmd dxyz: [ 0.006     0.001576 -0.005   ]
+dq      : [-0.007914 -0.039457  0.031945  0.        0.001115  0.      ] dq_clipped: False
+wrist dq: [0.       0.001115 0.      ]
+new xyz : [0.173347 0.028032 0.150894]
+actual  : [ 0.007261 -0.000181 -0.001293]
+
+[08] mode=approach_descend
+cur xyz : [0.173347 0.028032 0.150894]
+target  : [0.30756 0.02979 0.085  ]
+cmd dxyz: [ 0.006     0.001758 -0.005   ]
+dq      : [ 0.007859 -0.040306  0.032425  0.        0.        0.      ] dq_clipped: False
+wrist dq: [0. 0. 0.]
+new xyz : [0.179901 0.030561 0.149441]
+actual  : [ 0.006554  0.002528 -0.001453]
+
+[09] mode=approach_descend
+cur xyz : [0.179901 0.030561 0.149441]
+target  : [0.30756 0.02979 0.085  ]
+cmd dxyz: [ 0.006    -0.000771 -0.005   ]
+dq      : [-7.0710e-03 -4.3328e-02  1.9262e-02  0.0000e+00  8.1000e-05  0.0000e+00] dq_clipped: False
+wrist dq: [0.0e+00 8.1e-05 0.0e+00]
+new xyz : [0.183633 0.029832 0.145358]
+actual  : [ 0.003732 -0.000729 -0.004083]
+
+[10] mode=approach_descend
+cur xyz : [0.183633 0.029832 0.145358]
+target  : [0.30756 0.02979 0.085  ]
+cmd dxyz: [ 6.0e-03 -4.2e-05 -5.0e-03]
+dq      : [-0.000205 -0.051275  0.027941  0.       -0.001025  0.      ] dq_clipped: False
+wrist dq: [ 0.       -0.001025  0.      ]
+new xyz : [0.18888  0.030684 0.141299]
+actual  : [ 0.005247  0.000852 -0.00406 ]
+
+[11] mode=approach_descend
+cur xyz : [0.18888  0.030684 0.141299]
+target  : [0.30756 0.02979 0.085  ]
+cmd dxyz: [ 0.006    -0.000894 -0.005   ]
+dq      : [-0.004373 -0.039535  0.032036  0.        0.001054  0.      ] dq_clipped: False
+wrist dq: [0.       0.001054 0.      ]
+new xyz : [0.195932 0.030814 0.139051]
+actual  : [ 0.007053  0.00013  -0.002247]
+
+[12] mode=approach_descend
+cur xyz : [0.195932 0.030814 0.139051]
+target  : [0.30756 0.02979 0.085  ]
+cmd dxyz: [ 0.006    -0.001024 -0.005   ]
+dq      : [-0.005009 -0.034009  0.019548  0.        0.        0.      ] dq_clipped: False
+wrist dq: [0. 0. 0.]
+new xyz : [0.200093 0.030581 0.136279]
+actual  : [ 0.004161 -0.000234 -0.002772]
+
+[13] mode=approach_descend
+cur xyz : [0.200093 0.030581 0.136279]
+target  : [0.30756 0.02979 0.085  ]
+cmd dxyz: [ 0.006    -0.000791 -0.005   ]
+dq      : [-3.8290e-03 -3.8455e-02  2.8639e-02  7.7000e-05  0.0000e+00  0.0000e+00] dq_clipped: False
+wrist dq: [7.7e-05 0.0e+00 0.0e+00]
+new xyz : [0.205761 0.030687 0.133448]
+actual  : [ 0.005668  0.000106 -0.002831]
+
+[14] mode=approach_descend
+cur xyz : [0.205761 0.030687 0.133448]
+target  : [0.30756 0.02979 0.085  ]
+cmd dxyz: [ 0.006    -0.000897 -0.005   ]
+dq      : [-0.005007 -0.037275  0.026227  0.        0.        0.      ] dq_clipped: False
+wrist dq: [0. 0. 0.]
+new xyz : [0.210863 0.030359 0.12995 ]
+actual  : [ 0.005102 -0.000328 -0.003498]
+
+[15] mode=approach_descend
+cur xyz : [0.210863 0.030359 0.12995 ]
+target  : [0.30756 0.02979 0.085  ]
+cmd dxyz: [ 0.006    -0.000569 -0.005   ]
+dq      : [-0.012419 -0.039454  0.03194   0.        0.001118  0.      ] dq_clipped: False
+wrist dq: [0.       0.001118 0.      ]
+new xyz : [0.217859 0.028481 0.127174]
+actual  : [ 0.006996 -0.001878 -0.002776]
+
+[16] mode=approach_descend
+cur xyz : [0.217859 0.028481 0.127174]
+target  : [0.30756 0.02979 0.085  ]
+cmd dxyz: [ 0.006     0.001309 -0.005   ]
+dq      : [ 0.00634  -0.038455  0.028639 -0.000127  0.        0.      ] dq_clipped: False
+wrist dq: [-0.000127  0.        0.      ]
+new xyz : [0.223096 0.030642 0.123516]
+actual  : [ 0.005237  0.002161 -0.003658]
+
+[17] mode=approach_descend
+cur xyz : [0.223096 0.030642 0.123516]
+target  : [0.30756 0.02979 0.085  ]
+cmd dxyz: [ 0.006    -0.000852 -0.005   ]
+dq      : [-0.004164 -0.036986  0.03133   0.        0.000304  0.      ] dq_clipped: False
+wrist dq: [0.       0.000304 0.      ]
+new xyz : [0.229138 0.03046  0.12051 ]
+actual  : [ 0.006042 -0.000181 -0.003005]
+
+[18] mode=approach_descend
+cur xyz : [0.229138 0.03046  0.12051 ]
+target  : [0.30756 0.02979 0.085  ]
+cmd dxyz: [ 0.006   -0.00067 -0.005  ]
+dq      : [-3.2460e-03 -3.6986e-02  3.1330e-02  6.5000e-05  3.0400e-04  0.0000e+00] dq_clipped: False
+wrist dq: [6.50e-05 3.04e-04 0.00e+00]
+new xyz : [0.235471 0.03061  0.117741]
+actual  : [ 0.006333  0.00015  -0.002769]
+
+[19] mode=approach_descend
+cur xyz : [0.235471 0.03061  0.117741]
+target  : [0.30756 0.02979 0.085  ]
+cmd dxyz: [ 0.006   -0.00082 -0.005  ]
+dq      : [-0.004011 -0.036667  0.030844  0.00118   0.000298  0.      ] dq_clipped: False
+wrist dq: [0.00118  0.000298 0.      ]
+new xyz : [0.241007 0.030269 0.114408]
+actual  : [ 0.005536 -0.000342 -0.003334]
+
+[20] mode=approach_descend
+cur xyz : [0.241007 0.030269 0.114408]
+target  : [0.30756 0.02979 0.085  ]
+cmd dxyz: [ 0.006    -0.000479 -0.005   ]
+dq      : [-0.011892 -0.03693   0.031248  0.        0.000349  0.      ] dq_clipped: False
+wrist dq: [0.       0.000349 0.      ]
+new xyz : [0.247437 0.028176 0.111423]
+actual  : [ 0.00643  -0.002093 -0.002985]
+
+[21] mode=approach_descend
+cur xyz : [0.247437 0.028176 0.111423]
+target  : 

@@ -1,0 +1,191 @@
+====================================================================================================
+GOAL_V1 CLASSIFIER-ZONE + INTERPOLATION EVALUATION
+====================================================================================================
+Dataset      : goal_v1/data/push_goal_v1.npz
+Train samples: 58
+Val samples  : 15
+Goal steps   : [25 55 99]
+====================================================================================================
+
+[1] CLASSIFIER-ZONE INTERPOLATION RESULTS
+====================================================================================================
+
+Feature: xy_area
+----------------------------------------------------------------------------------------------------
+xy_area_clfK2_plain_direct_zone_interpK2_p1                  | mae=0.091283 | g1=0.112658 g2=0.092461 g3=0.068729 | zone_acc=0.867
+xy_area_clfK2_plain_direct_zone_interpK5_p1                  | mae=0.089178 | g1=0.109252 g2=0.089246 g3=0.069035 | zone_acc=0.867
+xy_area_clfK2_plain_dist_lat_interpK2_p1                     | mae=0.091283 | g1=0.112658 g2=0.092461 g3=0.068729 | zone_acc=0.867
+xy_area_clfK2_plain_dist_lat_interpK5_p1                     | mae=0.089178 | g1=0.109252 g2=0.089246 g3=0.069035 | zone_acc=0.867
+xy_area_clfK3_plain_direct_zone_interpK2_p1                  | mae=0.096875 | g1=0.121524 g2=0.101314 g3=0.067785 | zone_acc=0.733
+xy_area_clfK3_plain_direct_zone_interpK5_p1                  | mae=0.096322 | g1=0.120132 g2=0.099033 g3=0.069800 | zone_acc=0.733
+xy_area_clfK3_plain_dist_lat_interpK2_p1                     | mae=0.096875 | g1=0.121524 g2=0.101314 g3=0.067785 | zone_acc=0.733
+xy_area_clfK3_plain_dist_lat_interpK5_p1                     | mae=0.096322 | g1=0.120132 g2=0.099033 g3=0.069800 | zone_acc=0.733
+
+Feature: xy
+----------------------------------------------------------------------------------------------------
+
+Feature: cy_area
+----------------------------------------------------------------------------------------------------
+
+====================================================================================================
+[2] BEST SUMMARY
+====================================================================================================
+Best global:
+  key      : xy_area_global_k2_p1
+  MAE      : 0.08944518119096756
+  goal MAE : [0.10874564 0.09364046 0.0659494 ]
+  norm mean: [0.31861848 0.2895092  0.19667958]
+
+Best oracle-zone:
+  key      : cy_area_oracle_k5_p1
+  MAE      : 0.08155994862318039
+  goal MAE : [0.10198708 0.07677868 0.06591412]
+  norm mean: [0.29675844 0.23969331 0.19873333]
+
+Best classifier-zone:
+  key          : cy_area_clfK2_plain_direct_zone_interpK5_p1
+  feature      : cy_area
+  classifier_k : 2
+  weighted     : False
+  mode         : direct_zone
+  interp_k     : 5
+  interp_power : 1.0
+  MAE          : 0.08812587708234787
+  goal MAE     : [0.10795598 0.08776138 0.0686603 ]
+  norm mean    : [0.3170317  0.2706192  0.20240502]
+  zone_acc     : 0.8666666666666667
+  dist_acc     : 0.8666666666666667
+  lat_acc      : 1.0
+
+====================================================================================================
+[3] BEST CLASSIFIER-ZONE DETAIL
+====================================================================================================
+✅ ep_004.npz   | true=near_center    pred=near_center    | sample_mae=0.052598 | obj=[0.68805957 0.55592185 0.0010498 ]
+   selected demos:
+     ep_001.npz   zone=near_center    d=0.00926 w=0.399 obj=[0.6860274  0.5562917  0.00093045]
+     ep_008.npz   zone=near_center    d=0.01510 w=0.245 obj=[0.693798   0.55972195 0.00099772]
+     ep_005.npz   zone=near_center    d=0.02464 w=0.150 obj=[0.6885647 0.5499538 0.0011697]
+     ep_003.npz   zone=near_center    d=0.02935 w=0.126 obj=[6.7587274e-01 5.5692196e-01 6.7003036e-04]
+     ep_002.npz   zone=near_center    d=0.04604 w=0.080 obj=[6.771016e-01 5.482439e-01 5.875651e-04]
+✅ ep_018.npz   | true=near_right     pred=near_right     | sample_mae=0.080304 | obj=[0.7452235  0.68850285 0.00404568]
+   selected demos:
+     ep_019.npz   zone=near_right     d=0.01041 w=0.391 obj=[0.7490995 0.6867316 0.0039426]
+     ep_017.npz   zone=near_right     d=0.01415 w=0.288 obj=[0.7489279  0.68500173 0.00398709]
+     ep_022.npz   zone=near_right     d=0.02434 w=0.167 obj=[0.7504896  0.68421465 0.00428006]
+     ep_020.npz   zone=near_right     d=0.02654 w=0.153 obj=[0.7512689  0.6820287  0.00392253]
+     ep_023.npz   zone=near_right     d=3.59410 w=0.001 obj=[0.8982133  0.82199585 0.05047146]
+✅ ep_021.npz   | true=near_right     pred=near_right     | sample_mae=0.044845 | obj=[0.754088   0.65436953 0.00370063]
+   selected demos:
+     ep_020.npz   zone=near_right     d=0.10734 w=0.273 obj=[0.7512689  0.6820287  0.00392253]
+     ep_017.npz   zone=near_right     d=0.11941 w=0.246 obj=[0.7489279  0.68500173 0.00398709]
+     ep_022.npz   zone=near_right     d=0.12267 w=0.239 obj=[0.7504896  0.68421465 0.00428006]
+     ep_019.npz   zone=near_right     d=0.12538 w=0.234 obj=[0.7490995 0.6867316 0.0039426]
+     ep_023.npz   zone=near_right     d=3.64106 w=0.008 obj=[0.8982133  0.82199585 0.05047146]
+✅ ep_024.npz   | true=near_right     pred=near_right     | sample_mae=0.075332 | obj=[0.74982697 0.68674034 0.00417263]
+   selected demos:
+     ep_022.npz   zone=near_right     d=0.01270 w=0.332 obj=[0.7504896  0.68421465 0.00428006]
+     ep_017.npz   zone=near_right     d=0.01570 w=0.268 obj=[0.7489279  0.68500173 0.00398709]
+     ep_019.npz   zone=near_right     d=0.01763 w=0.239 obj=[0.7490995 0.6867316 0.0039426]
+     ep_020.npz   zone=near_right     d=0.02633 w=0.160 obj=[0.7512689  0.6820287  0.00392253]
+     ep_023.npz   zone=near_right     d=3.58545 w=0.001 obj=[0.8982133  0.82199585 0.05047146]
+✅ ep_026.npz   | true=mid_center     pred=mid_center     | sample_mae=0.075078 | obj=[0.7673067  0.45228928 0.00358995]
+   selected demos:
+     ep_031.npz   zone=mid_center     d=0.00699 w=0.328 obj=[0.7663251  0.45388892 0.00354601]
+     ep_030.npz   zone=mid_center     d=0.00750 w=0.306 obj=[0.7674364  0.4509113  0.00352051]
+     ep_025.npz   zone=mid_center     d=0.01023 w=0.224 obj=[0.7658292  0.45470855 0.00353353]
+     ep_032.npz   zone=mid_center     d=0.01991 w=0.115 obj=[0.76700914 0.45316616 0.00333388]
+     ep_028.npz   zone=mid_center     d=0.08665 w=0.026 obj=[0.7710412  0.44956738 0.00246745]
+✅ ep_029.npz   | true=mid_center     pred=mid_center     | sample_mae=0.052278 | obj=[0.7799309  0.4463513  0.00110514]
+   selected demos:
+     ep_027.npz   zone=mid_center     d=0.08809 w=0.304 obj=[7.8822756e-01 4.6802038e-01 7.2102866e-04]
+     ep_028.npz   zone=mid_center     d=0.10512 w=0.255 obj=[0.7710412  0.44956738 0.00246745]
+     ep_032.npz   zone=mid_center     d=0.17277 w=0.155 obj=[0.76700914 0.45316616 0.00333388]
+     ep_030.npz   zone=mid_center     d=0.18591 w=0.144 obj=[0.7674364  0.4509113  0.00352051]
+     ep_025.npz   zone=mid_center     d=0.18882 w=0.142 obj=[0.7658292  0.45470855 0.00353353]
+✅ ep_033.npz   | true=mid_left       pred=mid_left       | sample_mae=0.065688 | obj=[0.71262693 0.30343968 0.00154026]
+   selected demos:
+     ep_040.npz   zone=mid_left       d=0.02544 w=0.423 obj=[0.71324515 0.3030957  0.00120877]
+     ep_037.npz   zone=mid_left       d=0.04870 w=0.221 obj=[0.7164557 0.3105669 0.001014 ]
+     ep_038.npz   zone=mid_left       d=0.06303 w=0.171 obj=[0.6972753  0.29562065 0.002264  ]
+     ep_036.npz   zone=mid_left       d=0.10814 w=0.099 obj=[7.2398943e-01 3.1565171e-01 2.6801214e-04]
+     ep_034.npz   zone=mid_left       d=0.12470 w=0.086 obj=[0.7040817  0.30921122 0.00314182]
+❌ ep_039.npz   | true=mid_left       pred=far_left       | sample_mae=0.129999 | obj=[0.7667918  0.23974265 0.00290961]
+   selected demos:
+     ep_061.npz   zone=far_left       d=0.05934 w=0.218 obj=[0.776603   0.2461637  0.00361437]
+     ep_062.npz   zone=far_left       d=0.06164 w=0.210 obj=[0.77842426 0.23899692 0.00371311]
+     ep_058.npz   zone=far_left       d=0.06614 w=0.195 obj=[0.77691984 0.24623874 0.00370931]
+     ep_064.npz   zone=far_left       d=0.06720 w=0.192 obj=[0.77434033 0.24648756 0.00371908]
+     ep_059.npz   zone=far_left       d=0.06980 w=0.185 obj=[0.77532184 0.24707139 0.00374349]
+✅ ep_045.npz   | true=mid_right      pred=mid_right      | sample_mae=0.080091 | obj=[0.8340358  0.597873   0.00424479]
+   selected demos:
+     ep_046.npz   zone=mid_right      d=0.01523 w=0.262 obj=[0.83343387 0.5969773  0.00443848]
+     ep_041.npz   zone=mid_right      d=0.01659 w=0.241 obj=[0.8376806  0.59840643 0.00402995]
+     ep_043.npz   zone=mid_right      d=0.02060 w=0.194 obj=[0.8337199  0.60270154 0.00412652]
+     ep_047.npz   zone=mid_right      d=0.02133 w=0.187 obj=[0.83099437 0.603265   0.00431424]
+     ep_044.npz   zone=mid_right      d=0.03471 w=0.115 obj=[0.8378386  0.6069314  0.00423882]
+❌ ep_048.npz   | true=mid_right      pred=far_right      | sample_mae=0.117528 | obj=[0.72043854 0.9191579  0.00874186]
+   selected demos:
+     ep_065.npz   zone=far_right      d=0.05774 w=0.475 obj=[0.7269616  0.90417653 0.0088227 ]
+     ep_066.npz   zone=far_right      d=0.06082 w=0.451 obj=[0.733388   0.9278498  0.00940592]
+     ep_067.npz   zone=far_right      d=0.83637 w=0.033 obj=[0.7260292  0.71587515 0.00476617]
+     ep_071.npz   zone=far_right      d=1.28621 w=0.021 obj=[0.10421199 0.59809047 0.01363987]
+     ep_072.npz   zone=far_right      d=1.36167 w=0.020 obj=[0.74363464 0.9054158  0.02649848]
+✅ ep_051.npz   | true=far_center     pred=far_center     | sample_mae=0.078828 | obj=[0.70976937 0.9315759  0.01392578]
+   selected demos:
+     ep_052.npz   zone=far_center     d=0.06982 w=0.815 obj=[0.7474092  0.9158227  0.01346788]
+     ep_053.npz   zone=far_center     d=0.75217 w=0.076 obj=[0.74523807 0.9642633  0.00424696]
+     ep_054.npz   zone=far_center     d=0.96169 w=0.059 obj=[0.7292134  0.9045578  0.02640299]
+     ep_050.npz   zone=far_center     d=2.25244 w=0.025 obj=[0.8456738  0.3760936  0.00430718]
+     ep_049.npz   zone=far_center     d=2.26220 w=0.025 obj=[0.8468     0.3752176  0.00404731]
+✅ ep_055.npz   | true=far_center     pred=far_center     | sample_mae=0.085260 | obj=[0.7508517  0.89977604 0.00577691]
+   selected demos:
+     ep_053.npz   zone=far_center     d=0.27350 w=0.525 obj=[0.74523807 0.9642633  0.00424696]
+     ep_052.npz   zone=far_center     d=0.59254 w=0.242 obj=[0.7474092  0.9158227  0.01346788]
+     ep_054.npz   zone=far_center     d=1.58064 w=0.091 obj=[0.7292134  0.9045578  0.02640299]
+     ep_050.npz   zone=far_center     d=2.00975 w=0.071 obj=[0.8456738  0.3760936  0.00430718]
+     ep_049.npz   zone=far_center     d=2.01431 w=0.071 obj=[0.8468     0.3752176  0.00404731]
+✅ ep_057.npz   | true=far_left       pred=far_left       | sample_mae=0.185216 | obj=[0.77839696 0.2455373  0.00371202]
+   selected demos:
+     ep_058.npz   zone=far_left       d=0.00270 w=0.371 obj=[0.77691984 0.24623874 0.00370931]
+     ep_064.npz   zone=far_left       d=0.00368 w=0.272 obj=[0.77434033 0.24648756 0.00371908]
+     ep_059.npz   zone=far_left       d=0.00635 w=0.158 obj=[0.77532184 0.24707139 0.00374349]
+     ep_061.npz   zone=far_left       d=0.00786 w=0.127 obj=[0.776603   0.2461637  0.00361437]
+     ep_060.npz   zone=far_left       d=0.01390 w=0.072 obj=[0.7797323  0.24903907 0.00375922]
+✅ ep_063.npz   | true=far_left       pred=far_left       | sample_mae=0.084298 | obj=[0.77558327 0.24599484 0.00378092]
+   selected demos:
+     ep_059.npz   zone=far_left       d=0.00502 w=0.270 obj=[0.77532184 0.24707139 0.00374349]
+     ep_064.npz   zone=far_left       d=0.00510 w=0.266 obj=[0.77434033 0.24648756 0.00371908]
+     ep_058.npz   zone=far_left       d=0.00557 w=0.243 obj=[0.77691984 0.24623874 0.00370931]
+     ep_060.npz   zone=far_left       d=0.01178 w=0.115 obj=[0.7797323  0.24903907 0.00375922]
+     ep_061.npz   zone=far_left       d=0.01278 w=0.106 obj=[0.776603   0.2461637  0.00361437]
+✅ ep_069.npz   | true=far_right      pred=far_right      | sample_mae=0.114546 | obj=[0.92048806 0.5161933  0.00433594]
+   selected demos:
+     ep_068.npz   zone=far_right      d=0.02616 w=0.499 obj=[0.9219015  0.51464826 0.00466851]
+     ep_070.npz   zone=far_right      d=0.02843 w=0.459 obj=[0.9153877  0.51730746 0.00470269]
+     ep_067.npz   zone=far_right      d=0.76583 w=0.017 obj=[0.7260292  0.71587515 0.00476617]
+     ep_071.npz   zone=far_right      d=0.77895 w=0.017 obj=[0.10421199 0.59809047 0.01363987]
+     ep_065.npz   zone=far_right      d=1.52587 w=0.009 obj=[0.7269616  0.90417653 0.0088227 ]
+
+====================================================================================================
+[4] WORST SAMPLES - BEST CLASSIFIER-ZONE
+====================================================================================================
+#01 ep_057.npz   true=far_left       pred=far_left       mae=0.185216 norm=[0.8726485  0.5323344  0.09183871]
+#02 ep_039.npz   true=mid_left       pred=far_left       mae=0.129999 norm=[0.49826917 0.3800639  0.2746996 ]
+#03 ep_048.npz   true=mid_right      pred=far_right      mae=0.117528 norm=[0.356948   0.38142028 0.2647798 ]
+#04 ep_069.npz   true=far_right      pred=far_right      mae=0.114546 norm=[0.56209534 0.25303045 0.16718696]
+#05 ep_055.npz   true=far_center     pred=far_center     mae=0.085260 norm=[0.22613929 0.14406142 0.4627615 ]
+#06 ep_063.npz   true=far_left       pred=far_left       mae=0.084298 norm=[0.25852042 0.31948078 0.15237267]
+#07 ep_018.npz   true=near_right     pred=near_right     mae=0.080304 norm=[0.2934596  0.20469575 0.22590269]
+#08 ep_045.npz   true=mid_right      pred=mid_right      mae=0.080091 norm=[0.2384316  0.20464553 0.30677155]
+#09 ep_051.npz   true=far_center     pred=far_center     mae=0.078828 norm=[0.31897593 0.33557513 0.07198711]
+#10 ep_024.npz   true=near_right     pred=near_right     mae=0.075332 norm=[0.21987727 0.41012147 0.06777061]
+
+====================================================================================================
+SAVED: goal_v1/eval/goal_v1_classifier_zone_interp_eval.npz
+====================================================================================================
+
+ĐỌC NHANH:
+- Nếu classifier-zone gần oracle-zone: ta có pipeline offline rất đáng thử.
+- Nếu classifier-zone gần global: phân vùng chưa giúp nhiều nhưng vẫn không hại.
+- Nếu classifier-zone tệ hơn global: không dùng phân vùng tự động khi chạy thật.
+====================================================================================================

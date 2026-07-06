@@ -1,0 +1,44 @@
+================================================================================
+CONVERT V5 DATASET -> GOAL_V1 DATASET
+================================================================================
+Dataset dir: dataset_push_real_v5
+Found episodes: 73
+Goal steps: [25, 55, 99]
+Use only good episodes: True
+================================================================================
+
+✅ DONE
+Saved dataset: goal_v1/data/push_goal_v1.npz
+Saved stats  : goal_v1/data/push_goal_v1_stats.npz
+
+Shapes:
+  images          : (73, 224, 224, 3) uint8
+  states          : (73, 9) float32   # 6 joints + 3 object feature
+  goals           : (73, 18) float32   # 3 poses x 6 joints = 18
+  object_features : (73, 3) float32
+  splits          : (73,) train: 58 val: 15
+
+Goal steps:
+  approach-ish : 25
+  contact-ish  : 55
+  end-push     : 99
+
+Joint source used:
+  replay_target_joints: 73
+
+Good/bad raw count:
+  good: 73
+
+Zone count used:
+  far_center     : 8
+  far_left       : 8
+  far_right      : 8
+  mid_center     : 8
+  mid_left       : 8
+  mid_right      : 8
+  near_center    : 9
+  near_left      : 8
+  near_right     : 8
+
+Skipped: 0
+================================================================================

@@ -1,0 +1,7 @@
+Metric,Diffusion Mini-VLA,Direct Mini-VLA
+Model L2 error mean,0.06226429,0.013361886
+Zero baseline error mean,0.031021083,0.031021083
+Mean-action baseline error mean,0.023604549,0.023604549
+Cosine mean,0.185206383,0.857831419
+Pred norm mean,0.060688369,0.027972342
+True norm mean,0.031021083,0.031021083

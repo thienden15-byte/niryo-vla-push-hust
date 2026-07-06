@@ -1,0 +1,931 @@
+/home/thien/.local/lib/python3.10/site-packages/diffusers/utils/outputs.py:63: FutureWarning: `torch.utils._pytree._register_pytree_node` is deprecated. Please use `torch.utils._pytree.register_pytree_node` instead.
+  torch.utils._pytree._register_pytree_node(
+Special tokens have been added in the vocabulary, make sure the associated word embeddings are fine-tuned or trained.
+Some weights of the model checkpoint at /home/thien/TinyVLA/pretrained/Llava-Pythia-400M were not used when initializing LlavaPythiaForCausalLM: ['embed_out.weight']
+- This IS expected if you are initializing LlavaPythiaForCausalLM from the checkpoint of a model trained on another task or with another architecture (e.g. initializing a BertForSequenceClassification model from a BertForPreTraining model).
+- This IS NOT expected if you are initializing LlavaPythiaForCausalLM from the checkpoint of a model that you expect to be exactly identical (initializing a BertForSequenceClassification model from a BertForSequenceClassification model).
+Some weights of LlavaPythiaForCausalLM were not initialized from the model checkpoint at /home/thien/TinyVLA/pretrained/Llava-Pythia-400M and are newly initialized: ['embed_out.combine.bias', 'embed_out.combine.weight', 'embed_out.diffusion_step_encoder.1.bias', 'embed_out.diffusion_step_encoder.1.weight', 'embed_out.diffusion_step_encoder.3.bias', 'embed_out.diffusion_step_encoder.3.weight', 'embed_out.down_modules.0.0.blocks.0.block.0.bias', 'embed_out.down_modules.0.0.blocks.0.block.0.weight', 'embed_out.down_modules.0.0.blocks.0.block.1.bias', 'embed_out.down_modules.0.0.blocks.0.block.1.weight', 'embed_out.down_modules.0.0.blocks.1.block.0.bias', 'embed_out.down_modules.0.0.blocks.1.block.0.weight', 'embed_out.down_modules.0.0.blocks.1.block.1.bias', 'embed_out.down_modules.0.0.blocks.1.block.1.weight', 'embed_out.down_modules.0.0.cond_encoder.1.bias', 'embed_out.down_modules.0.0.cond_encoder.1.weight', 'embed_out.down_modules.0.0.residual_conv.bias', 'embed_out.down_modules.0.0.residual_conv.weight', 'embed_out.down_modules.0.1.blocks.0.block.0.bias', 'embed_out.down_modules.0.1.blocks.0.block.0.weight', 'embed_out.down_modules.0.1.blocks.0.block.1.bias', 'embed_out.down_modules.0.1.blocks.0.block.1.weight', 'embed_out.down_modules.0.1.blocks.1.block.0.bias', 'embed_out.down_modules.0.1.blocks.1.block.0.weight', 'embed_out.down_modules.0.1.blocks.1.block.1.bias', 'embed_out.down_modules.0.1.blocks.1.block.1.weight', 'embed_out.down_modules.0.1.cond_encoder.1.bias', 'embed_out.down_modules.0.1.cond_encoder.1.weight', 'embed_out.down_modules.0.2.conv.bias', 'embed_out.down_modules.0.2.conv.weight', 'embed_out.down_modules.1.0.blocks.0.block.0.bias', 'embed_out.down_modules.1.0.blocks.0.block.0.weight', 'embed_out.down_modules.1.0.blocks.0.block.1.bias', 'embed_out.down_modules.1.0.blocks.0.block.1.weight', 'embed_out.down_modules.1.0.blocks.1.block.0.bias', 'embed_out.down_modules.1.0.blocks.1.block.0.weight', 'embed_out.down_modules.1.0.blocks.1.block.1.bias', 'embed_out.down_modules.1.0.blocks.1.block.1.weight', 'embed_out.down_modules.1.0.cond_encoder.1.bias', 'embed_out.down_modules.1.0.cond_encoder.1.weight', 'embed_out.down_modules.1.0.residual_conv.bias', 'embed_out.down_modules.1.0.residual_conv.weight', 'embed_out.down_modules.1.1.blocks.0.block.0.bias', 'embed_out.down_modules.1.1.blocks.0.block.0.weight', 'embed_out.down_modules.1.1.blocks.0.block.1.bias', 'embed_out.down_modules.1.1.blocks.0.block.1.weight', 'embed_out.down_modules.1.1.blocks.1.block.0.bias', 'embed_out.down_modules.1.1.blocks.1.block.0.weight', 'embed_out.down_modules.1.1.blocks.1.block.1.bias', 'embed_out.down_modules.1.1.blocks.1.block.1.weight', 'embed_out.down_modules.1.1.cond_encoder.1.bias', 'embed_out.down_modules.1.1.cond_encoder.1.weight', 'embed_out.down_modules.1.2.conv.bias', 'embed_out.down_modules.1.2.conv.weight', 'embed_out.down_modules.2.0.blocks.0.block.0.bias', 'embed_out.down_modules.2.0.blocks.0.block.0.weight', 'embed_out.down_modules.2.0.blocks.0.block.1.bias', 'embed_out.down_modules.2.0.blocks.0.block.1.weight', 'embed_out.down_modules.2.0.blocks.1.block.0.bias', 'embed_out.down_modules.2.0.blocks.1.block.0.weight', 'embed_out.down_modules.2.0.blocks.1.block.1.bias', 'embed_out.down_modules.2.0.blocks.1.block.1.weight', 'embed_out.down_modules.2.0.cond_encoder.1.bias', 'embed_out.down_modules.2.0.cond_encoder.1.weight', 'embed_out.down_modules.2.0.residual_conv.bias', 'embed_out.down_modules.2.0.residual_conv.weight', 'embed_out.down_modules.2.1.blocks.0.block.0.bias', 'embed_out.down_modules.2.1.blocks.0.block.0.weight', 'embed_out.down_modules.2.1.blocks.0.block.1.bias', 'embed_out.down_modules.2.1.blocks.0.block.1.weight', 'embed_out.down_modules.2.1.blocks.1.block.0.bias', 'embed_out.down_modules.2.1.blocks.1.block.0.weight', 'embed_out.down_modules.2.1.blocks.1.block.1.bias', 'embed_out.down_modules.2.1.blocks.1.block.1.weight', 'embed_out.down_modules.2.1.cond_encoder.1.bias', 'embed_out.down_modules.2.1.cond_encoder.1.weight', 'embed_out.final_conv.0.block.0.bias', 'embed_out.final_conv.0.block.0.weight', 'embed_out.final_conv.0.block.1.bias', 'embed_out.final_conv.0.block.1.weight', 'embed_out.final_conv.1.bias', 'embed_out.final_conv.1.weight', 'embed_out.mid_modules.0.blocks.0.block.0.bias', 'embed_out.mid_modules.0.blocks.0.block.0.weight', 'embed_out.mid_modules.0.blocks.0.block.1.bias', 'embed_out.mid_modules.0.blocks.0.block.1.weight', 'embed_out.mid_modules.0.blocks.1.block.0.bias', 'embed_out.mid_modules.0.blocks.1.block.0.weight', 'embed_out.mid_modules.0.blocks.1.block.1.bias', 'embed_out.mid_modules.0.blocks.1.block.1.weight', 'embed_out.mid_modules.0.cond_encoder.1.bias', 'embed_out.mid_modules.0.cond_encoder.1.weight', 'embed_out.mid_modules.1.blocks.0.block.0.bias', 'embed_out.mid_modules.1.blocks.0.block.0.weight', 'embed_out.mid_modules.1.blocks.0.block.1.bias', 'embed_out.mid_modules.1.blocks.0.block.1.weight', 'embed_out.mid_modules.1.blocks.1.block.0.bias', 'embed_out.mid_modules.1.blocks.1.block.0.weight', 'embed_out.mid_modules.1.blocks.1.block.1.bias', 'embed_out.mid_modules.1.blocks.1.block.1.weight', 'embed_out.mid_modules.1.cond_encoder.1.bias', 'embed_out.mid_modules.1.cond_encoder.1.weight', 'embed_out.norm_after_pool.bias', 'embed_out.norm_after_pool.weight', 'embed_out.up_modules.0.0.blocks.0.block.0.bias', 'embed_out.up_modules.0.0.blocks.0.block.0.weight', 'embed_out.up_modules.0.0.blocks.0.block.1.bias', 'embed_out.up_modules.0.0.blocks.0.block.1.weight', 'embed_out.up_modules.0.0.blocks.1.block.0.bias', 'embed_out.up_modules.0.0.blocks.1.block.0.weight', 'embed_out.up_modules.0.0.blocks.1.block.1.bias', 'embed_out.up_modules.0.0.blocks.1.block.1.weight', 'embed_out.up_modules.0.0.cond_encoder.1.bias', 'embed_out.up_modules.0.0.cond_encoder.1.weight', 'embed_out.up_modules.0.0.residual_conv.bias', 'embed_out.up_modules.0.0.residual_conv.weight', 'embed_out.up_modules.0.1.blocks.0.block.0.bias', 'embed_out.up_modules.0.1.blocks.0.block.0.weight', 'embed_out.up_modules.0.1.blocks.0.block.1.bias', 'embed_out.up_modules.0.1.blocks.0.block.1.weight', 'embed_out.up_modules.0.1.blocks.1.block.0.bias', 'embed_out.up_modules.0.1.blocks.1.block.0.weight', 'embed_out.up_modules.0.1.blocks.1.block.1.bias', 'embed_out.up_modules.0.1.blocks.1.block.1.weight', 'embed_out.up_modules.0.1.cond_encoder.1.bias', 'embed_out.up_modules.0.1.cond_encoder.1.weight', 'embed_out.up_modules.0.2.conv.bias', 'embed_out.up_modules.0.2.conv.weight', 'embed_out.up_modules.1.0.blocks.0.block.0.bias', 'embed_out.up_modules.1.0.blocks.0.block.0.weight', 'embed_out.up_modules.1.0.blocks.0.block.1.bias', 'embed_out.up_modules.1.0.blocks.0.block.1.weight', 'embed_out.up_modules.1.0.blocks.1.block.0.bias', 'embed_out.up_modules.1.0.blocks.1.block.0.weight', 'embed_out.up_modules.1.0.blocks.1.block.1.bias', 'embed_out.up_modules.1.0.blocks.1.block.1.weight', 'embed_out.up_modules.1.0.cond_encoder.1.bias', 'embed_out.up_modules.1.0.cond_encoder.1.weight', 'embed_out.up_modules.1.0.residual_conv.bias', 'embed_out.up_modules.1.0.residual_conv.weight', 'embed_out.up_modules.1.1.blocks.0.block.0.bias', 'embed_out.up_modules.1.1.blocks.0.block.0.weight', 'embed_out.up_modules.1.1.blocks.0.block.1.bias', 'embed_out.up_modules.1.1.blocks.0.block.1.weight', 'embed_out.up_modules.1.1.blocks.1.block.0.bias', 'embed_out.up_modules.1.1.blocks.1.block.0.weight', 'embed_out.up_modules.1.1.blocks.1.block.1.bias', 'embed_out.up_modules.1.1.blocks.1.block.1.weight', 'embed_out.up_modules.1.1.cond_encoder.1.bias', 'embed_out.up_modules.1.1.cond_encoder.1.weight', 'embed_out.up_modules.1.2.conv.bias', 'embed_out.up_modules.1.2.conv.weight']
+You should probably TRAIN this model on a down-stream task to be able to use it for predictions and inference.
+/home/thien/TinyVLA/llava-pythia/llava_pythia/model/builder.py:68: FutureWarning: You are using `torch.load` with `weights_only=False` (the current default value), which uses the default pickle module implicitly. It is possible to construct malicious pickle data which will execute arbitrary code during unpickling (See https://github.com/pytorch/pytorch/blob/main/SECURITY.md#untrusted-models for more details). In a future release, the default value for `weights_only` will be flipped to `True`. This limits the functions that could be executed during unpickling. Arbitrary objects will no longer be allowed to be loaded via this mode unless they are explicitly allowlisted by the user via `torch.serialization.add_safe_globals`. We recommend you start setting `weights_only=True` for any use case where you don't have full control of the loaded file. Please open an issue on GitHub for any issues related to this experimental feature.
+  non_lora_trainables = torch.load(os.path.join(model_path, 'non_lora_trainables.bin'), map_location='cpu')
+/home/thien/.local/lib/python3.10/site-packages/peft/peft_model.py:556: FutureWarning: You are using `torch.load` with `weights_only=False` (the current default value), which uses the default pickle module implicitly. It is possible to construct malicious pickle data which will execute arbitrary code during unpickling (See https://github.com/pytorch/pytorch/blob/main/SECURITY.md#untrusted-models for more details). In a future release, the default value for `weights_only` will be flipped to `True`. This limits the functions that could be executed during unpickling. Arbitrary objects will no longer be allowed to be loaded via this mode unless they are explicitly allowlisted by the user via `torch.serialization.add_safe_globals`. We recommend you start setting `weights_only=True` for any use case where you don't have full control of the loaded file. Please open an issue on GitHub for any issues related to this experimental feature.
+  adapters_weights = torch.load(
+===== TINYVLA UNTIL PUSH V2 + CAMERA WINDOW =====
+max_cycles: 16
+chunk_actions: 4
+extra_actions_after_move: 2
+safe_scale: 1.0
+safe_clip: 0.02
+object_moved_px: 12.0
+green_min_area: 500.0
+green_max_area: 20000.0
+velocity: 10
+execute: True
+show_camera: True
+
+===== OPEN CAMERA ONCE =====
+
+===== CONNECT ROBOT ONCE =====
+
+Connected to server (169.254.200.200) on port: 40001
+
+
+===== LOAD MODEL ONCE =====
+MODEL_PATH: /home/thien/tinyvla_niryo_ckpt/train_delta6_nodeepspeed_fp32_2000steps
+Loading LLaVA-Pythia from base model...
+number of parameters: 7.282381e+07
+Loading additional LLaVA-Pythia weights...
+Loading LoRA weights...
+Merging LoRA weights...
+Model is loaded...
+{'device_map': 'cuda', 'torch_dtype': torch.float16}
+Model loaded.
+device: cuda:0
+dtype: torch.float16
+chunk_size: 4
+action_dim: 6
+
+===== INITIAL OBJECT DETECTION V2 =====
+initial image: captures/until_push_v2_initial_20260630_102027.jpg
+initial green center: [1033.426    452.24655]
+initial green area: 4033.5
+initial annotated: captures/until_push_v2_initial_annotated_20260630_102027.jpg
+
+===== LOOP START =====
+
+========== CYCLE 1/16 ==========
+actions_to_run_this_cycle: 4
+green center before: [1033.5544   452.45163]
+green shift before px: 0.24196738004684448
+green area before: 4067.5
+image before: captures/until_push_v2_cycle_001_before_20260630_102027.jpg
+annotated before: captures/until_push_v2_cycle_001_before_annotated_20260630_102027.jpg
+current joints: [ 0.065721 -0.262334 -1.043111  0.685782  0.019849 -0.830356]
+normalized abs max: 3.9276909828186035
+real actions abs max: 0.01809932105243206
+safe actions abs max: 0.01809932105243206
+safe cumulative delta: [ 0.006718 -0.049352  0.059432 -0.000238  0.021599  0.003333]
+safe actions:
+[[ 0.0003   -0.016869  0.018099  0.000121  0.006016 -0.003227]
+ [-0.002236 -0.014059  0.013987  0.002591  0.00096   0.002616]
+ [ 0.0043   -0.007491  0.014811 -0.00248   0.00451   0.002749]
+ [ 0.004354 -0.010933  0.012534 -0.000471  0.010114  0.001194]]
+
+--- execute action 1/4 ---
+cur: [ 0.065721 -0.262334 -1.043111  0.687316  0.019849 -0.830356]
+safe_action: [ 0.0003   -0.016869  0.018099  0.000121  0.006016 -0.003227]
+target: [ 0.06602  -0.279203 -1.025012  0.687438  0.025865 -0.833582]
+after: [ 0.065721 -0.279304 -1.027786  0.687316  0.021383 -0.830356]
+actual_delta: [ 0.       -0.016969  0.015325  0.        0.001534  0.      ]
+tracking_error_abs_max: 0.00448174774646759
+
+--- execute action 2/4 ---
+cur: [ 0.065721 -0.278845 -1.026254  0.687316  0.021383 -0.830356]
+safe_action: [-0.002236 -0.014059  0.013987  0.002591  0.00096   0.002616]
+target: [ 0.063485 -0.292904 -1.012267  0.689907  0.022343 -0.82774 ]
+after: [ 0.063554 -0.293521 -1.020124  0.68885   0.025985 -0.830356]
+actual_delta: [-0.002167 -0.014676  0.00613   0.001534  0.004602  0.      ]
+tracking_error_abs_max: 0.007856965065002441
+
+--- execute action 3/4 ---
+cur: [ 0.063554 -0.293062 -1.012461  0.68885   0.025985 -0.830356]
+safe_action: [ 0.0043   -0.007491  0.014811 -0.00248   0.00451   0.002749]
+target: [ 0.067854 -0.300554 -0.99765   0.68637   0.030495 -0.827606]
+after: [ 0.067887 -0.3004   -0.999691  0.68885   0.027519 -0.830356]
+actual_delta: [ 0.004333 -0.007338  0.012771  0.        0.001534  0.      ]
+tracking_error_abs_max: 0.0029762499034404755
+
+--- execute action 4/4 ---
+cur: [ 0.067887 -0.3004   -0.998669  0.690384  0.029053 -0.830356]
+safe_action: [ 0.004354 -0.010933  0.012534 -0.000471  0.010114  0.001194]
+target: [ 0.072241 -0.311334 -0.986134  0.689913  0.039167 -0.829162]
+after: [ 0.072221 -0.311408 -0.98692   0.68885   0.041325 -0.830356]
+actual_delta: [ 0.004333 -0.011007  0.011749 -0.001534  0.012272  0.      ]
+tracking_error_abs_max: 0.00215800479054451
+
+after image green center: [1033.8845  451.7679]
+green shift after px: 0.6628066897392273
+green area after: 4000.0
+after image: captures/until_push_v2_cycle_001_after_20260630_102032.jpg
+annotated after: captures/until_push_v2_cycle_001_after_annotated_20260630_102032.jpg
+
+========== CYCLE 2/16 ==========
+actions_to_run_this_cycle: 4
+green center before: [1033.7496   452.55573]
+green shift before px: 0.4475608468055725
+green area before: 4074.0
+image before: captures/until_push_v2_cycle_002_before_20260630_102032.jpg
+annotated before: captures/until_push_v2_cycle_002_before_annotated_20260630_102032.jpg
+current joints: [ 0.072221 -0.311408 -0.985898  0.68885   0.041325 -0.830356]
+normalized abs max: 3.9276909828186035
+real actions abs max: 0.013010506518185139
+safe actions abs max: 0.013010506518185139
+safe cumulative delta: [-0.00979  -0.037903  0.033765 -0.00197   0.043619  0.003441]
+safe actions:
+[[-0.000512 -0.008409  0.007324 -0.004317  0.013011 -0.003342]
+ [-0.004255 -0.007181  0.006835 -0.00231   0.011329  0.004915]
+ [-0.000443 -0.010438  0.007198  0.004767  0.010278 -0.002472]
+ [-0.004579 -0.011875  0.012408 -0.000109  0.009002  0.004339]]
+
+--- execute action 1/4 ---
+cur: [ 0.072221 -0.311408 -0.985898  0.68885   0.041325 -0.830356]
+safe_action: [-0.000512 -0.008409  0.007324 -0.004317  0.013011 -0.003342]
+target: [ 0.071708 -0.319817 -0.978574  0.684533  0.054335 -0.833698]
+after: [ 0.071498 -0.320121 -0.979768  0.690384  0.052063 -0.830356]
+actual_delta: [-0.000722 -0.008714  0.00613   0.001534  0.010738  0.      ]
+tracking_error_abs_max: 0.005851149559020996
+
+--- execute action 2/4 ---
+cur: [ 0.071498 -0.320121 -0.978747  0.68885   0.053597 -0.830356]
+safe_action: [-0.004255 -0.007181  0.006835 -0.00231   0.011329  0.004915]
+target: [ 0.067244 -0.327303 -0.971912  0.68654   0.064925 -0.825441]
+after: [ 0.067165 -0.327459 -0.972617  0.68885   0.065869 -0.830356]
+actual_delta: [-0.004333 -0.007338  0.00613   0.        0.012272  0.      ]
+tracking_error_abs_max: 0.004915177822113037
+
+--- execute action 3/4 ---
+cur: [ 0.067165 -0.327459 -0.971595  0.68885   0.065869 -0.830356]
+safe_action: [-0.000443 -0.010438  0.007198  0.004767  0.010278 -0.002472]
+target: [ 0.066722 -0.337897 -0.964397  0.693617  0.076146 -0.832828]
+after: [ 0.067165 -0.338008 -0.965465  0.68885   0.07814  -0.830356]
+actual_delta: [ 0.       -0.010548  0.00613   0.        0.012272  0.      ]
+tracking_error_abs_max: 0.004766702651977539
+
+--- execute action 4/4 ---
+cur: [ 0.067165 -0.338008 -0.963933  0.68885   0.07814  -0.830356]
+safe_action: [-0.004579 -0.011875  0.012408 -0.000109  0.009002  0.004339]
+target: [ 0.062586 -0.349883 -0.951524  0.688741  0.087142 -0.826016]
+after: [ 0.062832 -0.350391 -0.953205  0.68885   0.088878 -0.830356]
+actual_delta: [-0.004333 -0.012383  0.010727  0.        0.010738  0.      ]
+tracking_error_abs_max: 0.004339396953582764
+
+after image green center: [1033.5376   452.46695]
+green shift after px: 0.2470296025276184
+green area after: 4051.0
+after image: captures/until_push_v2_cycle_002_after_20260630_102037.jpg
+annotated after: captures/until_push_v2_cycle_002_after_annotated_20260630_102037.jpg
+
+========== CYCLE 3/16 ==========
+actions_to_run_this_cycle: 4
+green center before: [1033.6017  452.7163]
+green shift before px: 0.5015255212783813
+green area before: 4081.5
+image before: captures/until_push_v2_cycle_003_before_20260630_102037.jpg
+annotated before: captures/until_push_v2_cycle_003_before_annotated_20260630_102037.jpg
+current joints: [ 0.062832 -0.350391 -0.952184  0.68885   0.088878 -0.830356]
+normalized abs max: 3.9276909828186035
+real actions abs max: 0.01723959669470787
+safe actions abs max: 0.01723959669470787
+safe cumulative delta: [-0.000283 -0.034144  0.046533  0.023513  0.019385  0.003406]
+safe actions:
+[[ 0.007374 -0.012119  0.012281  0.004715  0.00268   0.003438]
+ [-0.005878 -0.007281  0.01724   0.004438  0.00106   0.007576]
+ [ 0.000109 -0.007391  0.004654  0.008302  0.005882 -0.00149 ]
+ [-0.001888 -0.007352  0.012358  0.006058  0.009764 -0.006119]]
+
+--- execute action 1/4 ---
+cur: [ 0.062832 -0.350391 -0.952184  0.68885   0.088878 -0.830356]
+safe_action: [ 0.007374 -0.012119  0.012281  0.004715  0.00268   0.003438]
+target: [ 0.070206 -0.36251  -0.939902  0.693565  0.091559 -0.826918]
+after: [ 0.070054 -0.362774 -0.940434  0.68885   0.088878 -0.830356]
+actual_delta: [ 0.007222 -0.012383  0.011749  0.        0.        0.      ]
+tracking_error_abs_max: 0.004714667797088623
+
+--- execute action 2/4 ---
+cur: [ 0.070054 -0.362774 -0.939413  0.68885   0.088878 -0.830356]
+safe_action: [-0.005878 -0.007281  0.01724   0.004438  0.00106   0.007576]
+target: [ 0.064176 -0.370055 -0.922173  0.693288  0.089938 -0.82278 ]
+after: [ 0.064276 -0.370112 -0.923066  0.691918  0.088878 -0.830356]
+actual_delta: [-0.005778 -0.007338  0.016347  0.003068  0.        0.      ]
+tracking_error_abs_max: 0.007576167583465576
+
+--- execute action 3/4 ---
+cur: [ 0.064276 -0.370112 -0.923066  0.693452  0.088878 -0.830356]
+safe_action: [ 0.000109 -0.007391  0.004654  0.008302  0.005882 -0.00149 ]
+target: [ 0.064385 -0.377503 -0.918412  0.701754  0.09476  -0.831846]
+after: [ 0.064276 -0.37745  -0.918469  0.694986  0.098082 -0.825242]
+actual_delta: [ 0.       -0.007338  0.004597  0.001534  0.009204  0.005113]
+tracking_error_abs_max: 0.00676804780960083
+
+--- execute action 4/4 ---
+cur: [ 0.064276 -0.37745  -0.918469  0.69652   0.098082 -0.830356]
+safe_action: [-0.001888 -0.007352  0.012358  0.006058  0.009764 -0.006119]
+target: [ 0.062389 -0.384802 -0.906111  0.702578  0.107846 -0.836475]
+after: [ 0.06211  -0.384788 -0.907231  0.698054  0.10882  -0.830356]
+actual_delta: [-0.002167 -0.007338  0.011238  0.001534  0.010738  0.      ]
+tracking_error_abs_max: 0.006118893623352051
+
+after image green center: [1033.7703   452.39276]
+green shift after px: 0.37400171160697937
+green area after: 4069.0
+after image: captures/until_push_v2_cycle_003_after_20260630_102041.jpg
+annotated after: captures/until_push_v2_cycle_003_after_annotated_20260630_102041.jpg
+
+========== CYCLE 4/16 ==========
+actions_to_run_this_cycle: 4
+green center before: [1033.7275   452.07993]
+green shift before px: 0.34449195861816406
+green area before: 4026.5
+image before: captures/until_push_v2_cycle_004_before_20260630_102042.jpg
+annotated before: captures/until_push_v2_cycle_004_before_annotated_20260630_102042.jpg
+current joints: [ 0.06211  -0.384788 -0.906209  0.699588  0.10882  -0.830356]
+normalized abs max: 3.9276909828186035
+real actions abs max: 0.019422519952058792
+safe actions abs max: 0.019422519952058792
+safe cumulative delta: [-0.024796 -0.053025  0.031147 -0.009427  0.047219  0.007999]
+safe actions:
+[[-0.00252  -0.012301  0.009425 -0.002605  0.012271  0.001822]
+ [-0.006811 -0.019423  0.012485 -0.005563  0.009349  0.006355]
+ [-0.004963 -0.012589  0.003676 -0.000516  0.014801 -0.001147]
+ [-0.010502 -0.008712  0.005561 -0.000744  0.010798  0.000969]]
+
+--- execute action 1/4 ---
+cur: [ 0.06211  -0.384788 -0.905698  0.70419   0.10882  -0.830356]
+safe_action: [-0.00252  -0.012301  0.009425 -0.002605  0.012271  0.001822]
+target: [ 0.05959  -0.397089 -0.896273  0.701585  0.121091 -0.828533]
+after: [ 0.059943 -0.397171 -0.896503  0.70419   0.114956 -0.830356]
+actual_delta: [-0.002167 -0.012383  0.009195  0.        0.006136  0.      ]
+tracking_error_abs_max: 0.006135135889053345
+
+--- execute action 2/4 ---
+cur: [ 0.059943 -0.397171 -0.895992  0.70419   0.121092 -0.830356]
+safe_action: [-0.006811 -0.019423  0.012485 -0.005563  0.009349  0.006355]
+target: [ 0.053132 -0.416593 -0.883507  0.698627  0.130441 -0.824001]
+after: [ 0.053443 -0.416433 -0.884754  0.70419   0.133364 -0.830356]
+actual_delta: [-0.0065   -0.019262  0.011238  0.        0.012272  0.      ]
+tracking_error_abs_max: 0.006354629993438721
+
+--- execute action 3/4 ---
+cur: [ 0.053443 -0.415974 -0.883222  0.70419   0.133364 -0.830356]
+safe_action: [-0.004963 -0.012589  0.003676 -0.000516  0.014801 -0.001147]
+target: [ 0.048481 -0.428563 -0.879545  0.703674  0.148164 -0.831503]
+after: [ 0.048388 -0.428816 -0.879646  0.701122  0.151771 -0.830356]
+actual_delta: [-0.005055 -0.012842  0.003576 -0.003068  0.018408  0.      ]
+tracking_error_abs_max: 0.0036069899797439575
+
+--- execute action 4/4 ---
+cur: [ 0.048388 -0.428816 -0.879646  0.701122  0.151771 -0.830356]
+safe_action: [-0.010502 -0.008712  0.005561 -0.000744  0.010798  0.000969]
+target: [ 0.037886 -0.437528 -0.874085  0.700378  0.162569 -0.829386]
+after: [ 0.040443 -0.439364 -0.875048  0.701122  0.164043 -0.830356]
+actual_delta: [-0.007944 -0.010548  0.004597  0.        0.012272  0.      ]
+tracking_error_abs_max: 0.002557944506406784
+
+after image green center: [1033.7229   452.48508]
+green shift after px: 0.3808268904685974
+green area after: 4083.5
+after image: captures/until_push_v2_cycle_004_after_20260630_102046.jpg
+annotated after: captures/until_push_v2_cycle_004_after_annotated_20260630_102046.jpg
+
+========== CYCLE 5/16 ==========
+actions_to_run_this_cycle: 4
+green center before: [1033.8888   452.24844]
+green shift before px: 0.4627724289894104
+green area before: 4082.0
+image before: captures/until_push_v2_cycle_005_before_20260630_102046.jpg
+annotated before: captures/until_push_v2_cycle_005_before_annotated_20260630_102046.jpg
+current joints: [ 0.038277 -0.439364 -0.874027  0.701122  0.164043 -0.830356]
+normalized abs max: 3.9276909828186035
+real actions abs max: 0.015757059678435326
+safe actions abs max: 0.015757059678435326
+safe cumulative delta: [-0.003845 -0.037524  0.050496 -0.001391  0.041136  0.007493]
+safe actions:
+[[-0.000397 -0.002298  0.015064 -0.008838  0.004426 -0.005575]
+ [-0.00109  -0.013922  0.008944  0.00931   0.00983   0.003137]
+ [-0.002027 -0.014042  0.011899 -0.003442  0.015757  0.001989]
+ [-0.000331 -0.007262  0.014588  0.001579  0.011123  0.007942]]
+
+--- execute action 1/4 ---
+cur: [ 0.038277 -0.439364 -0.874027  0.701122  0.164043 -0.830356]
+safe_action: [-0.000397 -0.002298  0.015064 -0.008838  0.004426 -0.005575]
+target: [ 0.03788  -0.441663 -0.858963  0.692284  0.168469 -0.835931]
+after: [ 0.037555 -0.442116 -0.860234  0.69652   0.164043 -0.830356]
+actual_delta: [-0.000722 -0.002752  0.013792 -0.004602  0.        0.      ]
+tracking_error_abs_max: 0.005575418472290039
+
+--- execute action 2/4 ---
+cur: [ 0.037555 -0.442116 -0.859724  0.69652   0.164043 -0.830356]
+safe_action: [-0.00109  -0.013922  0.008944  0.00931   0.00983   0.003137]
+target: [ 0.036464 -0.456038 -0.850779  0.70583   0.173874 -0.827219]
+after: [ 0.036832 -0.455875 -0.85155   0.698054  0.174781 -0.830356]
+actual_delta: [-0.000722 -0.013759  0.008173  0.001534  0.010738  0.      ]
+tracking_error_abs_max: 0.0077762603759765625
+
+--- execute action 3/4 ---
+cur: [ 0.036832 -0.455875 -0.850529  0.698054  0.174781 -0.830356]
+safe_action: [-0.002027 -0.014042  0.011899 -0.003442  0.015757  0.001989]
+target: [ 0.034806 -0.469917 -0.838629  0.694612  0.190538 -0.828367]
+after: [ 0.034666 -0.469634 -0.839801  0.698054  0.193189 -0.830356]
+actual_delta: [-0.002167 -0.013759  0.010727  0.        0.018408  0.      ]
+tracking_error_abs_max: 0.0034422874450683594
+
+--- execute action 4/4 ---
+cur: [ 0.034666 -0.469634 -0.839801  0.698054  0.193189 -0.830356]
+safe_action: [-0.000331 -0.007262  0.014588  0.001579  0.011123  0.007942]
+target: [ 0.034335 -0.476896 -0.825214  0.699633  0.204312 -0.822414]
+after: [ 0.033944 -0.476972 -0.82652   0.698054  0.205461 -0.830356]
+actual_delta: [-0.000722 -0.007338  0.013282  0.        0.012272  0.      ]
+tracking_error_abs_max: 0.0079420804977417
+
+after image green center: [1033.7181   451.91293]
+green shift after px: 0.4434318542480469
+green area after: 4029.0
+after image: captures/until_push_v2_cycle_005_after_20260630_102050.jpg
+annotated after: captures/until_push_v2_cycle_005_after_annotated_20260630_102050.jpg
+
+========== CYCLE 6/16 ==========
+actions_to_run_this_cycle: 4
+green center before: [1033.7906  452.3205]
+green shift before px: 0.37204623222351074
+green area before: 4075.5
+image before: captures/until_push_v2_cycle_006_before_20260630_102051.jpg
+annotated before: captures/until_push_v2_cycle_006_before_annotated_20260630_102051.jpg
+current joints: [ 0.033944 -0.476972 -0.824987  0.698054  0.206995 -0.830356]
+normalized abs max: 3.9276909828186035
+real actions abs max: 0.02336479350924492
+safe actions abs max: 0.019999999552965164
+safe cumulative delta: [ 0.017819 -0.044961  0.050139 -0.012702  0.025659  0.017288]
+safe actions:
+[[ 0.007725 -0.015238  0.004769 -0.007452  0.003874 -0.001007]
+ [ 0.001007 -0.005594  0.015497 -0.0062   -0.001423  0.004571]
+ [ 0.008209 -0.015509  0.009873 -0.005368  0.010214  0.008222]
+ [ 0.000878 -0.008619  0.02      0.006318  0.012994  0.005502]]
+
+--- execute action 1/4 ---
+cur: [ 0.033944 -0.476972 -0.824987  0.699588  0.205461 -0.830356]
+safe_action: [ 0.007725 -0.015238  0.004769 -0.007452  0.003874 -0.001007]
+target: [ 0.041669 -0.49221  -0.820218  0.692135  0.209335 -0.831363]
+after: [ 0.041166 -0.492106 -0.819879  0.699588  0.205461 -0.830356]
+actual_delta: [ 0.007222 -0.015135  0.005108  0.        0.        0.      ]
+tracking_error_abs_max: 0.007452487945556641
+
+--- execute action 2/4 ---
+cur: [ 0.041166 -0.492106 -0.819879  0.699588  0.205461 -0.830356]
+safe_action: [ 0.001007 -0.005594  0.015497 -0.0062   -0.001423  0.004571]
+target: [ 0.042172 -0.497701 -0.804382  0.693388  0.204038 -0.825785]
+after: [ 0.04261  -0.49761  -0.806598  0.69652   0.205461 -0.830356]
+actual_delta: [ 0.001444 -0.005504  0.013282 -0.003068  0.        0.      ]
+tracking_error_abs_max: 0.00457078218460083
+
+--- execute action 3/4 ---
+cur: [ 0.04261  -0.49761  -0.805576  0.69652   0.205461 -0.830356]
+safe_action: [ 0.008209 -0.015509  0.009873 -0.005368  0.010214  0.008222]
+target: [ 0.050819 -0.513119 -0.795703  0.691152  0.215675 -0.822134]
+after: [ 0.050554 -0.513203 -0.796892  0.69652   0.213131 -0.830356]
+actual_delta: [ 0.007944 -0.015593  0.008684  0.        0.00767   0.      ]
+tracking_error_abs_max: 0.008221864700317383
+
+--- execute action 4/4 ---
+cur: [ 0.050554 -0.513203 -0.79587   0.69652   0.213131 -0.830356]
+safe_action: [ 0.000878 -0.008619  0.02      0.006318  0.012994  0.005502]
+target: [ 0.051433 -0.521823 -0.77587   0.702838  0.226125 -0.824854]
+after: [ 0.051277 -0.521917 -0.777991  0.69652   0.22847  -0.830356]
+actual_delta: [ 0.000722 -0.008714  0.017879  0.        0.01534   0.      ]
+tracking_error_abs_max: 0.006318092346191406
+
+after image green center: [1033.7919  452.7744]
+green shift after px: 0.6422470211982727
+green area after: 4078.5
+after image: captures/until_push_v2_cycle_006_after_20260630_102055.jpg
+annotated after: captures/until_push_v2_cycle_006_after_annotated_20260630_102055.jpg
+
+========== CYCLE 7/16 ==========
+actions_to_run_this_cycle: 4
+green center before: [1033.6578   452.44495]
+green shift before px: 0.3051181137561798
+green area before: 4109.0
+image before: captures/until_push_v2_cycle_007_before_20260630_102055.jpg
+annotated before: captures/until_push_v2_cycle_007_before_annotated_20260630_102055.jpg
+current joints: [ 0.051277 -0.521458 -0.775948  0.698054  0.22847  -0.830356]
+normalized abs max: 3.9276909828186035
+real actions abs max: 0.01432394701987505
+safe actions abs max: 0.01432394701987505
+safe cumulative delta: [-0.019848 -0.034353  0.045779  0.015234  0.025771 -0.018548]
+safe actions:
+[[-0.002675 -0.010098  0.014324 -0.002481  0.005484 -0.009832]
+ [-0.005893 -0.009863  0.012985  0.003775  0.009402 -0.003264]
+ [-0.005173 -0.005917  0.01136   0.00489   0.005612 -0.001488]
+ [-0.006108 -0.008476  0.00711   0.00905   0.005273 -0.003964]]
+
+--- execute action 1/4 ---
+cur: [ 0.051277 -0.521917 -0.775948  0.699588  0.226936 -0.830356]
+safe_action: [-0.002675 -0.010098  0.014324 -0.002481  0.005484 -0.009832]
+target: [ 0.048602 -0.532015 -0.761624  0.697107  0.23242  -0.840188]
+after: [ 0.048388 -0.532007 -0.763688  0.699588  0.225403 -0.845696]
+actual_delta: [-0.002889 -0.01009   0.01226   0.       -0.001534 -0.01534 ]
+tracking_error_abs_max: 0.00701788067817688
+
+--- execute action 2/4 ---
+cur: [ 0.048388 -0.532007 -0.762156  0.701122  0.225403 -0.845696]
+safe_action: [-0.005893 -0.009863  0.012985  0.003775  0.009402 -0.003264]
+target: [ 0.042495 -0.54187  -0.749171  0.704897  0.234805 -0.84896 ]
+after: [ 0.04261  -0.542097 -0.750917  0.699588  0.233072 -0.850809]
+actual_delta: [-0.005778 -0.01009   0.011238 -0.001534  0.00767  -0.005113]
+tracking_error_abs_max: 0.005308687686920166
+
+--- execute action 3/4 ---
+cur: [ 0.04261  -0.542097 -0.749385  0.701122  0.233072 -0.845696]
+safe_action: [-0.005173 -0.005917  0.01136   0.00489   0.005612 -0.001488]
+target: [ 0.037437 -0.548013 -0.738025  0.706012  0.238684 -0.847184]
+after: [ 0.036832 -0.548059 -0.739679  0.702656  0.240742 -0.850809]
+actual_delta: [-0.005778 -0.005962  0.009706  0.001534  0.00767  -0.005113]
+tracking_error_abs_max: 0.003624856472015381
+
+--- execute action 4/4 ---
+cur: [ 0.036832 -0.548059 -0.739168  0.70419   0.242276 -0.850809]
+safe_action: [-0.006108 -0.008476  0.00711   0.00905   0.005273 -0.003964]
+target: [ 0.030725 -0.556535 -0.732058  0.71324   0.247549 -0.854773]
+after: [ 0.031055 -0.556773 -0.733038  0.708792  0.248412 -0.866149]
+actual_delta: [-0.005778 -0.008714  0.00613   0.004602  0.006136 -0.01534 ]
+tracking_error_abs_max: 0.01137608289718628
+
+after image green center: [1033.7922   452.35144]
+green shift after px: 0.3809358775615692
+green area after: 4113.0
+after image: captures/until_push_v2_cycle_007_after_20260630_102059.jpg
+annotated after: captures/until_push_v2_cycle_007_after_annotated_20260630_102059.jpg
+
+========== CYCLE 8/16 ==========
+actions_to_run_this_cycle: 4
+green center before: [1033.6947   452.48767]
+green shift before px: 0.36100658774375916
+green area before: 4118.0
+image before: captures/until_push_v2_cycle_008_before_20260630_102100.jpg
+annotated before: captures/until_push_v2_cycle_008_before_annotated_20260630_102100.jpg
+current joints: [ 0.030333 -0.556773 -0.732017  0.713394  0.248412 -0.866149]
+normalized abs max: 4.105759143829346
+real actions abs max: 0.016092441976070404
+safe actions abs max: 0.016092441976070404
+safe cumulative delta: [-0.013177 -0.039021  0.045773 -0.009707  0.019154 -0.011085]
+safe actions:
+[[-0.000791 -0.006661  0.014197 -0.008096  0.007908 -0.003918]
+ [-0.004596 -0.016092  0.015077 -0.004395  0.005902  0.00061 ]
+ [-0.003224 -0.005824  0.009549 -0.000838  0.002033 -0.005936]
+ [-0.004565 -0.010443  0.00695   0.003622  0.003311 -0.001841]]
+
+--- execute action 1/4 ---
+cur: [ 0.030333 -0.556773 -0.731506  0.714928  0.248412 -0.866149]
+safe_action: [-0.000791 -0.006661  0.014197 -0.008096  0.007908 -0.003918]
+target: [ 0.029541 -0.563434 -0.717309  0.706831  0.25632  -0.870067]
+after: [ 0.02961  -0.563194 -0.719246  0.714928  0.249946 -0.871262]
+actual_delta: [-0.000722 -0.006421  0.01226   0.        0.001534 -0.005113]
+tracking_error_abs_max: 0.008096456527709961
+
+--- execute action 2/4 ---
+cur: [ 0.02961  -0.563194 -0.718735  0.714928  0.253014 -0.866149]
+safe_action: [-0.004596 -0.016092  0.015077 -0.004395  0.005902  0.00061 ]
+target: [ 0.025014 -0.579286 -0.703658  0.710532  0.258916 -0.865539]
+after: [ 0.026722 -0.578787 -0.705964  0.714928  0.257616 -0.871262]
+actual_delta: [-0.002889 -0.015593  0.012771  0.        0.004602 -0.005113]
+tracking_error_abs_max: 0.005723118782043457
+
+--- execute action 3/4 ---
+cur: [ 0.024555 -0.578787 -0.704943  0.713394  0.257616 -0.871262]
+safe_action: [-0.003224 -0.005824  0.009549 -0.000838  0.002033 -0.005936]
+target: [ 0.021331 -0.584611 -0.695394  0.712556  0.259649 -0.877198]
+after: [ 0.021666 -0.584749 -0.69677   0.713394  0.260684 -0.876375]
+actual_delta: [-0.002889 -0.005962  0.008173  0.        0.003068 -0.005113]
+tracking_error_abs_max: 0.0013754963874816895
+
+--- execute action 4/4 ---
+cur: [ 0.021666 -0.584749 -0.695748  0.714928  0.260684 -0.876375]
+safe_action: [-0.004565 -0.010443  0.00695   0.003622  0.003311 -0.001841]
+target: [ 0.017101 -0.595192 -0.688798  0.71855   0.263995 -0.878216]
+after: [ 0.016611 -0.595297 -0.69064   0.713394  0.260684 -0.881488]
+actual_delta: [-0.005055 -0.010548  0.005108 -0.001534  0.       -0.005113]
+tracking_error_abs_max: 0.005155801773071289
+
+after image green center: [1033.6794   452.06412]
+green shift after px: 0.31225448846817017
+green area after: 4079.0
+after image: captures/until_push_v2_cycle_008_after_20260630_102104.jpg
+annotated after: captures/until_push_v2_cycle_008_after_annotated_20260630_102104.jpg
+
+========== CYCLE 9/16 ==========
+actions_to_run_this_cycle: 4
+green center before: [1033.6736   452.69333]
+green shift before px: 0.510779082775116
+green area before: 4161.5
+image before: captures/until_push_v2_cycle_009_before_20260630_102104.jpg
+annotated before: captures/until_push_v2_cycle_009_before_annotated_20260630_102104.jpg
+current joints: [ 0.016611 -0.595297 -0.688596  0.714928  0.265286 -0.876375]
+normalized abs max: 4.156635761260986
+real actions abs max: 0.015056520700454712
+safe actions abs max: 0.015056520700454712
+safe cumulative delta: [-0.027131 -0.031758  0.042719  0.0143    0.035209 -0.008822]
+safe actions:
+[[-0.006073 -0.012123  0.006615 -0.001029  0.010753 -0.001358]
+ [-0.010258 -0.004105  0.007824  0.000807  0.004301  0.001102]
+ [-0.007782 -0.006324  0.013361  0.007203  0.005099 -0.006399]
+ [-0.003017 -0.009205  0.014919  0.00732   0.015057 -0.002168]]
+
+--- execute action 1/4 ---
+cur: [ 0.016611 -0.595297 -0.688596  0.714928  0.265286 -0.881488]
+safe_action: [-0.006073 -0.012123  0.006615 -0.001029  0.010753 -0.001358]
+target: [ 0.010537 -0.607421 -0.681981  0.713898  0.276039 -0.882846]
+after: [ 0.012277 -0.607222 -0.683999  0.714928  0.272956 -0.886602]
+actual_delta: [-0.004333 -0.011924  0.004597  0.        0.00767  -0.005113]
+tracking_error_abs_max: 0.003755331039428711
+
+--- execute action 2/4 ---
+cur: [ 0.010833 -0.606763 -0.681955  0.714928  0.27449  -0.881488]
+safe_action: [-0.010258 -0.004105  0.007824  0.000807  0.004301  0.001102]
+target: [ 5.75000e-04 -6.10868e-01 -6.74132e-01  7.15735e-01  2.78791e-01
+ -8.80386e-01]
+after: [ 0.005055 -0.611349 -0.676336  0.714928  0.28216  -0.886602]
+actual_delta: [-0.005778 -0.004586  0.005619  0.        0.00767  -0.005113]
+tracking_error_abs_max: 0.006215214729309082
+
+--- execute action 3/4 ---
+cur: [ 0.003611 -0.611349 -0.674804  0.714928  0.28216  -0.886602]
+safe_action: [-0.007782 -0.006324  0.013361  0.007203  0.005099 -0.006399]
+target: [-0.004171 -0.617674 -0.661443  0.72213   0.287258 -0.893   ]
+after: [-0.004333 -0.61777  -0.663566  0.716462  0.285228 -0.886602]
+actual_delta: [-0.007944 -0.006421  0.011238  0.001534  0.003068  0.      ]
+tracking_error_abs_max: 0.00639873743057251
+
+--- execute action 4/4 ---
+cur: [-0.004333 -0.61777  -0.663566  0.717996  0.285228 -0.891715]
+safe_action: [-0.003017 -0.009205  0.014919  0.00732   0.015057 -0.002168]
+target: [-0.00735  -0.626975 -0.648647  0.725315  0.300284 -0.893883]
+after: [-0.007222 -0.626943 -0.650795  0.724132  0.30517  -0.886602]
+actual_delta: [-0.002889 -0.009172  0.012771  0.006136  0.019942  0.005113]
+tracking_error_abs_max: 0.007281064987182617
+
+after image green center: [1033.5878  452.7895]
+green shift after px: 0.5665181279182434
+green area after: 4140.5
+after image: captures/until_push_v2_cycle_009_after_20260630_102108.jpg
+annotated after: captures/until_push_v2_cycle_009_after_annotated_20260630_102108.jpg
+
+========== CYCLE 10/16 ==========
+actions_to_run_this_cycle: 4
+green center before: [1033.6842   452.70236]
+green shift before px: 0.5238506197929382
+green area before: 4133.5
+image before: captures/until_push_v2_cycle_010_before_20260630_102109.jpg
+annotated before: captures/until_push_v2_cycle_010_before_annotated_20260630_102109.jpg
+current joints: [-0.007222 -0.626943 -0.648752  0.730268  0.30517  -0.891715]
+normalized abs max: 4.232950210571289
+real actions abs max: 0.012726962566375732
+safe actions abs max: 0.012726962566375732
+safe cumulative delta: [-0.011727 -0.042625  0.047183  0.000272  0.024116  0.003384]
+safe actions:
+[[-0.002636 -0.010314  0.01245  -0.001639  0.005914  0.000772]
+ [-0.003215 -0.010013  0.010788 -0.000977  0.005089  0.001771]
+ [-0.002847 -0.009571  0.011329  0.000985  0.006511 -0.000403]
+ [-0.003029 -0.012727  0.012617  0.001903  0.006601  0.001245]]
+
+--- execute action 1/4 ---
+cur: [-0.007222 -0.626943 -0.648752  0.730268  0.299034 -0.891715]
+safe_action: [-0.002636 -0.010314  0.01245  -0.001639  0.005914  0.000772]
+target: [-0.009858 -0.637257 -0.636301  0.728629  0.304948 -0.890943]
+after: [-0.010111 -0.637032 -0.638024  0.730268  0.300568 -0.891715]
+actual_delta: [-0.002889 -0.01009   0.010727  0.        0.001534  0.      ]
+tracking_error_abs_max: 0.004380315542221069
+
+--- execute action 2/4 ---
+cur: [-0.010111 -0.637032 -0.637513  0.730268  0.300568 -0.891715]
+safe_action: [-0.003215 -0.010013  0.010788 -0.000977  0.005089  0.001771]
+target: [-0.013325 -0.647045 -0.626726  0.72929   0.305657 -0.889944]
+after: [-0.013    -0.647122 -0.628319  0.730268  0.302102 -0.891715]
+actual_delta: [-0.002889 -0.01009   0.009195  0.        0.001534  0.      ]
+tracking_error_abs_max: 0.003555506467819214
+
+--- execute action 3/4 ---
+cur: [-0.013    -0.647581 -0.627297  0.730268  0.302102 -0.891715]
+safe_action: [-0.002847 -0.009571  0.011329  0.000985  0.006511 -0.000403]
+target: [-0.015847 -0.657152 -0.615968  0.731253  0.308613 -0.892118]
+after: [-0.015889 -0.657212 -0.618102  0.730268  0.308238 -0.891715]
+actual_delta: [-0.002889 -0.009631  0.009195  0.        0.006136  0.      ]
+tracking_error_abs_max: 0.0021337270736694336
+
+--- execute action 4/4 ---
+cur: [-0.015889 -0.657212 -0.616569  0.730268  0.308238 -0.891715]
+safe_action: [-0.003029 -0.012727  0.012617  0.001903  0.006601  0.001245]
+target: [-0.018918 -0.669939 -0.603953  0.73217   0.314838 -0.89047 ]
+after: [-0.018777 -0.670054 -0.605842  0.730268  0.315907 -0.891715]
+actual_delta: [-0.002889 -0.012842  0.010727  0.        0.00767   0.      ]
+tracking_error_abs_max: 0.0019029974937438965
+
+after image green center: [1033.5627   452.65268]
+green shift after px: 0.4285229444503784
+green area after: 4137.5
+after image: captures/until_push_v2_cycle_010_after_20260630_102113.jpg
+annotated after: captures/until_push_v2_cycle_010_after_annotated_20260630_102113.jpg
+
+========== CYCLE 11/16 ==========
+actions_to_run_this_cycle: 4
+green center before: [1033.668    452.26526]
+green shift before px: 0.24266551434993744
+green area before: 4087.0
+image before: captures/until_push_v2_cycle_011_before_20260630_102113.jpg
+annotated before: captures/until_push_v2_cycle_011_before_annotated_20260630_102113.jpg
+current joints: [-0.018777 -0.670054 -0.603288  0.730268  0.317441 -0.891715]
+normalized abs max: 4.232950210571289
+real actions abs max: 0.013826790265738964
+safe actions abs max: 0.013826790265738964
+safe cumulative delta: [-0.022663 -0.025352  0.040125  0.022898  0.012167 -0.032165]
+safe actions:
+[[-0.006264 -0.010295  0.007099  0.012927  0.003535 -0.008562]
+ [-0.006606 -0.005526  0.007579  0.001976  0.002647 -0.007459]
+ [-0.006596 -0.001771  0.01162   0.004721  0.003847 -0.007776]
+ [-0.003198 -0.00776   0.013827  0.003274  0.002138 -0.008368]]
+
+--- execute action 1/4 ---
+cur: [-0.018777 -0.670054 -0.603288  0.730268  0.317441 -0.891715]
+safe_action: [-0.006264 -0.010295  0.007099  0.012927  0.003535 -0.008562]
+target: [-0.025041 -0.680348 -0.596189  0.743194  0.320977 -0.900277]
+after: [-0.025277 -0.680602 -0.597669  0.733336  0.315907 -0.907055]
+actual_delta: [-0.0065   -0.010548  0.005619  0.003068 -0.001534 -0.01534 ]
+tracking_error_abs_max: 0.009858906269073486
+
+--- execute action 2/4 ---
+cur: [-0.025277 -0.680143 -0.596647  0.736403  0.315907 -0.917281]
+safe_action: [-0.006606 -0.005526  0.007579  0.001976  0.002647 -0.007459]
+target: [-0.031883 -0.685669 -0.589068  0.73838   0.318554 -0.92474 ]
+after: [-0.031777 -0.685647 -0.590517  0.737937  0.315907 -0.937734]
+actual_delta: [-0.0065   -0.005504  0.00613   0.001534  0.       -0.020453]
+tracking_error_abs_max: 0.01299428939819336
+
+--- execute action 3/4 ---
+cur: [-0.031777 -0.685647 -0.588985  0.739471  0.315907 -0.937734]
+safe_action: [-0.006596 -0.001771  0.01162   0.004721  0.003847 -0.007776]
+target: [-0.038373 -0.687418 -0.577364  0.744193  0.319754 -0.945511]
+after: [-0.036832 -0.687481 -0.578768  0.739471  0.318975 -0.963301]
+actual_delta: [-0.005055 -0.001834  0.010217  0.        0.003068 -0.025566]
+tracking_error_abs_max: 0.01779007911682129
+
+--- execute action 4/4 ---
+cur: [-0.038277 -0.687481 -0.578257  0.742539  0.318975 -0.968414]
+safe_action: [-0.003198 -0.00776   0.013827  0.003274  0.002138 -0.008368]
+target: [-0.041474 -0.695241 -0.564431  0.745813  0.321114 -0.976782]
+after: [-0.041166 -0.695278 -0.565998  0.748675  0.322043 -0.983754]
+actual_delta: [-0.002889 -0.007797  0.01226   0.006136  0.003068 -0.01534 ]
+tracking_error_abs_max: 0.006971597671508789
+
+after image green center: [1033.5358  452.4349]
+green shift after px: 0.21799208223819733
+green area after: 4208.5
+after image: captures/until_push_v2_cycle_011_after_20260630_102117.jpg
+annotated after: captures/until_push_v2_cycle_011_after_annotated_20260630_102117.jpg
+
+========== CYCLE 12/16 ==========
+actions_to_run_this_cycle: 4
+green center before: [1033.5583  452.0178]
+green shift before px: 0.2642739713191986
+green area before: 4150.0
+image before: captures/until_push_v2_cycle_012_before_20260630_102118.jpg
+annotated before: captures/until_push_v2_cycle_012_before_annotated_20260630_102118.jpg
+current joints: [-0.041166 -0.695278 -0.564465  0.750209  0.322043 -0.983754]
+normalized abs max: 4.6908392906188965
+real actions abs max: 0.022013403475284576
+safe actions abs max: 0.019999999552965164
+safe cumulative delta: [-0.017458 -0.048759  0.060015  0.015242  0.030974 -0.005981]
+safe actions:
+[[-0.009242 -0.01682   0.016734 -0.008617  0.00173  -0.001016]
+ [-0.001828 -0.015897  0.004912  0.009831  0.008456  0.005362]
+ [-0.007626 -0.009354  0.02      0.007248  0.010397 -0.009057]
+ [ 0.001239 -0.006688  0.018369  0.00678   0.010392 -0.001269]]
+
+--- execute action 1/4 ---
+cur: [-0.041166 -0.695278 -0.564465  0.748675  0.322043 -0.983754]
+safe_action: [-0.009242 -0.01682   0.016734 -0.008617  0.00173  -0.001016]
+target: [-0.050408 -0.712098 -0.547731  0.740058  0.323773 -0.98477 ]
+after: [-0.046943 -0.711789 -0.548629  0.744073  0.322043 -0.983754]
+actual_delta: [-0.005778 -0.016511  0.015836 -0.004602  0.        0.      ]
+tracking_error_abs_max: 0.004014849662780762
+
+--- execute action 2/4 ---
+cur: [-0.047666 -0.712247 -0.548629  0.742539  0.322043 -0.983754]
+safe_action: [-0.001828 -0.015897  0.004912  0.009831  0.008456  0.005362]
+target: [-0.049493 -0.728144 -0.543717  0.75237   0.330499 -0.978392]
+after: [-0.04911  -0.728299 -0.543521  0.742539  0.323577 -0.983754]
+actual_delta: [-0.001444 -0.016052  0.005108  0.        0.001534  0.      ]
+tracking_error_abs_max: 0.009830653667449951
+
+--- execute action 3/4 ---
+cur: [-0.04911  -0.728299 -0.543521  0.744073  0.329713 -0.983754]
+safe_action: [-0.007626 -0.009354  0.02      0.007248  0.010397 -0.009057]
+target: [-0.056736 -0.737653 -0.523521  0.751322  0.340111 -0.992811]
+after: [-0.057776 -0.73793  -0.525131  0.748675  0.345053 -0.99398 ]
+actual_delta: [-0.008666 -0.009631  0.01839   0.004602  0.01534  -0.010227]
+tracking_error_abs_max: 0.004942417144775391
+
+--- execute action 4/4 ---
+cur: [-0.057776 -0.73793  -0.52411   0.748675  0.345053 -0.99398 ]
+safe_action: [ 0.001239 -0.006688  0.018369  0.00678   0.010392 -0.001269]
+target: [-0.056538 -0.744618 -0.505741  0.755455  0.355445 -0.995249]
+after: [-0.056332 -0.74481  -0.507763  0.750209  0.355791 -0.99398 ]
+actual_delta: [ 0.001444 -0.006879  0.016347  0.001534  0.010738  0.      ]
+tracking_error_abs_max: 0.00524592399597168
+
+after image green center: [1033.192   451.2671]
+green shift after px: 1.0070279836654663
+green area after: 4154.0
+after image: captures/until_push_v2_cycle_012_after_20260630_102122.jpg
+annotated after: captures/until_push_v2_cycle_012_after_annotated_20260630_102122.jpg
+
+========== CYCLE 13/16 ==========
+actions_to_run_this_cycle: 4
+green center before: [1033.395    451.58047]
+green shift before px: 0.666797935962677
+green area before: 4145.5
+image before: captures/until_push_v2_cycle_013_before_20260630_102122.jpg
+annotated before: captures/until_push_v2_cycle_013_before_annotated_20260630_102122.jpg
+current joints: [-0.056332 -0.74481  -0.50572   0.753277  0.355791 -0.99398 ]
+normalized abs max: 4.741715908050537
+real actions abs max: 0.021518994122743607
+safe actions abs max: 0.019999999552965164
+safe cumulative delta: [-0.023762 -0.0652    0.063434  0.00541   0.041531  0.007744]
+safe actions:
+[[-0.005143 -0.01724   0.017426 -0.008246  0.008785 -0.000744]
+ [-0.007587 -0.017523  0.013494  0.003511  0.00985   0.001725]
+ [-0.004894 -0.01995   0.02      0.004402  0.008668  0.006398]
+ [-0.006137 -0.010488  0.012513  0.005742  0.014228  0.000365]]
+
+--- execute action 1/4 ---
+cur: [-0.056332 -0.74481  -0.50572   0.754811  0.355791 -0.99398 ]
+safe_action: [-0.005143 -0.01724   0.017426 -0.008246  0.008785 -0.000744]
+target: [-0.061475 -0.76205  -0.488293  0.746565  0.364576 -0.994724]
+after: [-0.061387 -0.762238 -0.490395  0.754811  0.368063 -0.99398 ]
+actual_delta: [-0.005055 -0.017428  0.015325  0.        0.012272  0.      ]
+tracking_error_abs_max: 0.008246064186096191
+
+--- execute action 2/4 ---
+cur: [-0.061387 -0.762238 -0.488862  0.754811  0.368063 -0.99398 ]
+safe_action: [-0.007587 -0.017523  0.013494  0.003511  0.00985   0.001725]
+target: [-0.068975 -0.779761 -0.475368  0.758322  0.377912 -0.992255]
+after: [-0.067165 -0.780124 -0.476603  0.754811  0.378801 -0.99398 ]
+actual_delta: [-0.005778 -0.017886  0.01226   0.        0.010738  0.      ]
+tracking_error_abs_max: 0.0035112500190734863
+
+--- execute action 3/4 ---
+cur: [-0.069332 -0.779665 -0.476092  0.754811  0.378801 -0.99398 ]
+safe_action: [-0.004894 -0.01995   0.02      0.004402  0.008668  0.006398]
+target: [-0.074226 -0.799615 -0.456092  0.759214  0.387469 -0.987583]
+after: [-0.075109 -0.799845 -0.457702  0.754811  0.389538 -0.988867]
+actual_delta: [-0.005778 -0.02018   0.01839   0.        0.010738  0.005113]
+tracking_error_abs_max: 0.0044023990631103516
+
+--- execute action 4/4 ---
+cur: [-0.075109 -0.799845 -0.45668   0.754811  0.389538 -0.99398 ]
+safe_action: [-0.006137 -0.010488  0.012513  0.005742  0.014228  0.000365]
+target: [-0.081246 -0.810332 -0.444167  0.760554  0.403767 -0.993615]
+after: [-0.081609 -0.810852 -0.444931  0.759413  0.406412 -0.99398 ]
+actual_delta: [-0.0065   -0.011007  0.011749  0.004602  0.016874  0.      ]
+tracking_error_abs_max: 0.0026456713676452637
+
+after image green center: [1033.6255  451.7943]
+green shift after px: 0.49427366256713867
+green area after: 4167.5
+after image: captures/until_push_v2_cycle_013_after_20260630_102126.jpg
+annotated after: captures/until_push_v2_cycle_013_after_annotated_20260630_102126.jpg
+
+========== CYCLE 14/16 ==========
+actions_to_run_this_cycle: 4
+green center before: [1033.6959   452.20874]
+green shift before px: 0.2725331783294678
+green area before: 4177.5
+image before: captures/until_push_v2_cycle_014_before_20260630_102127.jpg
+annotated before: captures/until_push_v2_cycle_014_before_annotated_20260630_102127.jpg
+current joints: [-0.081609 -0.810852 -0.44442   0.760947  0.406412 -0.99398 ]
+normalized abs max: 4.741715908050537
+real actions abs max: 0.01252124272286892
+safe actions abs max: 0.01252124272286892
+safe cumulative delta: [-0.005289 -0.03631   0.039928  0.011383  0.045601  0.005282]
+safe actions:
+[[-0.000464 -0.01059   0.009747 -0.000208  0.012521  0.001372]
+ [-0.002544 -0.008857  0.009414  0.001427  0.010723  0.001972]
+ [-0.001378 -0.006969  0.009335  0.005729  0.011648  0.000309]
+ [-0.000903 -0.009894  0.011433  0.004435  0.010709  0.00163 ]]
+
+--- execute action 1/4 ---
+cur: [-0.081609 -0.810852 -0.44442   0.760947  0.404878 -0.99398 ]
+safe_action: [-0.000464 -0.01059   0.009747 -0.000208  0.012521  0.001372]
+target: [-0.082073 -0.821442 -0.434674  0.760739  0.4174   -0.992609]
+after: [-0.082331 -0.8214   -0.435736  0.760947  0.40948  -0.999094]
+actual_delta: [-0.000722 -0.010548  0.008684  0.        0.004602 -0.005113]
+tracking_error_abs_max: 0.0079193115234375
+
+--- execute action 2/4 ---
+cur: [-0.082331 -0.8214   -0.435736  0.760947  0.411014 -0.999094]
+safe_action: [-0.002544 -0.008857  0.009414  0.001427  0.010723  0.001972]
+target: [-0.084876 -0.830258 -0.426322  0.762374  0.421737 -0.997122]
+after: [-0.08522  -0.830573 -0.427563  0.760947  0.427888 -1.00932 ]
+actual_delta: [-0.002889 -0.009173  0.008173  0.        0.016874 -0.010226]
+tracking_error_abs_max: 0.012198150157928467
+
+--- execute action 3/4 ---
+cur: [-0.08522  -0.830573 -0.427563  0.762481  0.427888 -1.00932 ]
+safe_action: [-0.001378 -0.006969  0.009335  0.005729  0.011648  0.000309]
+target: [-0.086598 -0.837542 -0.418229  0.76821   0.439536 -1.009011]
+after: [-0.086665 -0.837452 -0.41939   0.771685  0.441694 -1.029773]
+actual_delta: [-0.001444 -0.006879  0.008173  0.009204  0.013806 -0.020453]
+tracking_error_abs_max: 0.020761966705322266
+
+--- execute action 4/4 ---
+cur: [-0.086665 -0.837452 -0.418368  0.773219  0.441694 -1.029773]
+safe_action: [-0.000903 -0.009894  0.011433  0.004435  0.010709  0.00163 ]
+target: [-0.087568 -0.847346 -0.406935  0.777654  0.452403 -1.028143]
+after: [-0.087387 -0.847542 -0.408152  0.774753  0.453966 -1.05534 ]
+actual_delta: [-0.000722 -0.01009   0.010217  0.001534  0.012272 -0.025566]
+tracking_error_abs_max: 0.027196288108825684
+
+after image green center: [1034.6      451.45612]
+green shift after px: 1.4152554273605347
+green area after: 4024.5
+after image: captures/until_push_v2_cycle_014_after_20260630_102131.jpg
+annotated after: captures/until_push_v2_cycle_014_after_annotated_20260630_102131.jpg
+
+========== CYCLE 15/16 ==========
+actions_to_run_this_cycle: 4
+green center before: [1034.2697  452.0437]
+green shift before px: 0.8676729202270508
+green area before: 4121.5
+image before: captures/until_push_v2_cycle_015_before_20260630_102131.jpg
+annotated before: captures/until_push_v2_cycle_015_before_annotated_20260630_102131.jpg
+current joints: [-0.087387 -0.847542 -0.406619  0.777821  0.452432 -1.05534 ]
+normalized abs max: 5.046975135803223
+real actions abs max: 0.012951260432600975
+safe actions abs max: 0.012951260432600975
+safe cumulative delta: [-0.00788  -0.034397  0.043452  0.007271  0.02744   0.001935]
+safe actions:
+[[-0.001304 -0.010062  0.011285 -0.000678  0.006917  0.000755]
+ [-0.003554 -0.00765   0.00937   0.000515  0.005809  0.001668]
+ [-0.001642 -0.006832  0.009845  0.002931  0.00742  -0.000818]
+ [-0.001381 -0.009853  0.012951  0.004503  0.007294  0.00033 ]]
+
+--- execute action 1/4 ---
+cur: [-0.087387 -0.847542 -0.406619  0.779355  0.452432 -1.05534 ]
+safe_action: [-0.001304 -0.010062  0.011285 -0.000678  0.006917  0.000755]
+target: [-0.08869  -0.857604 -0.395334  0.778677  0.459349 -1.054584]
+after: [-0.088831 -0.857632 -0.396403  0.777821  0.461636 -1.070679]
+actual_delta: [-0.001444 -0.01009   0.010217 -0.001534  0.009204 -0.01534 ]
+tracking_error_abs_max: 0.01609504222869873
+
+--- execute action 2/4 ---
+cur: [-0.088831 -0.857632 -0.395381  0.779355  0.461636 -1.070679]
+safe_action: [-0.003554 -0.00765   0.00937   0.000515  0.005809  0.001668]
+target: [-0.092385 -0.865282 -0.386011  0.77987   0.467445 -1.069012]
+after: [-0.092442 -0.865428 -0.387208  0.779355  0.466238 -1.080906]
+actual_delta: [-0.003611 -0.007797  0.008173  0.        0.004602 -0.010226]
+tracking_error_abs_max: 0.0118941068649292
+
+--- execute action 3/4 ---
+cur: [-0.092442 -0.865428 -0.386697  0.779355  0.466238 -1.091132]
+safe_action: [-0.001642 -0.006832  0.009845  0.002931  0.00742  -0.000818]
+target: [-0.094084 -0.872261 -0.376851  0.782286  0.473658 -1.09195 ]
+after: [-0.093887 -0.872767 -0.377502  0.779355  0.475441 -1.101359]
+actual_delta: [-0.001444 -0.007338  0.009195  0.        0.009204 -0.010226]
+tracking_error_abs_max: 0.009408712387084961
+
+--- execute action 4/4 ---
+cur: [-0.093887 -0.872767 -0.378013  0.779355  0.475441 -1.111586]
+safe_action: [-0.001381 -0.009853  0.012951  0.004503  0.007294  0.00033 ]
+target: [-0.095268 -0.882619 -0.365062  0.783858  0.482735 -1.111256]
+after: [-0.095331 -0.882856 -0.365753  0.782423  0.486179 -1.116699]
+actual_delta: [-0.001444 -0.01009   0.01226   0.003068  0.010738 -0.005113]
+tracking_error_abs_max: 0.005442976951599121
+
+after image green center: [1034.8865   452.31815]
+green shift after px: 1.462203025817871
+green area after: 4079.5
+after image: captures/until_push_v2_cycle_015_after_20260630_102135.jpg
+annotated after: captures/until_push_v2_cycle_015_after_annotated_20260630_102135.jpg
+
+========== CYCLE 16/16 ==========
+actions_to_run_this_cycle: 4
+green center before: [1034.7428   452.36176]
+green shift before px: 1.3218023777008057
+green area before: 4082.5
+image before: captures/until_push_v2_cycle_016_before_20260630_102136.jpg
+annotated before: captures/until_push_v2_cycle_016_before_annotated_20260630_102136.jpg
+current joints: [-0.095331 -0.882856 -0.364731  0.783957  0.486179 -1.116699]
+normalized abs max: 5.352234363555908
+real actions abs max: 0.014739902690052986
+safe actions abs max: 0.014739902690052986
+safe cumulative delta: [-0.008031 -0.052483  0.053453  0.018593  0.036926  0.000582]
+safe actions:
+[[-0.001795 -0.01474   0.01422   0.001164  0.00958  -0.000797]
+ [-0.002991 -0.013105  0.012647  0.004643  0.010164  0.001082]
+ [-0.002861 -0.011338  0.013472  0.006058  0.010105  0.001286]
+ [-0.000385 -0.013299  0.013114  0.006728  0.007076 -0.00099 ]]
+
+--- execute action 1/4 ---
+cur: [-0.095331 -0.882856 -0.364731  0.783957  0.486179 -1.116699]
+safe_action: [-0.001795 -0.01474   0.01422   0.001164  0.00958  -0.000797]
+target: [-0.097126 -0.897596 -0.350512  0.785121  0.495759 -1.117496]
+after: [-0.097498 -0.897532 -0.35145   0.785491  0.492315 -1.126925]
+actual_delta: [-0.002167 -0.014676  0.013282  0.001534  0.006136 -0.010226]
+tracking_error_abs_max: 0.009429574012756348
+User pressed q/ESC. Stop during action loop.
+
+STOPPED BY USER.
+
+Disconnected from robot
+
+
+Disconnected from robot
+
+DONE.

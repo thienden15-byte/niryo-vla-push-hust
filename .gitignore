@@ -1,0 +1,56 @@
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.env
+venv/
+.venv/
+
+# Training logs / temporary outputs
+runs/
+wandb/
+outputs/
+
+# Dataset files
+*.npz
+*.hdf5
+*.h5
+datasets/raw/
+datasets/processed/
+raw_frames/
+
+# Model checkpoints
+*.pt
+*.pth
+*.ckpt
+checkpoints/*.pt
+checkpoints/*.pth
+checkpoints/*.ckpt
+
+# Archives
+*.zip
+*.tar.gz
+
+# Videos and large media
+*.mp4
+*.avi
+*.mov
+*.mkv
+
+# ROS / build files
+build/
+install/
+log/
+
+# System files
+.DS_Store
+Thumbs.db
+
+# IDE
+.vscode/
+.idea/
+
+# Allow small handover demo videos
+!assets/videos/
+!assets/videos/*.mp4

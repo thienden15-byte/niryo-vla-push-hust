@@ -1,0 +1,49 @@
+====================================================================================================
+EXPORT GOAL_V1 RETRIEVAL POLICY
+====================================================================================================
+Dataset      : goal_v1/data/push_goal_v1.npz
+Train samples: 58
+Val samples  : 15
+Goal steps   : [25 55 99]
+====================================================================================================
+
+[1] VALIDATION CHECK BEFORE EXPORT
+====================================================================================================
+Classifier-zone policy:
+  MAE all       : 0.08812588453292847
+  MAE goal      : [0.10795598 0.08776139 0.0686603 ]
+  norm mean     : [0.31703174 0.27061924 0.20240504]
+  zone accuracy : 0.8666666666666667
+
+Global backup policy:
+  MAE all       : 0.08944518119096756
+  MAE goal      : [0.10874564 0.09364046 0.0659494 ]
+  norm mean     : [0.31861848 0.2895092  0.19667958]
+
+Worst classifier-zone samples:
+#01 ep_057.npz   true_zone=far_left       pred_zone=far_left       mae=0.185216
+#02 ep_039.npz   true_zone=mid_left       pred_zone=far_left       mae=0.129999
+#03 ep_048.npz   true_zone=mid_right      pred_zone=far_right      mae=0.117528
+#04 ep_069.npz   true_zone=far_right      pred_zone=far_right      mae=0.114546
+#05 ep_055.npz   true_zone=far_center     pred_zone=far_center     mae=0.085260
+#06 ep_063.npz   true_zone=far_left       pred_zone=far_left       mae=0.084298
+#07 ep_018.npz   true_zone=near_right     pred_zone=near_right     mae=0.080304
+#08 ep_045.npz   true_zone=mid_right      pred_zone=mid_right      mae=0.080091
+#09 ep_051.npz   true_zone=far_center     pred_zone=far_center     mae=0.078828
+#10 ep_024.npz   true_zone=near_right     pred_zone=near_right     mae=0.075332
+
+====================================================================================================
+✅ EXPORTED
+====================================================================================================
+Policy npz : goal_v1/checkpoints/goal_v1_retrieval_policy.npz
+Config json: goal_v1/checkpoints/goal_v1_retrieval_policy_config.json
+
+Files:
+   goal_v1/checkpoints/goal_v1_retrieval_policy.npz
+   goal_v1/checkpoints/goal_v1_retrieval_policy_config.json
+
+ĐỌC NHANH:
+- File .npz là policy offline.
+- File .json là mô tả cấu hình.
+- Bước sau ta sẽ viết script đưa 1 object_feature vào và in ra 3 tư thế khớp dự đoán.
+====================================================================================================

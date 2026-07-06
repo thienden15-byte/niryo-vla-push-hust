@@ -1,0 +1,583 @@
+ROOT: /home/thien/mini-vla/mini-vla
+===== DATASET DIRECTORIES =====
+dataset_push_real_v5_trim_manual
+report_evidence/dataset_audit
+data
+colab_minivla_push_trim_v5/data
+goal_v1/data
+colab_minivla_push_trim_v5
+
+===== EPISODE NPZ DATASETS =====
+
+DIR: dataset_push_real_v5_trim_manual
+episodes: 73
+first episode: ep_000.npz
+keys/shapes/dtypes:
+  - images: shape=(61, 224, 224, 3), dtype=uint8
+  - joints: shape=(61, 6), dtype=float32
+  - actions_next_joints: shape=(61, 6), dtype=float32
+  - actions_delta_joints: shape=(61, 6), dtype=float32
+  - instruction: shape=(), dtype=object
+  - valid_len: shape=(), dtype=int32
+  - episode_id: shape=(), dtype=int32
+  - step_ids: shape=(61,), dtype=int32
+  - episode_ids: shape=(61,), dtype=int32
+  - target_joints: shape=(61, 6), dtype=float32
+  - timestamps: shape=(61,), dtype=float64
+  - get_joints_latency_ms: shape=(61,), dtype=float32
+  - taught_joints: shape=(94, 6), dtype=float32
+  - taught_timestamps: shape=(94,), dtype=float64
+  - replay_target_joints: shape=(61, 6), dtype=float32
+  - raw_image_paths: shape=(61,), dtype=object
+  - start_object_feature: shape=(3,), dtype=float32
+  - start_zone: shape=(), dtype=object
+  - object_text: shape=(), dtype=object
+  - collector_version: shape=(), dtype=object
+  - joint_source: shape=(), dtype=object
+  - action_source: shape=(), dtype=object
+  - resample_method: shape=(), dtype=object
+  - sample_hz_teach: shape=(), dtype=float32
+  - replay_waypoints: shape=(), dtype=int32
+  - camera_width: shape=(), dtype=int32
+  - camera_height: shape=(), dtype=int32
+  - image_size: shape=(), dtype=int32
+  - velocity: shape=(), dtype=int32
+  - pause_after_move: shape=(), dtype=float32
+  - success: shape=(), dtype=bool
+  - note: shape=(), dtype=object
+  - robot_zone: shape=(), dtype=object
+  - robot_distance_bin: shape=(), dtype=object
+  - robot_lateral_bin: shape=(), dtype=object
+  - object_moved: shape=(), dtype=bool
+  - table_touch: shape=(), dtype=bool
+  - data_version: shape=(), dtype=object
+  - trim_source_start: shape=(), dtype=int32
+  - trim_source_end: shape=(), dtype=int32
+  - trim_original_valid_len: shape=(), dtype=int32
+  - manual_cut_return_start_frame: shape=(), dtype=int32
+
+===== CONVERTED / SINGLE NPZ FILES =====
+
+FILE: colab_minivla_push_trim_v5/data/niryo_push_real_v5_trim_minivla.npz
+keys: ['images', 'states', 'actions', 'text_ids', 'vocab', 'episode_ids', 'step_ids', 'instruction', 'source_dataset']
+  - images: shape=(3991, 224, 224, 3), dtype=uint8
+  - states: shape=(3991, 6), dtype=float32
+  - actions: shape=(3991, 6), dtype=float32
+  - text_ids: shape=(3991, 16), dtype=int64
+  - vocab: scalar dtype=object, value={'<pad>': 0, '<unk>': 1, 'push': 2, 'the': 3, 'object': 4}
+  - episode_ids: shape=(3991,), dtype=int32
+  - step_ids: shape=(3991,), dtype=int32
+  - instruction: scalar dtype=<U15, value=push the object
+  - source_dataset: scalar dtype=<U32, value=dataset_push_real_v5_trim_manual
+
+FILE: data/niryo_push_real_v5_trim_minivla.npz
+keys: ['images', 'states', 'actions', 'text_ids', 'vocab', 'episode_ids', 'step_ids', 'instruction', 'source_dataset']
+  - images: shape=(3991, 224, 224, 3), dtype=uint8
+  - states: shape=(3991, 6), dtype=float32
+  - actions: shape=(3991, 6), dtype=float32
+  - text_ids: shape=(3991, 16), dtype=int64
+  - vocab: scalar dtype=object, value={'<pad>': 0, '<unk>': 1, 'push': 2, 'the': 3, 'object': 4}
+  - episode_ids: shape=(3991,), dtype=int32
+  - step_ids: shape=(3991,), dtype=int32
+  - instruction: scalar dtype=<U15, value=push the object
+  - source_dataset: scalar dtype=<U32, value=dataset_push_real_v5_trim_manual
+
+FILE: data/niryo_push_v4_action_stats.npz
+keys: ['action_mean', 'action_std']
+  - action_mean: shape=(6,), dtype=float32
+  - action_std: shape=(6,), dtype=float32
+
+FILE: data/niryo_push_v4_objfeat_action_stats.npz
+keys: ['action_mean', 'action_std']
+  - action_mean: shape=(6,), dtype=float32
+  - action_std: shape=(6,), dtype=float32
+
+FILE: data/niryo_push_v4_objfeat_progress_action_stats.npz
+keys: ['action_mean', 'action_std']
+  - action_mean: shape=(6,), dtype=float32
+  - action_std: shape=(6,), dtype=float32
+
+FILE: data/niryo_push_v4_state10_chunk_h4_action_stats.npz
+keys: ['action_mean', 'action_std', 'chunk_h']
+  - action_mean: shape=(24,), dtype=float32
+  - action_std: shape=(24,), dtype=float32
+  - chunk_h: scalar dtype=int64, value=4
+
+FILE: data/niryo_push_v4_state10_chunk_h8_action_stats.npz
+keys: ['action_mean', 'action_std', 'chunk_h']
+  - action_mean: shape=(48,), dtype=float32
+  - action_std: shape=(48,), dtype=float32
+  - chunk_h: scalar dtype=int64, value=8
+
+FILE: data/niryo_push_v4_state10_waypoint_tplus1_stats.npz
+keys: ['target_mean', 'target_std']
+  - target_mean: shape=(6,), dtype=float32
+  - target_std: shape=(6,), dtype=float32
+
+FILE: data/niryo_push_v5_state10_waypoint_tplus1_stats.npz
+keys: ['target_mean', 'target_std', 'action_type', 'state_type', 'instruction', 'vocab']
+  - target_mean: shape=(6,), dtype=float32
+  - target_std: shape=(6,), dtype=float32
+  - action_type: scalar dtype=object, value=waypoint_tplus1_absolute_joints_normalized
+  - state_type: scalar dtype=object, value=state10_joints_objfeat_progress
+  - instruction: scalar dtype=object, value=push the object
+  - vocab: scalar dtype=object, value={'<pad>': 0, '<unk>': 1, 'push': 2, 'the': 3, 'object': 4}
+
+FILE: eval_plots/eval_arrays.npz
+keys: ['preds', 'trues', 'joints', 'sample_names']
+  - preds: shape=(300, 6), dtype=float32
+  - trues: shape=(300, 6), dtype=float32
+  - joints: shape=(300, 6), dtype=float32
+  - sample_names: shape=(300,), dtype=<U14
+
+FILE: goal_v1/checkpoints/goal_v1_retrieval_policy.npz
+keys: ['policy_version', 'description', 'goal_steps', 'train_indices', 'train_goals', 'train_object_features', 'train_episode_files', 'train_robot_zones', 'train_distance_bins', 'train_lateral_bins', 'cy_area_mean', 'cy_area_std', 'train_cy_area_n', 'xy_area_mean', 'xy_area_std', 'train_xy_area_n', 'classifier_k', 'classifier_weighted', 'zone_interp_k', 'interp_power', 'global_interp_k', 'val_indices', 'val_classifier_pred', 'val_global_pred', 'val_true', 'val_classifier_mae', 'val_classifier_mae_goal', 'val_classifier_zone_acc', 'val_global_mae', 'val_global_mae_goal']
+  - policy_version: scalar dtype=object, value=goal_v1_retrieval_policy
+  - description: scalar dtype=object, value=Main policy: cy_area kNN zone classifier k=2 + zone-conditioned interpolation k=5. Backup: xy_area global interpolation k=2.
+  - goal_steps: shape=(3,), dtype=int32
+  - train_indices: shape=(58,), dtype=int32
+  - train_goals: shape=(58, 18), dtype=float32
+  - train_object_features: shape=(58, 3), dtype=float32
+  - train_episode_files: shape=(58,), dtype=object
+  - train_robot_zones: shape=(58,), dtype=object
+  - train_distance_bins: shape=(58,), dtype=object
+  - train_lateral_bins: shape=(58,), dtype=object
+  - cy_area_mean: shape=(2,), dtype=float32
+  - cy_area_std: shape=(2,), dtype=float32
+  - train_cy_area_n: shape=(58, 2), dtype=float32
+  - xy_area_mean: shape=(3,), dtype=float32
+  - xy_area_std: shape=(3,), dtype=float32
+  - train_xy_area_n: shape=(58, 3), dtype=float32
+  - classifier_k: scalar dtype=int32, value=2
+  - classifier_weighted: scalar dtype=bool, value=False
+  - zone_interp_k: scalar dtype=int32, value=5
+  - interp_power: scalar dtype=float32, value=1.0
+  - global_interp_k: scalar dtype=int32, value=2
+  - val_indices: shape=(15,), dtype=int32
+  - val_classifier_pred: shape=(15, 18), dtype=float32
+  - val_global_pred: shape=(15, 18), dtype=float32
+  - val_true: shape=(15, 18), dtype=float32
+  - val_classifier_mae: scalar dtype=float32, value=0.08812588453292847
+  - val_classifier_mae_goal: shape=(3,), dtype=float32
+  - val_classifier_zone_acc: scalar dtype=float32, value=0.8666666746139526
+  - val_global_mae: scalar dtype=float32, value=0.08944518119096756
+  - val_global_mae_goal: shape=(3,), dtype=float32
+
+FILE: goal_v1/checkpoints/goal_v2_cluster_policy.npz
+keys: ['policy_version', 'cluster_idxs', 'train_object_features', 'train_cluster_goals', 'train_robot_zones', 'train_episode_files', 'val_object_features', 'val_cluster_goals', 'val_robot_zones', 'val_episode_files', 'train_cy_area_n', 'cy_area_mean', 'cy_area_std', 'classifier_k', 'zone_interp_k', 'interp_power', 'val_mae_all', 'val_zone_acc', 'val_mae_by_point']
+  - policy_version: scalar dtype=<U25, value=goal_v2_cluster_retrieval
+  - cluster_idxs: shape=(15,), dtype=int64
+  - train_object_features: shape=(58, 3), dtype=float32
+  - train_cluster_goals: shape=(58, 90), dtype=float32
+  - train_robot_zones: shape=(58,), dtype=<U7
+  - train_episode_files: shape=(58,), dtype=<U10
+  - val_object_features: shape=(15, 3), dtype=float32
+  - val_cluster_goals: shape=(15, 90), dtype=float32
+  - val_robot_zones: shape=(15,), dtype=<U7
+  - val_episode_files: shape=(15,), dtype=<U10
+  - train_cy_area_n: shape=(58, 2), dtype=float32
+  - cy_area_mean: shape=(2,), dtype=float32
+  - cy_area_std: shape=(2,), dtype=float32
+  - classifier_k: scalar dtype=int64, value=2
+  - zone_interp_k: scalar dtype=int64, value=5
+  - interp_power: scalar dtype=float64, value=1.0
+  - val_mae_all: scalar dtype=float64, value=0.09510095417499542
+  - val_zone_acc: scalar dtype=float64, value=1.0
+  - val_mae_by_point: shape=(15,), dtype=float32
+
+FILE: goal_v1/data/push_goal_v1.npz
+keys: ['images', 'states', 'goals', 'start_joints', 'object_features', 'goal_steps', 'episode_ids', 'episode_files', 'robot_zones', 'distance_bins', 'lateral_bins', 'success', 'object_moved', 'table_touch', 'splits', 'state_mean', 'state_std', 'goal_mean', 'goal_std', 'description']
+  - images: shape=(73, 224, 224, 3), dtype=uint8
+  - states: shape=(73, 9), dtype=float32
+  - goals: shape=(73, 18), dtype=float32
+  - start_joints: shape=(73, 6), dtype=float32
+  - object_features: shape=(73, 3), dtype=float32
+  - goal_steps: shape=(3,), dtype=int32
+  - episode_ids: shape=(73,), dtype=int32
+  - episode_files: shape=(73,), dtype=object
+  - robot_zones: shape=(73,), dtype=object
+  - distance_bins: shape=(73,), dtype=object
+  - lateral_bins: shape=(73,), dtype=object
+  - success: shape=(73,), dtype=bool
+  - object_moved: shape=(73,), dtype=bool
+  - table_touch: shape=(73,), dtype=bool
+  - splits: shape=(73,), dtype=int32
+  - state_mean: shape=(9,), dtype=float32
+  - state_std: shape=(9,), dtype=float32
+  - goal_mean: shape=(18,), dtype=float32
+  - goal_std: shape=(18,), dtype=float32
+  - description: scalar dtype=object, value=goal_v1: image0 + 6 start joints + 3 object feature -> 3 joint goals at selected steps
+
+FILE: goal_v1/data/push_goal_v1_stats.npz
+keys: ['state_mean', 'state_std', 'goal_mean', 'goal_std', 'goal_steps']
+  - state_mean: shape=(9,), dtype=float32
+  - state_std: shape=(9,), dtype=float32
+  - goal_mean: shape=(18,), dtype=float32
+  - goal_std: shape=(18,), dtype=float32
+  - goal_steps: shape=(3,), dtype=int32
+
+FILE: goal_v1/data/push_goal_v2_cluster.npz
+keys: ['episode_files', 'object_features', 'zones', 'cluster_goals', 'splits', 'cluster_idxs']
+  - episode_files: shape=(73,), dtype=<U10
+  - object_features: shape=(73, 3), dtype=float32
+  - zones: shape=(73,), dtype=<U7
+  - cluster_goals: shape=(73, 90), dtype=float32
+  - splits: shape=(73,), dtype=object
+  - cluster_idxs: shape=(15,), dtype=int64
+
+FILE: goal_v1/eval/dry_run_ep026.npz
+keys: ['episode_file', 'object_feature', 'start_joints', 'true_goal', 'main_path', 'backup_path', 'main_ok', 'backup_ok', 'max_step_rad']
+  - episode_file: scalar dtype=object, value=ep_026.npz
+  - object_feature: shape=(3,), dtype=float32
+  - start_joints: shape=(6,), dtype=float32
+  - true_goal: shape=(18,), dtype=float32
+  - main_path: shape=(69, 6), dtype=float32
+  - backup_path: shape=(75, 6), dtype=float32
+  - main_ok: scalar dtype=bool, value=True
+  - backup_ok: scalar dtype=bool, value=True
+  - max_step_rad: scalar dtype=float32, value=0.02500000037252903
+
+FILE: goal_v1/eval/dry_run_ep057.npz
+keys: ['episode_file', 'object_feature', 'start_joints', 'true_goal', 'main_path', 'backup_path', 'main_ok', 'backup_ok', 'max_step_rad']
+  - episode_file: scalar dtype=object, value=ep_057.npz
+  - object_feature: shape=(3,), dtype=float32
+  - start_joints: shape=(6,), dtype=float32
+  - true_goal: shape=(18,), dtype=float32
+  - main_path: shape=(82, 6), dtype=float32
+  - backup_path: shape=(78, 6), dtype=float32
+  - main_ok: scalar dtype=bool, value=True
+  - backup_ok: scalar dtype=bool, value=True
+  - max_step_rad: scalar dtype=float32, value=0.02500000037252903
+
+FILE: goal_v1/eval/goal_v1_classifier_zone_interp_eval.npz
+keys: ['val_indices', 'val_true', 'best_global_key', 'best_global_pred', 'best_global_mae', 'best_global_mae_goal', 'best_oracle_key', 'best_oracle_pred', 'best_oracle_mae', 'best_oracle_mae_goal', 'best_classifier_key', 'best_classifier_pred', 'best_classifier_mae', 'best_classifier_mae_goal', 'best_classifier_pred_zones', 'best_classifier_zone_acc', 'best_classifier_dist_acc', 'best_classifier_lat_acc']
+  - val_indices: shape=(15,), dtype=int64
+  - val_true: shape=(15, 18), dtype=float32
+  - best_global_key: scalar dtype=object, value=xy_area_global_k2_p1
+  - best_global_pred: shape=(15, 18), dtype=float32
+  - best_global_mae: scalar dtype=float32, value=0.08944518119096756
+  - best_global_mae_goal: shape=(3,), dtype=float32
+  - best_oracle_key: scalar dtype=object, value=cy_area_oracle_k5_p1
+  - best_oracle_pred: shape=(15, 18), dtype=float32
+  - best_oracle_mae: scalar dtype=float32, value=0.08155994862318039
+  - best_oracle_mae_goal: shape=(3,), dtype=float32
+  - best_classifier_key: scalar dtype=object, value=cy_area_clfK2_plain_direct_zone_interpK5_p1
+  - best_classifier_pred: shape=(15, 18), dtype=float32
+  - best_classifier_mae: scalar dtype=float32, value=0.08812587708234787
+  - best_classifier_mae_goal: shape=(3,), dtype=float32
+  - best_classifier_pred_zones: shape=(15,), dtype=object
+  - best_classifier_zone_acc: scalar dtype=float32, value=0.8666666746139526
+  - best_classifier_dist_acc: scalar dtype=float32, value=0.8666666746139526
+  - best_classifier_lat_acc: scalar dtype=float32, value=1.0
+
+FILE: goal_v1/eval/goal_v1_knn_interp_eval.npz
+keys: ['val_indices', 'val_true', 'best_pred', 'best_key', 'best_feat_name', 'best_k', 'best_power', 'best_mae_all', 'best_mae_goal', 'best_norm_goal_mean', 'best_norm_goal_max']
+  - val_indices: shape=(15,), dtype=int64
+  - val_true: shape=(15, 18), dtype=float32
+  - best_pred: shape=(15, 18), dtype=float32
+  - best_key: scalar dtype=object, value=object_xy_area_k2_p1
+  - best_feat_name: scalar dtype=object, value=object_xy_area
+  - best_k: scalar dtype=int32, value=2
+  - best_power: scalar dtype=float32, value=1.0
+  - best_mae_all: scalar dtype=float32, value=0.08944518119096756
+  - best_mae_goal: shape=(3,), dtype=float32
+  - best_norm_goal_mean: shape=(3,), dtype=float32
+  - best_norm_goal_max: shape=(3,), dtype=float32
+
+FILE: goal_v1/eval/goal_v1_safe_fallback_interp_eval.npz
+keys: ['val_indices', 'val_true', 'best_key', 'best_pred', 'best_mae', 'best_mae_goal', 'best_norm_goal_mean', 'best_norm_goal_max', 'best_pred_zones', 'best_used_modes', 'best_zone_acc', 'best_zone_use_rate']
+  - val_indices: shape=(15,), dtype=int64
+  - val_true: shape=(15, 18), dtype=float32
+  - best_key: scalar dtype=object, value=cy_area_agree100_clfK2_zoneK5_globalK2
+  - best_pred: shape=(15, 18), dtype=float32
+  - best_mae: scalar dtype=float32, value=0.08820568770170212
+  - best_mae_goal: shape=(3,), dtype=float32
+  - best_norm_goal_mean: shape=(3,), dtype=float32
+  - best_norm_goal_max: shape=(3,), dtype=float32
+  - best_pred_zones: shape=(15,), dtype=object
+  - best_used_modes: shape=(15,), dtype=object
+  - best_zone_acc: scalar dtype=float32, value=0.800000011920929
+  - best_zone_use_rate: scalar dtype=float32, value=0.8666666746139526
+
+FILE: goal_v1/eval/goal_v1_state_mlp_eval.npz
+keys: ['train_pred', 'train_true', 'train_indices', 'val_pred', 'val_true', 'val_indices', 'history', 'train_mae_all', 'val_mae_all', 'train_mae_by_goal', 'val_mae_by_goal', 'train_mae_by_joint', 'val_mae_by_joint', 'train_norm_err_by_goal', 'val_norm_err_by_goal']
+  - train_pred: shape=(58, 18), dtype=float32
+  - train_true: shape=(58, 18), dtype=float32
+  - train_indices: shape=(58,), dtype=int32
+  - val_pred: shape=(15, 18), dtype=float32
+  - val_true: shape=(15, 18), dtype=float32
+  - val_indices: shape=(15,), dtype=int32
+  - history: shape=(800,), dtype=object
+  - train_mae_all: scalar dtype=float32, value=0.04837462306022644
+  - val_mae_all: scalar dtype=float32, value=0.10118509083986282
+  - train_mae_by_goal: shape=(3,), dtype=float32
+  - val_mae_by_goal: shape=(3,), dtype=float32
+  - train_mae_by_joint: shape=(6,), dtype=float32
+  - val_mae_by_joint: shape=(6,), dtype=float32
+  - train_norm_err_by_goal: shape=(3,), dtype=float32
+  - val_norm_err_by_goal: shape=(3,), dtype=float32
+
+FILE: goal_v1/eval/goal_v1_zone_conditioned_interp_eval.npz
+keys: ['val_indices', 'val_true', 'best_global_key', 'best_global_pred', 'best_global_mae', 'best_global_mae_goal', 'best_oracle_key', 'best_oracle_pred', 'best_oracle_mae', 'best_oracle_mae_goal', 'best_auto_key', 'best_auto_pred', 'best_auto_mae', 'best_auto_mae_goal', 'best_auto_pred_zones', 'best_auto_zone_acc']
+  - val_indices: shape=(15,), dtype=int64
+  - val_true: shape=(15, 18), dtype=float32
+  - best_global_key: scalar dtype=object, value=global_k2_p1
+  - best_global_pred: shape=(15, 18), dtype=float32
+  - best_global_mae: scalar dtype=float32, value=0.08944518119096756
+  - best_global_mae_goal: shape=(3,), dtype=float32
+  - best_oracle_key: scalar dtype=object, value=oracle_zone_k5_p1
+  - best_oracle_pred: shape=(15, 18), dtype=float32
+  - best_oracle_mae: scalar dtype=float32, value=0.08285392820835114
+  - best_oracle_mae_goal: shape=(3,), dtype=float32
+  - best_auto_key: scalar dtype=object, value=auto_zone_k5_p1
+  - best_auto_pred: shape=(15, 18), dtype=float32
+  - best_auto_mae: scalar dtype=float32, value=0.15538857877254486
+  - best_auto_mae_goal: shape=(3,), dtype=float32
+  - best_auto_pred_zones: shape=(15,), dtype=object
+  - best_auto_zone_acc: scalar dtype=float32, value=0.3333333432674408
+
+FILE: goal_v1/eval/goal_v1_zone_knn_classifier_eval.npz
+keys: ['val_indices', 'true_zone', 'best_pred_zone', 'true_distance', 'pred_distance', 'true_lateral', 'pred_lateral', 'best_feature', 'best_k', 'best_weighted', 'best_mode', 'best_score', 'direct_zone_acc', 'distance_acc', 'lateral_acc', 'zone_from_dist_lat_acc']
+  - val_indices: shape=(15,), dtype=int64
+  - true_zone: shape=(15,), dtype=object
+  - best_pred_zone: shape=(15,), dtype=object
+  - true_distance: shape=(15,), dtype=object
+  - pred_distance: shape=(15,), dtype=object
+  - true_lateral: shape=(15,), dtype=object
+  - pred_lateral: shape=(15,), dtype=object
+  - best_feature: scalar dtype=object, value=xy_area
+  - best_k: scalar dtype=int32, value=2
+  - best_weighted: scalar dtype=bool, value=False
+  - best_mode: scalar dtype=object, value=direct
+  - best_score: scalar dtype=float32, value=0.8666666746139526
+  - direct_zone_acc: scalar dtype=float32, value=0.8666666746139526
+  - distance_acc: scalar dtype=float32, value=0.8666666746139526
+  - lateral_acc: scalar dtype=float32, value=1.0
+  - zone_from_dist_lat_acc: scalar dtype=float32, value=0.8666666746139526
+
+===== RELEVANT SCRIPTS =====
+colab_minivla_push_trim_v5/models/__init__.py
+colab_minivla_push_trim_v5/models/diffusion_head.py
+colab_minivla_push_trim_v5/models/encoders.py
+colab_minivla_push_trim_v5/models/fusion.py
+colab_minivla_push_trim_v5/models/vla_diffusion_policy.py
+colab_minivla_push_trim_v5/scripts/__init__.py
+colab_minivla_push_trim_v5/scripts/collect_data.py
+colab_minivla_push_trim_v5/scripts/inference.py
+colab_minivla_push_trim_v5/scripts/test.py
+colab_minivla_push_trim_v5/scripts/train.py
+colab_minivla_push_trim_v5/utils/tokenizer.py
+collect_data_real_v4.py
+collect_data_real_v4_backup_before_v5.py
+collect_data_real_v5.py
+convert_trim_v5_to_minivla.py
+eval_model_on_dataset.py
+goal_v1/scripts/convert_v5_to_goal_v1.py
+make_minivla_offline_result_plots.py
+old_collectors/collect_data_real.py
+old_collectors/collect_data_real_v2.py
+old_collectors/collect_data_real_v3.py
+report_evidence/dataset_audit/audit_dataset_repo.py
+run_minivla_direct_live_safe.py
+scripts/collect_data.py
+
+===== COMMAND HINTS FROM HISTORY / FILES =====
+
+--- /home/thien/.bash_history ---
+418: ls -lh   data/niryo_push_real_v5_trim_minivla.npz   checkpoints/minivla_push_trim_v5_direct.pt   eval_direct_local.py   eval_plots/summary.txt   eval_plots/eval_arrays.npz
+423: grep -RInE "model L2 error|zero baseline|mean-action baseline|cosine mean|cosine > 0|pred norm mean|true norm mean|Epoch 1/80|Epoch 80/80|Epoch 1/120|Epoch 120/120|norm_mse|minivla_push_trim_v5|niryo_push_real_v5_trim_minivla|train_direct|diffusion-T" ~/mini-vla ~/TinyVLA ~/Downloads --include="*.py" --include="*.txt" --include="*.md" --include="*.csv" --include="*.json" --include="*.ipynb" 2>/dev/null | tee evidence_search/local_grep_metrics.txt
+433: sha256sum   data/niryo_push_real_v5_trim_minivla.npz   checkpoints/minivla_push_trim_v5_direct.pt   eval_direct_local.py   scripts/train_direct.py   models/vla_direct_policy.py   evidence_minivla_v5/logs/direct_offline_eval_300_rerun.txt   > evidence_minivla_v5/manifests/direct_evidence_sha256.txt
+444: find ~/mini-vla ~/TinyVLA ~/Downloads -type f   \( -iname "minivla_push_trim_v5.pt"   -o -iname "*diffusion*"   -o -iname "*minivla_push_trim_v5*"   -o -iname "*offline*eval*"   -o -iname "*train*log*"   -o -iname "*loss*curve*"   -o -iname "*loss*history*"   -o -iname "*eval*300*"   -o -iname "*.ipynb" \)   2>/dev/null | sort | tee -a evidence_search/diffusion_local_search.txt
+450: unzip -l colab_minivla_push_trim_v5.zip | tee -a evidence_search/colab_zip_listing.txt
+453: grep -Ei "pt|pth|log|txt|csv|json|png|ipynb|loss|eval|checkpoint|direct|diffusion" evidence_search/colab_zip_listing.txt
+457: ls -lh ~/Downloads/minivla_push_trim_v5.pt
+459: cp ~/Downloads/minivla_push_trim_v5.pt checkpoints/minivla_push_trim_v5.pt
+461: ls -lh checkpoints/minivla_push_trim_v5.pt checkpoints/minivla_push_trim_v5_direct.pt
+467: ckpt_path = "checkpoints/minivla_push_trim_v5.pt"
+524: CKPT_PATH = "checkpoints/minivla_push_trim_v5.pt"
+525: DATA_PATH = "data/niryo_push_real_v5_trim_minivla.npz"
+575:     print("checkpoint:", CKPT_PATH)
+682: CKPT_PATH = "checkpoints/minivla_push_trim_v5.pt"
+683: DATA_PATH = "data/niryo_push_real_v5_trim_minivla.npz"
+735:     print("checkpoint:", CKPT_PATH)
+831: CKPT_PATH = "checkpoints/minivla_push_trim_v5.pt"
+832: DATA_PATH = "data/niryo_push_real_v5_trim_minivla.npz"
+884:     print("checkpoint:", CKPT_PATH)
+978: sha256sum   data/niryo_push_real_v5_trim_minivla.npz   checkpoints/minivla_push_trim_v5.pt   eval_diffusion_local_sameidx.py   scripts/train.py   models/vla_diffusion_policy.py   models/diffusion_head.py   evidence_minivla_v5/logs/diffusion_offline_eval_300_sameidx_rerun.txt   > evidence_minivla_v5/manifests/diffusion_evidence_sha256.txt
+1125: ./colab_minivla_push_trim_v5/requirements.txt
+1132: ./goal_v1/logs/convert_goal_v1.log
+1145: ./report_evidence/minivla_direct/checkpoint_direct_inspect.log
+1146: ./report_evidence/minivla_direct/eval_direct_recheck.log
+1169: grep -nE "add_argument|checkpoint|action_scale|max_delta|steps|velocity|execute|move_joints|delta|clip"   run_minivla_direct_live_safe.py
+1180: ls -lh data/niryo_push_real_v5_trim_minivla.npz 2>/dev/null
+1181: ls -lh checkpoints/minivla_push_trim_v5_direct.pt 2>/dev/null
+1201: p = Path("data/niryo_push_real_v5_trim_minivla.npz")
+1222:     "checkpoints/minivla_push_trim_v5_direct.pt",
+1223:     "minivla_push_trim_v5_direct.pt",
+1271: ls -lh data/niryo_push_real_v5_trim_minivla.npz 2>/dev/null || echo "KHONG THAY dataset Mini-VLA converted"
+1286: grep -RIn   --include="*.py"   --include="*.txt"   --include="*.log"   --include="*.csv"   --include="*.md"   -E "minivla_push_trim_v5|trim_minivla|model_l2|zero_baseline|mean_action|mean-action|cosine_mean|cosine|pred_norm|true_norm|0\.062437|0\.013362|0\.857832|0\.174556|norm_mse|Epoch 1/80|Epoch 80/80|Epoch 1/120|Epoch 120/120|diffusion_T|train_direct|VLADiffusion|Direct"   . 2>/dev/null | tee /tmp/minivla_metric_search.txt
+1292: echo "===== EVIDENCE INFO =====" | tee report_evidence/minivla_direct/eval_direct_recheck.log
+1293: date | tee -a report_evidence/minivla_direct/eval_direct_recheck.log
+1294: pwd | tee -a report_evidence/minivla_direct/eval_direct_recheck.log
+1295: echo | tee -a report_evidence/minivla_direct/eval_direct_recheck.log
+1296: echo "===== FILES =====" | tee -a report_evidence/minivla_direct/eval_direct_recheck.log
+1297: ls -lh   data/niryo_push_real_v5_trim_minivla.npz   checkpoints/minivla_push_trim_v5_direct.pt   eval_direct_local.py   scripts/train_direct.py   models/vla_direct_policy.py   | tee -a report_evidence/minivla_direct/eval_direct_recheck.log
+1298: echo | tee -a report_evidence/minivla_direct/eval_direct_recheck.log
+1299: echo "===== SHA256 =====" | tee -a report_evidence/minivla_direct/eval_direct_recheck.log
+1300: sha256sum   data/niryo_push_real_v5_trim_minivla.npz   checkpoints/minivla_push_trim_v5_direct.pt   eval_direct_local.py   scripts/train_direct.py   models/vla_direct_policy.py   | tee -a report_evidence/minivla_direct/eval_direct_recheck.log
+1301: echo | tee -a report_evidence/minivla_direct/eval_direct_recheck.log
+1302: echo "===== RUN DIRECT EVAL =====" | tee -a report_evidence/minivla_direct/eval_direct_recheck.log
+1303: python3 eval_direct_local.py 2>&1 | tee -a report_evidence/minivla_direct/eval_direct_recheck.log
+1306: ls -lh report_evidence/minivla_direct/eval_direct_recheck.log
+1309: python3 - <<'PY' | tee report_evidence/minivla_direct/checkpoint_direct_inspect.log
+1314: p = Path("checkpoints/minivla_push_trim_v5_direct.pt")
+1376: ls -lh report_evidence/minivla_direct/checkpoint_direct_inspect.log
+1380: grep -nEi   "train_direct|scripts.train|train.py|eval_direct|eval_model|plot_eval|minivla_push_trim_v5|niryo_push_real_v5_trim_minivla|colab|drive|tee"   ~/.bash_history 2>/dev/null   | tee -a report_evidence/search_history/bash_history_minivla.txt
+1463:     "minivla_push_trim_v5",
+1464:     "niryo_push_real_v5_trim_minivla",
+1531: mkdir -p checkpoints
+1533: ls -lh checkpoints/minivla_push_trim_v5.pt
+1584: git checkout -b cleanup-handover-docs
+1612: # Model checkpoints
+1616: checkpoints/*.pt
+1617: checkpoints/*.pth
+1618: checkpoints/*.ckpt
+1662: MINIVLA_DATASET=data/niryo_push_real_v5_trim_minivla.npz
+1663: MINIVLA_DIRECT_CKPT=checkpoints/minivla_push_trim_v5_direct.pt
+1664: MINIVLA_DIFFUSION_CKPT=checkpoints/minivla_push_trim_v5.pt
+1731: The purpose of this folder is to make the reported results traceable from real files, scripts, checkpoints, and logs.
+1762: The manifest files can be used to verify that the dataset, checkpoint, script, and log files match the reported experiment.
+1804: mkdir -p checkpoints configs datasets docs envs experiments huong_dan models scripts src utils
+1809: find assets checkpoints configs datasets docs envs experiments huong_dan models scripts src utils -type d -exec touch {}/.gitkeep \;
+1812: gedit datasets/README.md checkpoints/README.md
+1813: ls datasets checkpoints
+1863: ?? checkpoints/
+1960: echo "=== check baseline guide exists ==="
+1981: echo "=== check baseline guide exists ==="
+
+--- /home/thien/mini-vla/mini-vla/report_evidence/search_history/bash_history_minivla.txt ---
+
+===== LARGE DATA / ZIP FILES =====
+colab_minivla_push_trim_v5.zip | 376.52 MB
+dataset_push_real_v5_trim_manual.zip | 384.05 MB
+colab_minivla_push_trim_v5/data/niryo_push_real_v5_trim_minivla.npz | 376.43 MB
+data/niryo_push_real_v5_trim_minivla.npz | 376.43 MB
+data/niryo_push_v4_action_stats.npz | 0.00 MB
+data/niryo_push_v4_objfeat_action_stats.npz | 0.00 MB
+data/niryo_push_v4_objfeat_progress_action_stats.npz | 0.00 MB
+data/niryo_push_v4_state10_chunk_h4_action_stats.npz | 0.00 MB
+data/niryo_push_v4_state10_chunk_h8_action_stats.npz | 0.00 MB
+data/niryo_push_v4_state10_waypoint_tplus1_stats.npz | 0.00 MB
+data/niryo_push_v5_state10_waypoint_tplus1_stats.npz | 0.00 MB
+dataset_push_real_v5_trim_manual/ep_000.npz | 5.83 MB
+dataset_push_real_v5_trim_manual/ep_001.npz | 5.26 MB
+dataset_push_real_v5_trim_manual/ep_002.npz | 5.04 MB
+dataset_push_real_v5_trim_manual/ep_003.npz | 4.79 MB
+dataset_push_real_v5_trim_manual/ep_004.npz | 4.48 MB
+dataset_push_real_v5_trim_manual/ep_005.npz | 4.69 MB
+dataset_push_real_v5_trim_manual/ep_006.npz | 4.89 MB
+dataset_push_real_v5_trim_manual/ep_007.npz | 5.01 MB
+dataset_push_real_v5_trim_manual/ep_008.npz | 4.94 MB
+dataset_push_real_v5_trim_manual/ep_009.npz | 5.02 MB
+dataset_push_real_v5_trim_manual/ep_010.npz | 5.52 MB
+dataset_push_real_v5_trim_manual/ep_011.npz | 4.82 MB
+dataset_push_real_v5_trim_manual/ep_012.npz | 5.69 MB
+dataset_push_real_v5_trim_manual/ep_013.npz | 5.22 MB
+dataset_push_real_v5_trim_manual/ep_014.npz | 4.78 MB
+dataset_push_real_v5_trim_manual/ep_015.npz | 5.47 MB
+dataset_push_real_v5_trim_manual/ep_016.npz | 5.24 MB
+dataset_push_real_v5_trim_manual/ep_017.npz | 6.38 MB
+dataset_push_real_v5_trim_manual/ep_018.npz | 6.55 MB
+dataset_push_real_v5_trim_manual/ep_019.npz | 6.33 MB
+dataset_push_real_v5_trim_manual/ep_020.npz | 5.95 MB
+dataset_push_real_v5_trim_manual/ep_021.npz | 6.05 MB
+dataset_push_real_v5_trim_manual/ep_022.npz | 5.16 MB
+dataset_push_real_v5_trim_manual/ep_023.npz | 6.45 MB
+dataset_push_real_v5_trim_manual/ep_024.npz | 5.80 MB
+dataset_push_real_v5_trim_manual/ep_025.npz | 4.64 MB
+dataset_push_real_v5_trim_manual/ep_026.npz | 5.69 MB
+dataset_push_real_v5_trim_manual/ep_027.npz | 4.31 MB
+dataset_push_real_v5_trim_manual/ep_028.npz | 4.76 MB
+dataset_push_real_v5_trim_manual/ep_029.npz | 4.36 MB
+dataset_push_real_v5_trim_manual/ep_030.npz | 5.31 MB
+dataset_push_real_v5_trim_manual/ep_031.npz | 5.23 MB
+dataset_push_real_v5_trim_manual/ep_032.npz | 5.03 MB
+dataset_push_real_v5_trim_manual/ep_033.npz | 5.17 MB
+dataset_push_real_v5_trim_manual/ep_034.npz | 5.53 MB
+dataset_push_real_v5_trim_manual/ep_035.npz | 5.51 MB
+dataset_push_real_v5_trim_manual/ep_036.npz | 5.26 MB
+dataset_push_real_v5_trim_manual/ep_037.npz | 6.06 MB
+dataset_push_real_v5_trim_manual/ep_038.npz | 4.69 MB
+dataset_push_real_v5_trim_manual/ep_039.npz | 5.19 MB
+dataset_push_real_v5_trim_manual/ep_040.npz | 5.05 MB
+dataset_push_real_v5_trim_manual/ep_041.npz | 5.86 MB
+dataset_push_real_v5_trim_manual/ep_042.npz | 5.63 MB
+dataset_push_real_v5_trim_manual/ep_043.npz | 4.85 MB
+dataset_push_real_v5_trim_manual/ep_044.npz | 5.08 MB
+dataset_push_real_v5_trim_manual/ep_045.npz | 5.48 MB
+dataset_push_real_v5_trim_manual/ep_046.npz | 5.60 MB
+dataset_push_real_v5_trim_manual/ep_047.npz | 5.92 MB
+dataset_push_real_v5_trim_manual/ep_048.npz | 5.45 MB
+dataset_push_real_v5_trim_manual/ep_049.npz | 5.49 MB
+dataset_push_real_v5_trim_manual/ep_050.npz | 5.53 MB
+dataset_push_real_v5_trim_manual/ep_051.npz | 5.45 MB
+dataset_push_real_v5_trim_manual/ep_052.npz | 4.60 MB
+dataset_push_real_v5_trim_manual/ep_053.npz | 4.67 MB
+dataset_push_real_v5_trim_manual/ep_054.npz | 4.76 MB
+dataset_push_real_v5_trim_manual/ep_055.npz | 5.14 MB
+dataset_push_real_v5_trim_manual/ep_056.npz | 5.30 MB
+dataset_push_real_v5_trim_manual/ep_057.npz | 6.23 MB
+dataset_push_real_v5_trim_manual/ep_058.npz | 4.42 MB
+dataset_push_real_v5_trim_manual/ep_059.npz | 4.72 MB
+dataset_push_real_v5_trim_manual/ep_060.npz | 5.33 MB
+dataset_push_real_v5_trim_manual/ep_061.npz | 4.44 MB
+dataset_push_real_v5_trim_manual/ep_062.npz | 4.43 MB
+dataset_push_real_v5_trim_manual/ep_063.npz | 5.15 MB
+dataset_push_real_v5_trim_manual/ep_064.npz | 5.30 MB
+dataset_push_real_v5_trim_manual/ep_065.npz | 5.94 MB
+dataset_push_real_v5_trim_manual/ep_066.npz | 5.52 MB
+dataset_push_real_v5_trim_manual/ep_067.npz | 4.84 MB
+dataset_push_real_v5_trim_manual/ep_068.npz | 4.66 MB
+dataset_push_real_v5_trim_manual/ep_069.npz | 5.52 MB
+dataset_push_real_v5_trim_manual/ep_070.npz | 5.21 MB
+dataset_push_real_v5_trim_manual/ep_071.npz | 5.74 MB
+dataset_push_real_v5_trim_manual/ep_072.npz | 5.07 MB
+eval_plots/eval_arrays.npz | 0.04 MB
+goal_v1/checkpoints/goal_v1_retrieval_policy.npz | 0.02 MB
+goal_v1/checkpoints/goal_v2_cluster_policy.npz | 0.02 MB
+goal_v1/data/push_goal_v1.npz | 7.24 MB
+goal_v1/data/push_goal_v1_stats.npz | 0.00 MB
+goal_v1/data/push_goal_v2_cluster.npz | 0.02 MB
+goal_v1/eval/dry_run_ep026.npz | 0.01 MB
+goal_v1/eval/dry_run_ep057.npz | 0.01 MB
+goal_v1/eval/goal_v1_classifier_zone_interp_eval.npz | 0.01 MB
+goal_v1/eval/goal_v1_knn_interp_eval.npz | 0.00 MB
+goal_v1/eval/goal_v1_safe_fallback_interp_eval.npz | 0.00 MB
+goal_v1/eval/goal_v1_state_mlp_eval.npz | 0.03 MB
+goal_v1/eval/goal_v1_zone_conditioned_interp_eval.npz | 0.01 MB
+goal_v1/eval/goal_v1_zone_knn_classifier_eval.npz | 0.00 MB
+checkpoints/minivla_push_trim_v5.pt | 1.16 MB
+checkpoints/minivla_push_trim_v5_direct.pt | 1.14 MB
+checkpoints/model.pt | 1.16 MB
+checkpoints/niryo_push_delta.pt | 1.16 MB
+checkpoints/niryo_push_v4_delta_norm.pt | 1.16 MB
+checkpoints/niryo_push_v4_objfeat_delta_norm.pt | 1.16 MB
+checkpoints/niryo_push_v4_objfeat_progress_delta_norm.pt | 1.16 MB
+checkpoints/niryo_push_v4_state10_chunk_h4_delta_norm.pt | 1.18 MB
+checkpoints/niryo_push_v4_state10_chunk_h8_delta_norm.pt | 1.20 MB
+checkpoints/niryo_push_v4_state10_waypoint_tplus1_norm.pt | 1.16 MB
+checkpoints/niryo_push_v5_state10_waypoint_tplus1_norm.pt | 1.16 MB
+checkpoints/test_objfeat_3ep.pt | 1.16 MB
+checkpoints/test_objfeat_progress_3ep.pt | 1.16 MB
+checkpoints/test_state10_chunk_h4_3ep.pt | 1.18 MB
+checkpoints/test_state10_chunk_h8_3ep.pt | 1.20 MB
+checkpoints/test_state10_waypoint_tplus1_3ep.pt | 1.16 MB
+goal_v1/checkpoints/goal_v1_state_mlp.pt | 0.15 MB
+
+===== CURRENT .gitignore =====
+data/
+__pycache__/
+MUJOCO_LOG.txt
+LIBERO/
+videos*/
+checkpoints/
