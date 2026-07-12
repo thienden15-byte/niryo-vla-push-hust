@@ -3,10 +3,18 @@ from pathlib import Path
 import numpy as np
 import cv2
 
-sys.path.insert(0, os.path.expanduser("~/TinyVLA"))
-sys.path.insert(0, os.path.expanduser("~/TinyVLA/llava-pythia"))
+TINYVLA_REPO = Path(
+    os.environ.get("TINYVLA_REPO", str(Path.home() / "TinyVLA"))
+).expanduser()
 
-diffik_path = Path.home() / "tinyvla_niryo_runtime/scripts/run_author_style_niryo_diffik_rollout.py"
+sys.path.insert(0, str(TINYVLA_REPO))
+sys.path.insert(0, str(TINYVLA_REPO / "llava-pythia"))
+
+diffik_path = (
+    Path(__file__).resolve().parents[3]
+    / "scripts/phase_5_real_robot_test/tiny_vla/"
+      "run_author_style_niryo_diffik_rollout.py"
+)
 spec = importlib.util.spec_from_file_location("diffik_runtime", diffik_path)
 R = importlib.util.module_from_spec(spec)
 spec.loader.exec_module(R)
@@ -132,7 +140,15 @@ def capture_object_and_compute(args):
         2,
     )
 
-    out_dir = Path.home() / "tinyvla_niryo_runtime/auto_green_debug"
+    out_dir = Path(
+        os.environ.get(
+            "TINYVLA_OUTPUT_DIR",
+            str(
+                Path(__file__).resolve().parents[3]
+                / "outputs/tiny_vla/auto_green_debug"
+            ),
+        )
+    ).expanduser()
     out_dir.mkdir(parents=True, exist_ok=True)
     debug_path = out_dir / f"auto_green_precontact_{time.strftime('%Y%m%d_%H%M%S')}.jpg"
     cv2.imwrite(str(debug_path), debug)

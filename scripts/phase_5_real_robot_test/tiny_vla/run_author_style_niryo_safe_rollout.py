@@ -3,15 +3,19 @@ from pathlib import Path
 import numpy as np
 import torch
 
-sys.path.insert(0, os.path.expanduser("~/TinyVLA"))
-sys.path.insert(0, os.path.expanduser("~/TinyVLA/llava-pythia"))
+TINYVLA_REPO = Path(
+    os.environ.get("TINYVLA_REPO", str(Path.home() / "TinyVLA"))
+).expanduser()
+
+sys.path.insert(0, str(TINYVLA_REPO))
+sys.path.insert(0, str(TINYVLA_REPO / "llava-pythia"))
 
 from llava_pythia.model.builder import load_pretrained_model
 from llava_pythia.conversation import conv_templates
 from llava_pythia.constants import IMAGE_TOKEN_INDEX, DEFAULT_IMAGE_TOKEN, DEFAULT_IM_START_TOKEN, DEFAULT_IM_END_TOKEN
 from llava_pythia.mm_utils import tokenizer_image_token
 
-base_live_path = Path.home() / "tinyvla_niryo_runtime/scripts/run_author10d_fixed50_xyz_chunk_live.py"
+base_live_path = Path(__file__).resolve().parents[3] / "scripts/common/tiny_vla/run_author10d_fixed50_xyz_chunk_live.py"
 spec = importlib.util.spec_from_file_location("base_live", base_live_path)
 base_live = importlib.util.module_from_spec(spec)
 spec.loader.exec_module(base_live)
@@ -161,8 +165,24 @@ def main():
     args.y_gains = [1.0, 0.75, 0.5, 0.25, 0.0]
     args.step_candidates = [0.008, 0.006, 0.004]
 
-    ckpt = Path.home() / "tinyvla_niryo_ckpt/author_10d_full_5000steps"
-    model_base = Path.home() / "TinyVLA/pretrained/Llava-Pythia-400M"
+    ckpt = Path(
+        os.environ.get(
+            "TINYVLA_MODEL_PATH",
+            str(
+                Path.home()
+                / "tinyvla_niryo_ckpt/author_10d_full_5000steps"
+            ),
+        )
+    ).expanduser()
+    model_base = Path(
+        os.environ.get(
+            "TINYVLA_MODEL_BASE",
+            str(
+                Path.home()
+                / "TinyVLA/pretrained/Llava-Pythia-400M"
+            ),
+        )
+    ).expanduser()
     stats_path = ckpt / "dataset_stats.pkl"
 
     print("===== AUTHOR-STYLE NIRYO SAFE ROLLOUT =====")

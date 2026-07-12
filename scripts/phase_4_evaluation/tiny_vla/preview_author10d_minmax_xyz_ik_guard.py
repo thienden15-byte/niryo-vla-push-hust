@@ -10,8 +10,12 @@ import cv2
 import numpy as np
 import torch
 
-sys.path.insert(0, os.path.expanduser("~/TinyVLA"))
-sys.path.insert(0, os.path.expanduser("~/TinyVLA/llava-pythia"))
+TINYVLA_REPO = Path(
+    os.environ.get("TINYVLA_REPO", str(Path.home() / "TinyVLA"))
+).expanduser()
+
+sys.path.insert(0, str(TINYVLA_REPO))
+sys.path.insert(0, str(TINYVLA_REPO / "llava-pythia"))
 
 from llava_pythia.model.builder import load_pretrained_model
 from llava_pythia.conversation import conv_templates
@@ -23,7 +27,7 @@ from llava_pythia.constants import (
 )
 from llava_pythia.mm_utils import tokenizer_image_token
 
-base_live_path = Path.home() / "tinyvla_niryo_runtime/scripts/run_author10d_fixed50_xyz_chunk_live.py"
+base_live_path = Path(__file__).resolve().parents[3] / "scripts/common/tiny_vla/run_author10d_fixed50_xyz_chunk_live.py"
 spec = importlib.util.spec_from_file_location("base_live", base_live_path)
 base_live = importlib.util.module_from_spec(spec)
 spec.loader.exec_module(base_live)
@@ -82,8 +86,18 @@ def main():
     parser.add_argument("--max-wrist-delta", type=float, default=0.25)
     args = parser.parse_args()
 
-    ckpt = Path.home() / "tinyvla_niryo_ckpt/author_10d_full_5000steps"
-    model_base = Path.home() / "TinyVLA/pretrained/Llava-Pythia-400M"
+    ckpt = Path(
+        os.environ.get(
+            "TINYVLA_MODEL_PATH",
+            str(Path.home() / "tinyvla_niryo_ckpt/author_10d_full_5000steps"),
+        )
+    ).expanduser()
+    model_base = Path(
+        os.environ.get(
+            "TINYVLA_MODEL_BASE",
+            str(Path.home() / "TinyVLA/pretrained/Llava-Pythia-400M"),
+        )
+    ).expanduser()
     stats_path = ckpt / "dataset_stats.pkl"
 
     print("===== MINMAX XYZ + IK GUARD PREVIEW: NO MOVEMENT =====")
@@ -106,7 +120,15 @@ def main():
 
     frame_bgr = capture_one_frame(cam_idx)
 
-    out_dir = Path.home() / "tinyvla_niryo_runtime/minmax_xyz_ik_guard"
+    out_dir = Path(
+        os.environ.get(
+            "TINYVLA_OUTPUT_DIR",
+            str(
+                Path(__file__).resolve().parents[3]
+                / "outputs/tiny_vla/minmax_xyz_ik_guard"
+            ),
+        )
+    ).expanduser()
     out_dir.mkdir(parents=True, exist_ok=True)
     frame_path = out_dir / f"preview_frame_{time.strftime('%Y%m%d_%H%M%S')}.jpg"
     cv2.imwrite(str(frame_path), frame_bgr)

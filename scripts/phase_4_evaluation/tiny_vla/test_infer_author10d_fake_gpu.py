@@ -6,8 +6,12 @@ from pathlib import Path
 import numpy as np
 import torch
 
-sys.path.insert(0, os.path.expanduser("~/TinyVLA"))
-sys.path.insert(0, os.path.expanduser("~/TinyVLA/llava-pythia"))
+TINYVLA_REPO = Path(
+    os.environ.get("TINYVLA_REPO", str(Path.home() / "TinyVLA"))
+).expanduser()
+
+sys.path.insert(0, str(TINYVLA_REPO))
+sys.path.insert(0, str(TINYVLA_REPO / "llava-pythia"))
 
 from llava_pythia.model.builder import load_pretrained_model
 from llava_pythia.conversation import conv_templates
@@ -45,8 +49,24 @@ def expand2square(imgs_chw, background_color):
 
 
 def main():
-    ckpt = Path.home() / "tinyvla_niryo_ckpt/author_10d_full_5000steps"
-    base = Path.home() / "TinyVLA/pretrained/Llava-Pythia-400M"
+    ckpt = Path(
+        os.environ.get(
+            "TINYVLA_MODEL_PATH",
+            str(
+                Path.home()
+                / "tinyvla_niryo_ckpt/author_10d_full_5000steps"
+            ),
+        )
+    ).expanduser()
+    base = Path(
+        os.environ.get(
+            "TINYVLA_MODEL_BASE",
+            str(
+                Path.home()
+                / "TinyVLA/pretrained/Llava-Pythia-400M"
+            ),
+        )
+    ).expanduser()
     stats_path = ckpt / "dataset_stats.pkl"
 
     print("===== AUTHOR 10D FAKE INFERENCE: NO ROBOT, NO CAMERA =====")

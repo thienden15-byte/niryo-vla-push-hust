@@ -155,27 +155,32 @@ def solve_diffik(J, dxyz, max_dq=0.035, damping=0.03):
     return dq, pred, clipped
 
 
+
 def main():
     p = argparse.ArgumentParser()
     p.add_argument("--ip", default="169.254.200.200")
     p.add_argument("--instruction", default="push the green object to the right")
-    p.add_argument("--steps", type=int, default=14)
-    p.add_argument("--velocity", type=int, default=4)
-    p.add_argument("--sleep", type=float, default=0.30)
-    p.add_argument("--temporal-k", type=float, default=0.01)
 
-    p.add_argument("--max-cart-step", type=float, default=0.004)
-    p.add_argument("--max-dq", type=float, default=0.035)
-    p.add_argument("--min-z", type=float, default=0.055)
-    p.add_argument("--max-x", type=float, default=0.320)
-    p.add_argument("--max-abs-y", type=float, default=0.180)
+    # số block, mỗi block = 1 lần model dự đoán chunk 16 action
+    p.add_argument("--blocks", type=int, default=4)
+    p.add_argument("--chunk-steps", type=int, default=16)
+
+    p.add_argument("--velocity", type=int, default=6)
+    p.add_argument("--sleep", type=float, default=0.18)
+
+    # nới rộng hơn bản trước, nhưng vẫn còn guard
+    p.add_argument("--max-cart-step", type=float, default=0.020)
+    p.add_argument("--max-dq", type=float, default=0.055)
+    p.add_argument("--min-z", type=float, default=0.080)
+    p.add_argument("--max-x", type=float, default=0.360)
+    p.add_argument("--max-abs-y", type=float, default=0.220)
 
     p.add_argument("--execute", action="store_true")
     p.add_argument("--confirm", default="")
     args = p.parse_args()
 
-    if not args.execute or args.confirm != "YES_DIFFIK_SAFE":
-        raise RuntimeError("Need --execute --confirm YES_DIFFIK_SAFE")
+    if not args.execute or args.confirm != "YES_CHUNK_BLOCKS":
+        raise RuntimeError("Need --execute --confirm YES_CHUNK_BLOCKS")
 
     ckpt = Path(
         os.environ.get(
@@ -191,12 +196,19 @@ def main():
     ).expanduser()
     stats_path = ckpt / "dataset_stats.pkl"
 
-    print("===== AUTHOR-STYLE NIRYO DIFFERENTIAL IK ROLLOUT =====")
-    print("minmax decode + temporal aggregation + local differential IK + move_joints")
-    print("rot6d not used; orientation is not commanded directly")
-    print("steps:", args.steps)
+    print("===== AUTHOR-STYLE NIRYO CHUNK BLOCKS ROLLOUT =====")
+    print("Load model once.")
+    print("Each block: observe once -> TinyVLA predicts 16-action diffusion chunk -> execute 16 actions.")
+    print("After each block, wait for ENTER before next block.")
+    print("rot6d not used; XYZ only; DiffIK + move_joints.")
+    print("blocks:", args.blocks)
+    print("chunk_steps:", args.chunk_steps)
+    print("velocity:", args.velocity)
     print("max_cart_step:", args.max_cart_step)
     print("max_dq:", args.max_dq)
+    print("min_z:", args.min_z)
+    print("max_x:", args.max_x)
+    print("max_abs_y:", args.max_abs_y)
 
     with open(stats_path, "rb") as f:
         stats = pickle.load(f)
@@ -242,29 +254,39 @@ def main():
 
     chunk_size = int(getattr(model.config, "chunk_size", 16))
     action_dim = int(getattr(model.config, "action_dim", 10))
-    all_time_actions_raw = np.zeros((args.steps, args.steps + chunk_size, action_dim), dtype=np.float32)
 
     print("model loaded OK")
     print("action_head_type:", getattr(model.config, "action_head_type", None))
     print("chunk_size:", chunk_size)
+    print("action_dim:", action_dim)
 
     try:
-        for t in range(args.steps):
-            if live.should_stop():
-                print("STOP: user pressed q")
+        for b in range(args.blocks):
+            print("\n" + "="*80)
+            print(f"READY FOR BLOCK {b+1}/{args.blocks}")
+            print("This will infer ONE 16-action chunk and execute it continuously.")
+            ans = input("Press ENTER to run this 16-step block, or type q then ENTER to stop: ").strip()
+            if ans.lower() == "q":
+                print("Stopped by user.")
                 break
 
-            print(f"\n===== DIFFIK ROLLOUT STEP {t+1}/{args.steps} =====")
+            if live.should_stop():
+                print("STOP: user pressed q in camera window")
+                break
 
+            print(f"\n===== BLOCK {b+1}/{args.blocks}: READ OBSERVATION =====")
             frame_bgr = live.get_frame(wait=True)
+            obs_joints = np.array(robot.get_joints(), dtype=np.float64)
+            obs_pose = np.array(base_live.pose_to_list(robot.get_pose()), dtype=np.float64)
+            obs_xyz = obs_pose[:3]
 
-            current_joints = np.array(robot.get_joints(), dtype=np.float64)
-            current_pose = np.array(base_live.pose_to_list(robot.get_pose()), dtype=np.float64)
-            current_xyz = current_pose[:3]
+            print("obs joints:", np.round(obs_joints, 6))
+            print("obs xyz:", np.round(obs_xyz, 6))
 
+            print("\n===== RUN TINYVLA DIFFUSION ONCE =====")
             raw_chunk = infer_raw_chunk(
                 frame_bgr,
-                current_joints,
+                obs_joints,
                 tokenizer,
                 model,
                 image_processor,
@@ -272,75 +294,88 @@ def main():
                 attention_mask,
                 stats,
             )
-            all_time_actions_raw[t, t:t + chunk_size, :] = raw_chunk
 
-            agg_raw, votes = temporal_aggregate(all_time_actions_raw, t, k=args.temporal_k)
-            if agg_raw is None:
-                print("No aggregated action")
-                continue
+            decoded_chunk = decode_minmax(raw_chunk.reshape(1, chunk_size, action_dim), stats)[0]
 
-            decoded = decode_minmax(agg_raw.reshape(1, 1, -1), stats)[0, 0]
-            target_xyz_raw = decoded[:3].astype(np.float64)
-            raw_dxyz = target_xyz_raw - current_xyz
+            n = min(args.chunk_steps, chunk_size)
+            print("decoded_chunk shape:", decoded_chunk.shape)
+            print("\nPREDICTED ACTION XYZ:")
+            for i in range(n):
+                print(f"  {i+1:02d}: xyz={np.round(decoded_chunk[i,:3], 6)}")
 
-            dxyz, raw_norm, cart_clipped = clip_vec(raw_dxyz, args.max_cart_step)
+            print("\n===== EXECUTE CHUNK =====")
 
-            # rough XYZ safety on predicted next cartesian move
-            target_xyz_safe = current_xyz + dxyz
-            if target_xyz_safe[2] < args.min_z:
-                print("STOP: predicted z too low")
-                break
-            if target_xyz_safe[0] < 0.05 or target_xyz_safe[0] > args.max_x:
-                print("STOP: predicted x outside range")
-                break
-            if abs(target_xyz_safe[1]) > args.max_abs_y:
-                print("STOP: predicted y outside range")
-                break
+            for i in range(n):
+                if live.should_stop():
+                    print("STOP: user pressed q in camera window")
+                    break
 
-            J, fk_pose = numerical_xyz_jacobian(robot, current_joints)
-            dq, pred_dxyz, dq_clipped = solve_diffik(J, dxyz, max_dq=args.max_dq)
+                print(f"\n--- BLOCK {b+1}, ACTION {i+1}/{n} ---")
 
-            target_joints = current_joints + dq
-            pred_pose = call_fk(robot, target_joints)
-            pred_xyz = pred_pose[:3]
+                current_joints = np.array(robot.get_joints(), dtype=np.float64)
+                current_pose = np.array(base_live.pose_to_list(robot.get_pose()), dtype=np.float64)
+                current_xyz = current_pose[:3]
 
-            print("current xyz:", np.round(current_xyz, 6))
-            print("agg votes:", votes)
-            print("target xyz raw:", np.round(target_xyz_raw, 6))
-            print("raw dxyz:", np.round(raw_dxyz, 6), "norm:", round(float(np.linalg.norm(raw_dxyz)), 6))
-            print("used dxyz:", np.round(dxyz, 6), "cart_clipped:", cart_clipped)
-            print("dq:", np.round(dq, 6), "dq_clipped:", dq_clipped)
-            print("pred dxyz Jdq:", np.round(pred_dxyz, 6))
-            print("pred xyz FK:", np.round(pred_xyz, 6))
-            print("pred actual dxyz FK:", np.round(pred_xyz - current_xyz, 6))
-            print("wrist dq j4/j5/j6:", np.round(dq[3:6], 6))
+                target_xyz_raw = decoded_chunk[i, :3].astype(np.float64)
+                raw_dxyz = target_xyz_raw - current_xyz
+                dxyz, raw_norm, cart_clipped = clip_vec(raw_dxyz, args.max_cart_step)
 
-            if np.max(np.abs(dq)) > args.max_dq + 1e-6:
-                print("STOP: dq too large")
-                break
+                target_xyz_safe = current_xyz + dxyz
 
-            print("moving by joints...")
-            before_joints = current_joints.copy()
-            before_pose = current_pose.copy()
+                print("current xyz:", np.round(current_xyz, 6))
+                print("target xyz raw:", np.round(target_xyz_raw, 6))
+                print("raw dxyz:", np.round(raw_dxyz, 6), "norm:", round(float(np.linalg.norm(raw_dxyz)), 6))
+                print("used dxyz:", np.round(dxyz, 6), "cart_clipped:", cart_clipped)
+                print("target xyz safe:", np.round(target_xyz_safe, 6))
 
-            move_joints_compat(robot, target_joints)
-            time.sleep(args.sleep)
+                if target_xyz_safe[2] < args.min_z:
+                    print("STOP BLOCK: predicted z too low")
+                    break
+                if target_xyz_safe[0] < 0.05 or target_xyz_safe[0] > args.max_x:
+                    print("STOP BLOCK: predicted x outside range")
+                    break
+                if abs(target_xyz_safe[1]) > args.max_abs_y:
+                    print("STOP BLOCK: predicted y outside range")
+                    break
 
-            new_joints = np.array(robot.get_joints(), dtype=np.float64)
-            new_pose = np.array(base_live.pose_to_list(robot.get_pose()), dtype=np.float64)
+                J, fk_pose = numerical_xyz_jacobian(robot, current_joints)
+                dq, pred_dxyz, dq_clipped = solve_diffik(J, dxyz, max_dq=args.max_dq)
 
-            print("actual delta joints:", np.round(new_joints - before_joints, 6))
-            print("new xyz:", np.round(new_pose[:3], 6))
-            print("actual dxyz:", np.round(new_pose[:3] - before_pose[:3], 6))
+                target_joints = current_joints + dq
+                pred_pose = call_fk(robot, target_joints)
+                pred_xyz = pred_pose[:3]
 
-            live.update_status([
-                f"DIFFIK {t+1}/{args.steps}",
-                f"cur={np.round(current_xyz, 3)}",
-                f"raw={np.round(target_xyz_raw, 3)}",
-                f"move={np.round(dxyz, 3)}",
-            ])
+                print("dq:", np.round(dq, 6), "dq_clipped:", dq_clipped)
+                print("pred actual dxyz FK:", np.round(pred_xyz - current_xyz, 6))
+                print("wrist dq j4/j5/j6:", np.round(dq[3:6], 6))
 
-        print("\nDIFFIK ROLLOUT DONE")
+                if np.max(np.abs(dq)) > args.max_dq + 1e-6:
+                    print("STOP BLOCK: dq too large")
+                    break
+
+                before_pose = current_pose.copy()
+                before_joints = current_joints.copy()
+
+                move_joints_compat(robot, target_joints)
+                time.sleep(args.sleep)
+
+                new_joints = np.array(robot.get_joints(), dtype=np.float64)
+                new_pose = np.array(base_live.pose_to_list(robot.get_pose()), dtype=np.float64)
+
+                print("actual delta joints:", np.round(new_joints - before_joints, 6))
+                print("new xyz:", np.round(new_pose[:3], 6))
+                print("actual dxyz:", np.round(new_pose[:3] - before_pose[:3], 6))
+
+                live.update_status([
+                    f"BLOCK {b+1}/{args.blocks} ACT {i+1}/{n}",
+                    f"cur={np.round(current_xyz, 3)}",
+                    f"raw={np.round(target_xyz_raw, 3)}",
+                    f"move={np.round(dxyz, 3)}",
+                ])
+
+            print(f"\nBLOCK {b+1} DONE")
+
+        print("\nCHUNK BLOCKS ROLLOUT DONE")
 
     finally:
         try:

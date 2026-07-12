@@ -155,27 +155,30 @@ def solve_diffik(J, dxyz, max_dq=0.035, damping=0.03):
     return dq, pred, clipped
 
 
+
+def summarize_actions(name, decoded_chunk, current_xyz):
+    xyz = decoded_chunk[:, :3]
+    dxyz = xyz - current_xyz.reshape(1, 3)
+
+    print(f"\n===== RESULT: {name} =====")
+    print("xyz first 5:")
+    for i in range(min(5, len(xyz))):
+        print(f"  {i+1:02d}: xyz={np.round(xyz[i], 6)} dxyz={np.round(dxyz[i], 6)}")
+
+    print("xyz mean :", np.round(xyz.mean(axis=0), 6))
+    print("xyz std  :", np.round(xyz.std(axis=0), 6))
+    print("dxyz mean:", np.round(dxyz.mean(axis=0), 6))
+    print("dxyz std :", np.round(dxyz.std(axis=0), 6))
+    print("z min/mean/max:", round(float(xyz[:,2].min()), 6), round(float(xyz[:,2].mean()), 6), round(float(xyz[:,2].max()), 6))
+    return xyz, dxyz
+
+
 def main():
     p = argparse.ArgumentParser()
     p.add_argument("--ip", default="169.254.200.200")
     p.add_argument("--instruction", default="push the green object to the right")
-    p.add_argument("--steps", type=int, default=14)
-    p.add_argument("--velocity", type=int, default=4)
-    p.add_argument("--sleep", type=float, default=0.30)
-    p.add_argument("--temporal-k", type=float, default=0.01)
-
-    p.add_argument("--max-cart-step", type=float, default=0.004)
-    p.add_argument("--max-dq", type=float, default=0.035)
-    p.add_argument("--min-z", type=float, default=0.055)
-    p.add_argument("--max-x", type=float, default=0.320)
-    p.add_argument("--max-abs-y", type=float, default=0.180)
-
-    p.add_argument("--execute", action="store_true")
-    p.add_argument("--confirm", default="")
+    p.add_argument("--num-scenes", type=int, default=4)
     args = p.parse_args()
-
-    if not args.execute or args.confirm != "YES_DIFFIK_SAFE":
-        raise RuntimeError("Need --execute --confirm YES_DIFFIK_SAFE")
 
     ckpt = Path(
         os.environ.get(
@@ -191,12 +194,10 @@ def main():
     ).expanduser()
     stats_path = ckpt / "dataset_stats.pkl"
 
-    print("===== AUTHOR-STYLE NIRYO DIFFERENTIAL IK ROLLOUT =====")
-    print("minmax decode + temporal aggregation + local differential IK + move_joints")
-    print("rot6d not used; orientation is not commanded directly")
-    print("steps:", args.steps)
-    print("max_cart_step:", args.max_cart_step)
-    print("max_dq:", args.max_dq)
+    print("===== TINYVLA IMAGE SENSITIVITY TEST: NO ROBOT MOVEMENT =====")
+    print("This script loads model once, then compares predictions under different camera scenes.")
+    print("NO move_joints, NO move_pose.")
+    print("instruction:", args.instruction)
 
     with open(stats_path, "rb") as f:
         stats = pickle.load(f)
@@ -209,20 +210,17 @@ def main():
     live = base_live.LiveCamera(cam_idx)
     live.start()
 
-    print("\n===== ROBOT CONNECT =====")
+    print("\n===== ROBOT READ ONLY CONNECT =====")
     from pyniryo import NiryoRobot
     robot = NiryoRobot(args.ip)
     robot.set_learning_mode(False)
-    robot.set_arm_max_velocity(args.velocity)
 
-    print("\n===== FK QUICK CHECK =====")
-    cur_j = np.array(robot.get_joints(), dtype=np.float64)
-    fk_pose = call_fk(robot, cur_j)
-    real_pose = np.array(base_live.pose_to_list(robot.get_pose()), dtype=np.float64)
-    print("current joints:", np.round(cur_j, 6))
-    print("FK pose:", np.round(fk_pose, 6))
-    print("real pose:", np.round(real_pose, 6))
-    print("FK-real xyz diff:", np.round(fk_pose[:3] - real_pose[:3], 6))
+    current_joints = np.array(robot.get_joints(), dtype=np.float64)
+    current_pose = np.array(base_live.pose_to_list(robot.get_pose()), dtype=np.float64)
+    current_xyz = current_pose[:3]
+
+    print("current joints:", np.round(current_joints, 6))
+    print("current xyz:", np.round(current_xyz, 6))
 
     print("\n===== LOAD MODEL ONCE =====")
     torch.cuda.empty_cache()
@@ -242,22 +240,47 @@ def main():
 
     chunk_size = int(getattr(model.config, "chunk_size", 16))
     action_dim = int(getattr(model.config, "action_dim", 10))
-    all_time_actions_raw = np.zeros((args.steps, args.steps + chunk_size, action_dim), dtype=np.float32)
 
     print("model loaded OK")
     print("action_head_type:", getattr(model.config, "action_head_type", None))
     print("chunk_size:", chunk_size)
+    print("action_dim:", action_dim)
+
+    scene_names = [
+        "NORMAL_OBJECT_VISIBLE",
+        "NO_OBJECT_REMOVE_GREEN_CUBE",
+        "COVER_CAMERA_OR_BLANK_VIEW",
+        "OBJECT_MOVED_TO_DIFFERENT_POSITION",
+    ]
+
+    results = {}
 
     try:
-        for t in range(args.steps):
-            if live.should_stop():
-                print("STOP: user pressed q")
-                break
+        for i in range(args.num_scenes):
+            name = scene_names[i] if i < len(scene_names) else f"SCENE_{i+1}"
 
-            print(f"\n===== DIFFIK ROLLOUT STEP {t+1}/{args.steps} =====")
+            print("\n" + "="*70)
+            print(f"SCENE {i+1}/{args.num_scenes}: {name}")
+            print("="*70)
+
+            if name == "NORMAL_OBJECT_VISIBLE":
+                print("Set scene: keep green object visible in camera.")
+            elif name == "NO_OBJECT_REMOVE_GREEN_CUBE":
+                print("Set scene: remove green object from the table/camera view.")
+            elif name == "COVER_CAMERA_OR_BLANK_VIEW":
+                print("Set scene: cover camera or point it to a blank area.")
+            elif name == "OBJECT_MOVED_TO_DIFFERENT_POSITION":
+                print("Set scene: move green object to another clearly different position.")
+            else:
+                print("Set your custom scene.")
+
+            ans = input("Press ENTER after setting this scene, or type q then ENTER to stop: ").strip()
+            if ans.lower() == "q":
+                break
 
             frame_bgr = live.get_frame(wait=True)
 
+            # Giữ qpos/current_xyz cố định theo robot hiện tại để test riêng ảnh.
             current_joints = np.array(robot.get_joints(), dtype=np.float64)
             current_pose = np.array(base_live.pose_to_list(robot.get_pose()), dtype=np.float64)
             current_xyz = current_pose[:3]
@@ -272,75 +295,46 @@ def main():
                 attention_mask,
                 stats,
             )
-            all_time_actions_raw[t, t:t + chunk_size, :] = raw_chunk
 
-            agg_raw, votes = temporal_aggregate(all_time_actions_raw, t, k=args.temporal_k)
-            if agg_raw is None:
-                print("No aggregated action")
-                continue
+            decoded_chunk = decode_minmax(raw_chunk.reshape(1, chunk_size, action_dim), stats)[0]
+            xyz, dxyz = summarize_actions(name, decoded_chunk, current_xyz)
 
-            decoded = decode_minmax(agg_raw.reshape(1, 1, -1), stats)[0, 0]
-            target_xyz_raw = decoded[:3].astype(np.float64)
-            raw_dxyz = target_xyz_raw - current_xyz
-
-            dxyz, raw_norm, cart_clipped = clip_vec(raw_dxyz, args.max_cart_step)
-
-            # rough XYZ safety on predicted next cartesian move
-            target_xyz_safe = current_xyz + dxyz
-            if target_xyz_safe[2] < args.min_z:
-                print("STOP: predicted z too low")
-                break
-            if target_xyz_safe[0] < 0.05 or target_xyz_safe[0] > args.max_x:
-                print("STOP: predicted x outside range")
-                break
-            if abs(target_xyz_safe[1]) > args.max_abs_y:
-                print("STOP: predicted y outside range")
-                break
-
-            J, fk_pose = numerical_xyz_jacobian(robot, current_joints)
-            dq, pred_dxyz, dq_clipped = solve_diffik(J, dxyz, max_dq=args.max_dq)
-
-            target_joints = current_joints + dq
-            pred_pose = call_fk(robot, target_joints)
-            pred_xyz = pred_pose[:3]
-
-            print("current xyz:", np.round(current_xyz, 6))
-            print("agg votes:", votes)
-            print("target xyz raw:", np.round(target_xyz_raw, 6))
-            print("raw dxyz:", np.round(raw_dxyz, 6), "norm:", round(float(np.linalg.norm(raw_dxyz)), 6))
-            print("used dxyz:", np.round(dxyz, 6), "cart_clipped:", cart_clipped)
-            print("dq:", np.round(dq, 6), "dq_clipped:", dq_clipped)
-            print("pred dxyz Jdq:", np.round(pred_dxyz, 6))
-            print("pred xyz FK:", np.round(pred_xyz, 6))
-            print("pred actual dxyz FK:", np.round(pred_xyz - current_xyz, 6))
-            print("wrist dq j4/j5/j6:", np.round(dq[3:6], 6))
-
-            if np.max(np.abs(dq)) > args.max_dq + 1e-6:
-                print("STOP: dq too large")
-                break
-
-            print("moving by joints...")
-            before_joints = current_joints.copy()
-            before_pose = current_pose.copy()
-
-            move_joints_compat(robot, target_joints)
-            time.sleep(args.sleep)
-
-            new_joints = np.array(robot.get_joints(), dtype=np.float64)
-            new_pose = np.array(base_live.pose_to_list(robot.get_pose()), dtype=np.float64)
-
-            print("actual delta joints:", np.round(new_joints - before_joints, 6))
-            print("new xyz:", np.round(new_pose[:3], 6))
-            print("actual dxyz:", np.round(new_pose[:3] - before_pose[:3], 6))
+            results[name] = {
+                "xyz_mean": xyz.mean(axis=0),
+                "xyz_std": xyz.std(axis=0),
+                "dxyz_mean": dxyz.mean(axis=0),
+                "first_xyz": xyz[0],
+            }
 
             live.update_status([
-                f"DIFFIK {t+1}/{args.steps}",
-                f"cur={np.round(current_xyz, 3)}",
-                f"raw={np.round(target_xyz_raw, 3)}",
-                f"move={np.round(dxyz, 3)}",
+                f"SENS {i+1}/{args.num_scenes}",
+                name,
+                f"mean xyz={np.round(xyz.mean(axis=0), 3)}",
             ])
 
-        print("\nDIFFIK ROLLOUT DONE")
+        print("\n" + "="*70)
+        print("COMPARISON SUMMARY")
+        print("="*70)
+
+        names = list(results.keys())
+        for name in names:
+            r = results[name]
+            print(f"{name}:")
+            print("  first_xyz:", np.round(r["first_xyz"], 6))
+            print("  xyz_mean :", np.round(r["xyz_mean"], 6))
+            print("  dxyz_mean:", np.round(r["dxyz_mean"], 6))
+
+        if len(names) >= 2:
+            base = results[names[0]]["xyz_mean"]
+            print("\nDIFFERENCE FROM FIRST SCENE:")
+            for name in names[1:]:
+                diff = results[name]["xyz_mean"] - base
+                print(f"{name} - {names[0]}:", np.round(diff, 6), "norm=", round(float(np.linalg.norm(diff)), 6))
+
+        print("\nINTERPRETATION:")
+        print("- If xyz_mean changes clearly when object/camera changes, model is using visual input.")
+        print("- If xyz_mean is almost the same across scenes, model may rely mostly on qpos/average trajectory.")
+        print("- This script DID NOT move the robot.")
 
     finally:
         try:

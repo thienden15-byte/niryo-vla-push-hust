@@ -3,11 +3,19 @@ from pathlib import Path
 import numpy as np
 import torch
 
-sys.path.insert(0, os.path.expanduser("~/TinyVLA"))
-sys.path.insert(0, os.path.expanduser("~/TinyVLA/llava-pythia"))
+TINYVLA_REPO = Path(
+    os.environ.get("TINYVLA_REPO", str(Path.home() / "TinyVLA"))
+).expanduser()
+
+sys.path.insert(0, str(TINYVLA_REPO))
+sys.path.insert(0, str(TINYVLA_REPO / "llava-pythia"))
 
 # Reuse DiffIK runtime đã chạy được ở Step 30/31
-diffik_path = Path.home() / "tinyvla_niryo_runtime/scripts/run_author_style_niryo_diffik_rollout.py"
+diffik_path = (
+    Path(__file__).resolve().parents[3]
+    / "scripts/phase_5_real_robot_test/tiny_vla/"
+      "run_author_style_niryo_diffik_rollout.py"
+)
 spec = importlib.util.spec_from_file_location("diffik_runtime", diffik_path)
 R = importlib.util.module_from_spec(spec)
 spec.loader.exec_module(R)
@@ -46,8 +54,24 @@ def main():
     if not args.execute or args.confirm != "YES_APPROACH_DESCEND_PUSH":
         raise RuntimeError("Need --execute --confirm YES_APPROACH_DESCEND_PUSH")
 
-    ckpt = Path.home() / "tinyvla_niryo_ckpt/author_10d_full_5000steps"
-    model_base = Path.home() / "TinyVLA/pretrained/Llava-Pythia-400M"
+    ckpt = Path(
+        os.environ.get(
+            "TINYVLA_MODEL_PATH",
+            str(
+                Path.home()
+                / "tinyvla_niryo_ckpt/author_10d_full_5000steps"
+            ),
+        )
+    ).expanduser()
+    model_base = Path(
+        os.environ.get(
+            "TINYVLA_MODEL_BASE",
+            str(
+                Path.home()
+                / "TinyVLA/pretrained/Llava-Pythia-400M"
+            ),
+        )
+    ).expanduser()
     stats_path = ckpt / "dataset_stats.pkl"
 
     print("===== HYBRID APPROACH + DESCEND + PUSH =====")

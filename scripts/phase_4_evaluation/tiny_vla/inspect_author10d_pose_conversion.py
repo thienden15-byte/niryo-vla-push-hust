@@ -9,8 +9,12 @@ from pathlib import Path
 import numpy as np
 import torch
 
-sys.path.insert(0, os.path.expanduser("~/TinyVLA"))
-sys.path.insert(0, os.path.expanduser("~/TinyVLA/llava-pythia"))
+TINYVLA_REPO = Path(
+    os.environ.get("TINYVLA_REPO", str(Path.home() / "TinyVLA"))
+).expanduser()
+
+sys.path.insert(0, str(TINYVLA_REPO))
+sys.path.insert(0, str(TINYVLA_REPO / "llava-pythia"))
 
 from llava_pythia.model.builder import load_pretrained_model
 from llava_pythia.conversation import conv_templates
@@ -24,7 +28,11 @@ from llava_pythia.mm_utils import tokenizer_image_token
 
 
 # Import lại các hàm camera/robot/preprocess đã tạo ở Bước 6
-dryrun_path = Path.home() / "tinyvla_niryo_runtime/scripts/test_infer_author10d_real_obs_dryrun.py"
+dryrun_path = (
+    Path(__file__).resolve().parents[3]
+    / "scripts/phase_4_evaluation/tiny_vla/"
+      "test_infer_author10d_real_obs_dryrun.py"
+)
 spec = importlib.util.spec_from_file_location("author10d_dryrun", dryrun_path)
 dry = importlib.util.module_from_spec(spec)
 spec.loader.exec_module(dry)
@@ -107,8 +115,24 @@ def main():
     parser.add_argument("--instruction", default="push the green object to the right")
     args = parser.parse_args()
 
-    ckpt = Path.home() / "tinyvla_niryo_ckpt/author_10d_full_5000steps"
-    base = Path.home() / "TinyVLA/pretrained/Llava-Pythia-400M"
+    ckpt = Path(
+        os.environ.get(
+            "TINYVLA_MODEL_PATH",
+            str(
+                Path.home()
+                / "tinyvla_niryo_ckpt/author_10d_full_5000steps"
+            ),
+        )
+    ).expanduser()
+    base = Path(
+        os.environ.get(
+            "TINYVLA_MODEL_BASE",
+            str(
+                Path.home()
+                / "TinyVLA/pretrained/Llava-Pythia-400M"
+            ),
+        )
+    ).expanduser()
     stats_path = ckpt / "dataset_stats.pkl"
 
     print("===== AUTHOR 10D POSE CONVERSION INSPECT: NO MOVEMENT =====")
@@ -130,7 +154,15 @@ def main():
 
     curr_image, raw_path, raw_shape = dry.capture_frame(
         cam_idx,
-        Path.home() / "tinyvla_niryo_runtime/captures_author10d",
+        Path(
+            os.environ.get(
+                "TINYVLA_OUTPUT_DIR",
+                str(
+                    Path(__file__).resolve().parents[3]
+                    / "outputs/tiny_vla/captures_author10d"
+                ),
+            )
+        ).expanduser(),
     )
 
     print("captured raw shape:", raw_shape)

@@ -27,6 +27,8 @@ from llava_pythia.constants import (
 )
 from llava_pythia.mm_utils import tokenizer_image_token
 
+# official TinyVLA utility
+from torch_utils import rot_6d_to_euler_angles
 
 base_live_path = Path(__file__).resolve().parents[3] / "scripts/common/tiny_vla/run_author10d_fixed50_xyz_chunk_live.py"
 spec = importlib.util.spec_from_file_location("base_live", base_live_path)
@@ -34,7 +36,13 @@ base_live = importlib.util.module_from_spec(spec)
 spec.loader.exec_module(base_live)
 
 
-def capture_one_frame(camera_index, out_dir):
+def decode_minmax(raw, stats):
+    action_min = stats["action_min"].reshape(1, 1, -1)
+    action_max = stats["action_max"].reshape(1, 1, -1)
+    return ((raw + 1.0) / 2.0) * (action_max - action_min) + action_min
+
+
+def capture_one_frame(camera_index):
     cap = cv2.VideoCapture(camera_index)
     if not cap.isOpened():
         raise RuntimeError(f"Cannot open camera index {camera_index}")
@@ -46,20 +54,16 @@ def capture_one_frame(camera_index, out_dir):
     cap.set(cv2.CAP_PROP_BUFFERSIZE, 1)
 
     frame = None
-    for _ in range(20):
+    for _ in range(15):
         ok, frame = cap.read()
         time.sleep(0.03)
 
     cap.release()
 
     if frame is None:
-        raise RuntimeError("Cannot capture frame")
+        raise RuntimeError("Cannot capture camera frame")
 
-    out_dir.mkdir(parents=True, exist_ok=True)
-    ts = time.strftime("%Y%m%d_%H%M%S")
-    p = out_dir / f"postprocess_compare_{ts}.jpg"
-    cv2.imwrite(str(p), frame)
-    return frame, p
+    return frame
 
 
 def main():
@@ -72,35 +76,22 @@ def main():
     ckpt = Path(
         os.environ.get(
             "TINYVLA_MODEL_PATH",
-            str(
-                Path.home()
-                / "tinyvla_niryo_ckpt/author_10d_full_5000steps"
-            ),
+            str(Path.home() / "tinyvla_niryo_ckpt/author_10d_full_5000steps"),
         )
     ).expanduser()
     model_base = Path(
         os.environ.get(
             "TINYVLA_MODEL_BASE",
-            str(
-                Path.home()
-                / "TinyVLA/pretrained/Llava-Pythia-400M"
-            ),
+            str(Path.home() / "TinyVLA/pretrained/Llava-Pythia-400M"),
         )
     ).expanduser()
     stats_path = ckpt / "dataset_stats.pkl"
 
-    print("===== AUTHOR10D POSTPROCESS COMPARE: NO MOVEMENT =====")
+    print("===== INSPECT ROT6D INTERLEAVED CONVERSION: NO MOVEMENT =====")
     print("instruction:", args.instruction)
-    print("ckpt:", ckpt)
 
     with open(stats_path, "rb") as f:
         stats = pickle.load(f)
-
-    print()
-    print("===== STATS KEYS / SHAPES =====")
-    for k in ["action_mean", "action_std", "action_min", "action_max", "qpos_mean", "qpos_std"]:
-        v = stats[k]
-        print(k, getattr(v, "shape", None), np.round(v, 6))
 
     print()
     print("===== CAMERA =====")
@@ -112,19 +103,7 @@ def main():
         cam_idx = args.camera_index
         print("manual selected:", cam_idx)
 
-    frame_bgr, frame_path = capture_one_frame(
-        cam_idx,
-        Path(
-            os.environ.get(
-                "TINYVLA_OUTPUT_DIR",
-                str(
-                    Path(__file__).resolve().parents[3]
-                    / "outputs/tiny_vla/postprocess_compare"
-                ),
-            )
-        ).expanduser(),
-    )
-    print("saved frame:", frame_path)
+    frame_bgr = capture_one_frame(cam_idx)
 
     print()
     print("===== ROBOT READ ONLY =====")
@@ -146,20 +125,16 @@ def main():
 
     current_pose = np.array(current_pose, dtype=np.float64)
     current_xyz = current_pose[:3]
+    current_rpy = current_pose[3:6]
 
-    print("current pose [x,y,z,r,p,y]:")
-    print(np.round(current_pose, 6))
+    print("current xyz:", np.round(current_xyz, 6))
+    print("current rpy:", np.round(current_rpy, 6))
 
     qpos7 = np.concatenate([joints6, np.array([0.0], dtype=np.float32)], axis=0)
-
     qpos_mean = stats["qpos_mean"].astype(np.float32)
     qpos_std = stats["qpos_std"].astype(np.float32)
     qpos_std_safe = np.where(np.abs(qpos_std) < 1e-6, 1.0, qpos_std)
     qpos_norm = (qpos7 - qpos_mean) / qpos_std_safe
-
-    print("qpos7:", np.round(qpos7, 6))
-    print("qpos_norm:", np.round(qpos_norm, 6))
-    print("qpos_norm abs max:", float(np.max(np.abs(qpos_norm))))
 
     print()
     print("===== LOAD MODEL =====")
@@ -181,15 +156,8 @@ def main():
     model_device = next(model.parameters()).device
 
     print("model loaded OK")
-    print("device:", model_device)
-    print("dtype:", model_dtype)
-    print("config state_dim:", getattr(model.config, "state_dim", None))
-    print("config action_dim:", getattr(model.config, "action_dim", None))
-    print("config chunk_size:", getattr(model.config, "chunk_size", None))
-    print("config action_head_type:", getattr(model.config, "action_head_type", None))
-
-    print()
-    print("===== PREPROCESS IMAGE / TEXT / STATE =====")
+    print("action_head_type:", getattr(model.config, "action_head_type", None))
+    print("chunk_size:", getattr(model.config, "chunk_size", None))
 
     curr_image = base_live.frame_to_model_tensor(frame_bgr)
     image_tensor, image_tensor_r = base_live.preprocess_image(
@@ -230,87 +198,54 @@ def main():
         states=robot_state,
     )
 
-    print("input_ids:", tuple(input_ids.shape))
-    print("image_tensor:", tuple(image_tensor.shape), image_tensor.dtype)
-    print("robot_state:", tuple(robot_state.shape), robot_state.dtype)
-
     print()
-    print("===== RUN MODEL INFERENCE =====")
+    print("===== INFERENCE =====")
     with torch.no_grad():
-        actions_raw = model(**batch, eval=True)
+        raw = model(**batch, eval=True)
 
-    raw = actions_raw.detach().float().cpu().numpy()
+    raw_np = raw.detach().float().cpu().numpy()
+    decoded = decode_minmax(raw_np, stats)[0]  # [16,10]
 
-    print("raw actions shape:", raw.shape)
-    print("raw min/max per dim:")
-    print("min:", np.round(raw.min(axis=(0, 1)), 6))
-    print("max:", np.round(raw.max(axis=(0, 1)), 6))
-    print("raw action0:")
-    print(np.round(raw[0, 0], 6))
+    xyz = decoded[:, :3]
+    rot6d = decoded[:, 3:9]
+    grip = decoded[:, 9]
 
-    action_mean = stats["action_mean"].reshape(1, 1, -1)
-    action_std = stats["action_std"].reshape(1, 1, -1)
-    action_min = stats["action_min"].reshape(1, 1, -1)
-    action_max = stats["action_max"].reshape(1, 1, -1)
+    rot6d_t = torch.from_numpy(rot6d).float()
 
-    decoded_meanstd = raw * action_std + action_mean
-    decoded_minmax = ((raw + 1.0) / 2.0) * (action_max - action_min) + action_min
+    with torch.no_grad():
+        rpy_t = rot_6d_to_euler_angles(rot6d_t, convention="XYZ")
 
-    print()
-    print("===== COMPARE ACTION0 DECODE =====")
-    print("current xyz:")
-    print(np.round(current_xyz, 6))
+    rpy = rpy_t.detach().cpu().numpy()
 
-    for name, arr in [
-        ("MEAN_STD_DECODE_OLD", decoded_meanstd),
-        ("MIN_MAX_DECODE_DIFFUSION_STYLE", decoded_minmax),
-    ]:
-        xyz0 = arr[0, 0, :3].astype(np.float64)
-        dxyz0 = xyz0 - current_xyz
+    print("===== FIRST 16 ACTIONS: XYZ + INTERLEAVED RPY =====")
+    print("idx | xyz                         | rpy official                | delta_rpy_from_current")
+    print("-" * 105)
 
-        print()
-        print(f"--- {name} ---")
-        print("action0 xyz:")
-        print(np.round(xyz0, 6))
-        print("dxyz from current:")
-        print(np.round(dxyz0, 6), "norm:", round(float(np.linalg.norm(dxyz0)), 6))
-        print("action0 10D:")
-        print(np.round(arr[0, 0], 6))
-        print("first 5 xyz:")
-        print(np.round(arr[0, :5, :3], 6))
-        print("xyz min over chunk:")
-        print(np.round(arr[0, :, :3].min(axis=0), 6))
-        print("xyz max over chunk:")
-        print(np.round(arr[0, :, :3].max(axis=0), 6))
-
-        warns = []
-        x, y, z = xyz0
-        if x < 0.05 or x > 0.32:
-            warns.append("x outside rough safe range")
-        if abs(y) > 0.18:
-            warns.append("|y| outside rough safe range")
-        if z < 0.055:
-            warns.append("z below 0.055")
-        if z > 0.25:
-            warns.append("z too high")
-        if warns:
-            print("WARN:", "; ".join(warns))
-        else:
-            print("rough safety: OK")
+    for i in range(decoded.shape[0]):
+        drpy = rpy[i] - current_rpy
+        print(
+            f"{i:02d}  | "
+            f"{np.round(xyz[i], 6)} | "
+            f"{np.round(rpy[i], 6)} | "
+            f"{np.round(drpy, 6)}"
+        )
 
     print()
-    print("===== DIFFERENCE BETWEEN DECODES =====")
-    diff = decoded_minmax - decoded_meanstd
-    print("action0 xyz minmax - meanstd:")
-    print(np.round(diff[0, 0, :3], 6), "norm:", round(float(np.linalg.norm(diff[0, 0, :3])), 6))
-    print("mean abs diff all dims:", round(float(np.mean(np.abs(diff))), 6))
-    print("max abs diff all dims:", round(float(np.max(np.abs(diff))), 6))
+    print("===== SUMMARY =====")
+    print("current rpy:", np.round(current_rpy, 6))
+    print("rpy min:", np.round(rpy.min(axis=0), 6))
+    print("rpy max:", np.round(rpy.max(axis=0), 6))
+    print("abs delta rpy max:", np.round(np.max(np.abs(rpy - current_rpy), axis=0), 6))
+    print("xyz min:", np.round(xyz.min(axis=0), 6))
+    print("xyz max:", np.round(xyz.max(axis=0), 6))
+    print("gripper min/max:", float(grip.min()), float(grip.max()))
 
     print()
-    print("IMPORTANT:")
-    print("This script DID NOT move the robot.")
-    print("If MIN_MAX looks more plausible, next runtime must use min/max postprocess.")
-    print("POSTPROCESS COMPARE DONE")
+    print("INTERPRETATION GUIDE:")
+    print("- Nếu RPY lệch rất lớn, ví dụ roll/pitch/yaw nhảy > 1 rad, chưa chạy full 10D.")
+    print("- Nếu RPY gần current pose, có thể thử official full action sau này.")
+    print("- Script này KHÔNG di chuyển robot.")
+    print("ROT6D INSPECT DONE")
 
 
 if __name__ == "__main__":

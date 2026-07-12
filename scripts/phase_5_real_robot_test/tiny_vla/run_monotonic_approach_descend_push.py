@@ -2,10 +2,18 @@ import os, sys, time, argparse, importlib.util
 from pathlib import Path
 import numpy as np
 
-sys.path.insert(0, os.path.expanduser("~/TinyVLA"))
-sys.path.insert(0, os.path.expanduser("~/TinyVLA/llava-pythia"))
+TINYVLA_REPO = Path(
+    os.environ.get("TINYVLA_REPO", str(Path.home() / "TinyVLA"))
+).expanduser()
 
-diffik_path = Path.home() / "tinyvla_niryo_runtime/scripts/run_author_style_niryo_diffik_rollout.py"
+sys.path.insert(0, str(TINYVLA_REPO))
+sys.path.insert(0, str(TINYVLA_REPO / "llava-pythia"))
+
+diffik_path = (
+    Path(__file__).resolve().parents[3]
+    / "scripts/phase_5_real_robot_test/tiny_vla/"
+      "run_author_style_niryo_diffik_rollout.py"
+)
 spec = importlib.util.spec_from_file_location("diffik_runtime", diffik_path)
 R = importlib.util.module_from_spec(spec)
 spec.loader.exec_module(R)
