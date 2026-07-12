@@ -565,172 +565,497 @@ area : diện tích vật sau chuẩn hóa
 
 ---
 
+
 ## 11. Thu dữ liệu Tiny-VLA 10D HDF5
 
-Tiny-VLA dùng định dạng dữ liệu khác Mini-VLA.
+Tiny-VLA sử dụng dataset HDF5 theo cấu trúc gần với dữ liệu của tác giả.
 
-Script chính:
+Script thu dữ liệu:
 
-```text
+~~~text
 scripts/phase_1_data_collection/tiny_vla/collect_tinyvla_10d_push_only_then_return.py
-```
+~~~
 
-Mục tiêu:
+Mỗi episode mặc định gồm 50 bước. Các thành phần chính trong một file HDF5 gồm:
 
-Thu dữ liệu HDF5 cho Tiny-VLA, thường gồm:
+~~~text
+observations/qpos
+    7 giá trị:
+    6 góc khớp Niryo + 1 trạng thái gripper
 
-```text
-qpos     : trạng thái robot
-action   : action 10D
-image    : ảnh camera
-language : câu lệnh thao tác
-```
+observations/qvel
+    vận tốc tương ứng với 7 giá trị trạng thái
 
-Chạy thu dữ liệu Tiny-VLA:
+action
+    10 giá trị:
+    XYZ 3D + rotation 6D + gripper 1D
 
-```bash
+observations/images/front
+    ảnh camera 480 × 640
+
+language_raw
+    câu lệnh ngôn ngữ của episode
+
+ee_pose_xyzrpy
+    pose đầu công tác tại thời điểm hiện tại
+
+target_ee_pose_xyzrpy
+    pose mục tiêu tương ứng với action
+~~~
+
+Action 10D được biểu diễn như sau:
+
+~~~text
+[x, y, z,
+ rot6d_1, rot6d_2, rot6d_3,
+ rot6d_4, rot6d_5, rot6d_6,
+ gripper]
+~~~
+
+Trong bộ dữ liệu thực nghiệm của nhóm:
+
+~~~text
+Số episode       : 90
+Số bước/episode  : 50
+Tần số lấy mẫu   : 10 Hz
+Camera            : front
+Kích thước ảnh   : 480 × 640
+Câu lệnh          : push the green object to the right
+~~~
+
+Khai báo thư mục lưu dataset:
+
+~~~bash
+export TINYVLA_DATASET_DIR="<thư_mục_lưu_dataset_HDF5>"
+~~~
+
+Ví dụ:
+
+~~~bash
+export TINYVLA_DATASET_DIR="./my_data/niryo_push_1cam_10d_50_hdf5"
+~~~
+
+Chạy collector:
+
+~~~bash
 python3 scripts/phase_1_data_collection/tiny_vla/collect_tinyvla_10d_push_only_then_return.py \
   --robot-ip "$ROBOT_IP" \
   --camera "$CAMERA_INDEX" \
   --cam-name front \
-  --out-dir "$RAW_DATA_DIR" \
-  --instruction "push the green object to the right"
-```
+  --out-dir "$TINYVLA_DATASET_DIR" \
+  --instruction "push the green object to the right" \
+  --episode-len 50 \
+  --sample-hz 10 \
+  --width 640 \
+  --height 480 \
+  --fps 30
+~~~
 
-Sau khi thu, kiểm tra dữ liệu:
+Collector ghi lại pha đẩy vật. Sau khi lưu episode, robot có thể tự quay về vị trí ban đầu để chuẩn bị cho episode tiếp theo.
 
-```bash
-find "$RAW_DATA_DIR" -type f | head
-```
+Có thể tắt tự động quay về bằng tùy chọn:
+
+~~~bash
+--no-auto-return
+~~~
+
+Kiểm tra số file đã thu:
+
+~~~bash
+find "$TINYVLA_DATASET_DIR" \
+  -maxdepth 1 \
+  -name 'episode_*.hdf5' \
+  | wc -l
+~~~
+
+Không đưa dataset HDF5 lên GitHub vì dung lượng lớn và có thể chứa dữ liệu ảnh thô từ camera.
 
 ---
 
 ## 12. Train Tiny-VLA
 
-Tiny-VLA phụ thuộc vào repository TinyVLA gốc và môi trường train riêng.
+Tiny-VLA phụ thuộc vào repository TinyVLA gốc và backbone LLaVA-Pythia.
 
-Clone TinyVLA gốc nếu chưa có:
+Clone repository TinyVLA gốc:
 
-```bash
-git clone https://github.com/liyaxuanliyaxuan/TinyVLA.git "<đường_dẫn_lưu_TinyVLA_gốc_của_bạn>"
-```
+~~~bash
+git clone https://github.com/liyaxuanliyaxuan/TinyVLA.git \
+  "<đường_dẫn_lưu_TinyVLA_gốc>"
+~~~
 
-Khai báo đường dẫn TinyVLA gốc:
+Khai báo các đường dẫn:
 
-```bash
-export TINYVLA_REPO="<đường_dẫn_repo_TinyVLA_gốc_của_bạn>"
-export TINYVLA_MODEL_PATH="<đường_dẫn_checkpoint_TinyVLA_sau_khi_train>"
+~~~bash
+export TINYVLA_REPO="<đường_dẫn_repo_TinyVLA_gốc>"
+export TINYVLA_DATASET_DIR="<đường_dẫn_dataset_HDF5>"
+export TINYVLA_MODEL_BASE="<đường_dẫn_Llava-Pythia-400M>"
+export TINYVLA_MODEL_PATH="<thư_mục_lưu_checkpoint>"
+~~~
+
+Ví dụ về cấu trúc dữ liệu và model:
+
+~~~text
+TINYVLA_REPO
+└── TinyVLA
+
+TINYVLA_MODEL_BASE
+└── Llava-Pythia-400M
+
+TINYVLA_DATASET_DIR
+├── episode_0.hdf5
+├── episode_1.hdf5
+└── ...
+
+TINYVLA_MODEL_PATH
+├── dataset_stats.pkl
+├── adapter_config.json
+├── adapter_model.bin
+├── non_lora_trainables.bin
+└── config.json
+~~~
+
+Thêm TinyVLA và LLaVA-Pythia vào Python path:
+
+~~~bash
 export PYTHONPATH="$TINYVLA_REPO:$TINYVLA_REPO/llava-pythia:$PYTHONPATH"
-```
+~~~
 
-Script train chính trong repository này:
+Các file train được lưu trong repository bàn giao:
 
-```text
+~~~text
 scripts/phase_3_training/tiny_vla/train.sh
 scripts/phase_3_training/tiny_vla/train_tinyvla.py
-```
+~~~
 
-Chạy train bằng shell script:
+### 12.1. Khai báo task trong TinyVLA gốc
 
-```bash
-bash scripts/phase_3_training/tiny_vla/train.sh
-```
+`train_tinyvla.py` lấy cấu hình dataset từ:
 
-Hoặc chạy bằng Python:
+~~~python
+TASK_CONFIGS[task_name]
+~~~
 
-```bash
-python3 scripts/phase_3_training/tiny_vla/train_tinyvla.py
-```
+Vì vậy cần khai báo task cho dataset Niryo trong file cấu hình của TinyVLA gốc, thường nằm tại:
 
-Nếu cần sửa dataset path, checkpoint path hoặc model path, hãy sửa trong file train tương ứng trước khi chạy.
+~~~text
+$TINYVLA_REPO/aloha_scripts/constants.py
+~~~
+
+Task cần chứa các thông tin chính:
+
+~~~text
+dataset_dir  : đường dẫn tới TINYVLA_DATASET_DIR
+camera_names : ["front"]
+num_episodes : số episode thực tế
+episode_len  : 50
+~~~
+
+Tên task được dùng trong quá trình thực nghiệm:
+
+~~~text
+niryo_push_1cam_10d_50_author
+~~~
+
+### 12.2. Cấu hình lệnh train
+
+File:
+
+~~~text
+scripts/phase_3_training/tiny_vla/train.sh
+~~~
+
+hiện là bản cấu hình tham khảo.
+
+Trước khi chạy cần thay các placeholder:
+
+~~~text
+/path/to/save_dir
+/path/to/pretrained_vlm
+task_name
+số GPU
+max_steps
+save_steps
+~~~
+
+Không chạy nguyên bản `train.sh` khi file vẫn còn các đường dẫn `/path/to/...`.
+
+Trong thử nghiệm của nhóm:
+
+~~~text
+Backbone         : LLaVA-Pythia-400M
+Kiểu fine-tuning : LoRA
+Action decoder   : diffusion
+Action dimension : 10
+Action chunk     : 16 bước
+Checkpoint chính : author_10d_full_5000steps
+~~~
+
+Checkpoint chính được train khoảng 5000 bước.
+
+Dataset, checkpoint và backbone không được đưa lên GitHub do dung lượng lớn. Người sử dụng cần tự tải backbone và tự train hoặc nhận checkpoint riêng.
 
 ---
 
-## 13. Kiểm tra / đánh giá Tiny-VLA
+## 13. Kiểm tra và đánh giá Tiny-VLA
 
-Các script kiểm tra Tiny-VLA nằm trong:
+Các script đánh giá nằm trong:
 
-```text
+~~~text
 scripts/phase_4_evaluation/tiny_vla/
-```
+~~~
 
-Một số script chính:
+Trước khi chạy, khai báo:
 
-```text
-inspect_hdf5_dataset_summary.py
-test_author10d_live_camera_only.py
-test_infer_author10d_real_obs_dryrun.py
-test_model_object_sensitivity_green.py
-```
+~~~bash
+export TINYVLA_REPO="<đường_dẫn_repo_TinyVLA_gốc>"
+export TINYVLA_MODEL_PATH="<đường_dẫn_checkpoint>"
+export TINYVLA_MODEL_BASE="<đường_dẫn_Llava-Pythia-400M>"
+export TINYVLA_DATASET_DIR="<đường_dẫn_dataset_HDF5>"
+export TINYVLA_OUTPUT_DIR="<thư_mục_lưu_kết_quả>"
+~~~
 
-Ví dụ kiểm tra dataset HDF5:
+Các script vẫn giữ đường dẫn mặc định tương ứng với cấu trúc máy đã dùng trong quá trình thực nghiệm. Các biến môi trường trên cho phép chạy code trên máy khác mà không cần sửa trực tiếp source code.
 
-```bash
+### 13.1. Kiểm tra cấu trúc dataset
+
+~~~bash
 python3 scripts/phase_4_evaluation/tiny_vla/inspect_hdf5_dataset_summary.py
-```
+~~~
 
-Ví dụ kiểm tra camera live:
+Kiểm tra quy ước chuyển rotation 6D:
 
-```bash
+~~~bash
+python3 scripts/phase_4_evaluation/tiny_vla/check_rot6d_rpy_convention.py \
+  --root "$TINYVLA_DATASET_DIR"
+~~~
+
+Quy ước rot6D được sử dụng trong dataset là hai cột đầu tiên của ma trận quay, lưu xen kẽ theo dạng:
+
+~~~text
+[R00, R01, R10, R11, R20, R21]
+~~~
+
+### 13.2. Kiểm tra camera
+
+~~~bash
 python3 scripts/phase_4_evaluation/tiny_vla/test_author10d_live_camera_only.py
-```
+~~~
 
-Ví dụ kiểm tra inference dry-run:
+### 13.3. Inference dry-run
 
-```bash
-python3 scripts/phase_4_evaluation/tiny_vla/test_infer_author10d_real_obs_dryrun.py
-```
+Dry-run đọc camera, trạng thái robot và chạy inference nhưng không gửi lệnh chuyển động tới robot:
 
-Các script này dùng để kiểm tra:
+~~~bash
+python3 scripts/phase_4_evaluation/tiny_vla/test_infer_author10d_real_obs_dryrun.py \
+  --ip "$ROBOT_IP"
+~~~
 
-```text
-dataset HDF5
-camera live
-quá trình inference
-output action của model
-độ nhạy của model với hình ảnh đầu vào
-```
+### 13.4. Kiểm tra độ nhạy theo ảnh
+
+~~~bash
+python3 scripts/phase_4_evaluation/tiny_vla/test_author10d_image_sensitivity_manual.py \
+  --ip "$ROBOT_IP" \
+  --num-scenes 4
+~~~
+
+Script dùng nhiều cảnh ảnh khác nhau để quan sát output của model có thay đổi theo vị trí vật hay không.
+
+### 13.5. Kiểm tra action 10D và rotation 6D
+
+~~~bash
+python3 scripts/phase_4_evaluation/tiny_vla/inspect_author10d_rot6d_minmax_interleaved.py \
+  --ip "$ROBOT_IP"
+~~~
+
+Script kiểm tra:
+
+~~~text
+XYZ sau giải chuẩn hóa
+rotation 6D
+gripper
+giá trị min/max từ dataset_stats.pkl
+~~~
+
+### 13.6. Kiểm tra giới hạn IK trước khi chạy robot
+
+~~~bash
+python3 scripts/phase_4_evaluation/tiny_vla/preview_author10d_minmax_xyz_ik_guard.py \
+  --ip "$ROBOT_IP" \
+  --samples 5
+~~~
+
+Script giúp kiểm tra trước:
+
+~~~text
+bước Cartesian
+giới hạn X, Y, Z
+delta joint
+delta cổ tay
+khả năng giải IK
+~~~
+
+Các bước kiểm tra này nên được chạy trước khi cho robot thực thi chuyển động thật.
 
 ---
 
 ## 14. Chạy Tiny-VLA trên robot thật
 
-Các script runtime Tiny-VLA nằm trong:
+Các script runtime nằm trong:
 
-```text
+~~~text
 scripts/phase_5_real_robot_test/tiny_vla/
-```
+~~~
 
-Khai báo TinyVLA gốc và checkpoint:
+Helper xử lý inference và action chung đã được đưa vào repository:
 
-```bash
-export TINYVLA_REPO="<đường_dẫn_repo_TinyVLA_gốc_của_bạn>"
-export TINYVLA_MODEL_PATH="<đường_dẫn_checkpoint_TinyVLA_sau_khi_train>"
-export PYTHONPATH="$TINYVLA_REPO:$TINYVLA_REPO/llava-pythia:$PYTHONPATH"
-```
+~~~text
+scripts/common/tiny_vla/run_author10d_fixed50_xyz_chunk_live.py
+~~~
 
-Chạy Tiny-VLA rollout:
+Runtime chính hiện tại:
 
-```bash
-python3 scripts/phase_5_real_robot_test/tiny_vla/run_author_style_niryo_diffik_rollout.py \
-  --ip "$ROBOT_IP"
-```
+~~~text
+scripts/phase_5_real_robot_test/tiny_vla/run_author_style_niryo_diffik_chunk_blocks.py
+~~~
 
-Một số script runtime khác:
+### 14.1. Luồng xử lý
 
-```text
-scripts/phase_5_real_robot_test/tiny_vla/run_author_style_niryo_safe_rollout.py
-scripts/phase_5_real_robot_test/tiny_vla/run_author_style_niryo_safe_rollout_xz_only.py
-scripts/phase_5_real_robot_test/tiny_vla/run_auto_green_monotonic_push.py
-scripts/phase_5_real_robot_test/tiny_vla/run_hybrid_approach_descend_push.py
-```
+~~~text
+Ảnh camera
++ câu lệnh ngôn ngữ
++ qpos 7D hiện tại
+        ↓
+LLaVA-Pythia + LoRA
+        ↓
+Diffusion action decoder
+        ↓
+Action chunk 16 × 10D
+        ↓
+Giải chuẩn hóa min/max bằng dataset_stats.pkl
+        ↓
+Lấy phần XYZ của action
+        ↓
+Differential IK
+        ↓
+Giới hạn bước Cartesian và delta joint
+        ↓
+PyNiryo move_joints()
+~~~
 
-Trạng thái thực nghiệm hiện tại:
+Model dự đoán đầy đủ:
 
-```text
-Tiny-VLA pipeline có thể load model, đọc camera, đọc robot state, inference và gửi lệnh robot.
-Tuy nhiên pure Tiny-VLA chưa ổn định cho mọi vị trí vật.
-```
+~~~text
+XYZ + rot6D + gripper
+~~~
+
+Tuy nhiên runtime robot thật hiện chỉ sử dụng phần XYZ để điều khiển.
+
+Phần rot6D và gripper chưa được thực thi trực tiếp nhằm giảm rủi ro khi model chưa đủ ổn định.
+
+`Differential IK` trong runtime là lớp chuyển đổi và bảo vệ an toàn do nhóm xây dựng thêm. Đây không phải thành phần có sẵn trong TinyVLA gốc.
+
+Các chức năng chính của lớp Differential IK gồm:
+
+~~~text
+numerical_xyz_jacobian
+solve_diffik
+move_joints_compat
+~~~
+
+### 14.2. Khai báo môi trường
+
+~~~bash
+export TINYVLA_REPO="<đường_dẫn_repo_TinyVLA_gốc>"
+export TINYVLA_MODEL_PATH="<đường_dẫn_checkpoint_author_10d>"
+export TINYVLA_MODEL_BASE="<đường_dẫn_Llava-Pythia-400M>"
+export TINYVLA_OUTPUT_DIR="<thư_mục_lưu_log_hoặc_ảnh_debug>"
+~~~
+
+### 14.3. Dry-run trước khi thực thi
+
+Chạy không có `--execute`:
+
+~~~bash
+python3 \
+  scripts/phase_5_real_robot_test/tiny_vla/run_author_style_niryo_diffik_chunk_blocks.py \
+  --ip "$ROBOT_IP" \
+  --instruction "push the green object to the right" \
+  --blocks 4 \
+  --chunk-steps 16 \
+  --max-cart-step 0.020 \
+  --max-dq 0.055 \
+  --min-z 0.080 \
+  --max-x 0.360 \
+  --max-abs-y 0.220 \
+  --velocity 6 \
+  --sleep 0.18
+~~~
+
+Dry-run dùng để kiểm tra:
+
+~~~text
+model và checkpoint
+camera
+robot state
+action chunk
+Differential IK
+các giới hạn an toàn
+~~~
+
+Dry-run không gửi lệnh chuyển động đến robot khi không có `--execute`.
+
+### 14.4. Thực thi trên robot thật
+
+Chỉ chạy sau khi dry-run không phát hiện bất thường:
+
+~~~bash
+python3 \
+  scripts/phase_5_real_robot_test/tiny_vla/run_author_style_niryo_diffik_chunk_blocks.py \
+  --ip "$ROBOT_IP" \
+  --instruction "push the green object to the right" \
+  --blocks 4 \
+  --chunk-steps 16 \
+  --max-cart-step 0.020 \
+  --max-dq 0.055 \
+  --min-z 0.080 \
+  --max-x 0.360 \
+  --max-abs-y 0.220 \
+  --velocity 6 \
+  --sleep 0.18 \
+  --execute \
+  --confirm YES_CHUNK_BLOCKS
+~~~
+
+Khi chạy robot thật:
+
+~~~text
+- Luôn đặt tay gần nút dừng khẩn cấp.
+- Bảo đảm workspace không có người hoặc vật cản.
+- Kiểm tra giới hạn X, Y và Z trước khi execute.
+- Chạy tốc độ thấp trong lần thử đầu tiên.
+- Không bỏ qua bước dry-run.
+- Dừng ngay khi robot di chuyển sai hướng hoặc vượt vùng an toàn.
+~~~
+
+### 14.5. Trạng thái thực nghiệm
+
+Pipeline Tiny-VLA hiện đã thực hiện được đầy đủ:
+
+~~~text
+đọc ảnh camera
+→ đọc trạng thái robot
+→ load checkpoint
+→ inference action chunk
+→ giải chuẩn hóa action
+→ Differential IK
+→ gửi lệnh tới robot
+~~~
+
+Trong một số lần thử, robot đã tiếp cận, chạm và đẩy được vật ở các action đầu của chunk.
+
+Tuy nhiên kết quả chưa ổn định ở mọi vị trí vật. Khả năng grounding theo ảnh còn hạn chế và quỹ đạo dự đoán vẫn có xu hướng gần với chuyển động trung bình trong dataset.
+
+Do đó, kết quả Tiny-VLA hiện được xem là kiểm chứng thành công pipeline triển khai trên robot thật, chưa phải một policy đẩy vật hoàn toàn ổn định.
 
 ---
 
