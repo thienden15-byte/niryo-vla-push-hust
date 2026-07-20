@@ -177,10 +177,10 @@ PY
 ```
 
 Test kết nối robot bằng PyNiryo:
-
+Tải thư viện và hướng dẫn sử dụng trên : https://docs.niryo.com/api/pyniryo/ 
 ```bash
 python3 - <<'PY'
-import os
+vimport os
 from pyniryo import NiryoRobot
 
 ip = os.environ["ROBOT_IP"]
