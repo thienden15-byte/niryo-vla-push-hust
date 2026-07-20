@@ -1,6 +1,6 @@
-# Niryo VLA Push HUST
+# Niryo VLA HUST
 
-Repository này chứa mã nguồn và hướng dẫn thao tác chính cho đồ án **Niryo VLA Push** trên robot Niryo Ned.
+Repository này chứa mã nguồn và hướng dẫn thao tác chính cho đồ án **Niryo-VLA nhẹ ** trên robot Niryo Ned.
 
 README này giúp người đọc nên chạy script nào theo thứ tự để làm lại các phần chính của dự án:
 
@@ -11,6 +11,7 @@ README này giúp người đọc nên chạy script nào theo thứ tự để 
 - chạy Mini-VLA trên robot thật,
 - chạy HSV-assisted waypoint / Goal V2,
 - kiểm tra Tiny-VLA adaptation,
+- chạy tiny-VLA trên robot thật,
 - tham khảo baseline AI vision + MoveIt.
 
 ---
@@ -128,7 +129,7 @@ export CHECKPOINT_PATH="./my_checkpoints/minivla_direct.pt"
 Ý nghĩa:
 
 ```text
-ROBOT_IP        : địa chỉ IP của robot Niryo
+ROBOT_IP        : địa chỉ IP của robot Niryo(169.254.200.200)
 CAMERA_INDEX    : ID camera trên máy
 RAW_DATA_DIR    : thư mục lưu dữ liệu thô sau khi thu từ robot
 TRIM_DATA_DIR   : thư mục lưu dữ liệu đã cắt lọc
