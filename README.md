@@ -200,7 +200,8 @@ Nếu robot hoặc camera chưa hoạt động, cần xử lý trước khi thu 
 
 ## 5. Thu dữ liệu Mini-VLA
 
-Mục tiêu của bước này là tạo dữ liệu thô từ robot thật.
+Mục tiêu của bước này là tạo dữ liệu thô từ robot thật . Hướng dẫn cho robot thao tác đẩy vật 
+Dùng tay thao tác điều khiển robot để đẩy vật .
 
 Script chính:
 
