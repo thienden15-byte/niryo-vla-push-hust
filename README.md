@@ -912,7 +912,7 @@ Dataset, checkpoint và backbone không được đưa lên GitHub do dung lư�
 
 ---
 
-## 13. Kiểm tra trước khi chạy và đánh giá Tiny-VLA 
+## 13. Kiểm tra trước khi chạy và đánh giá offline Tiny-VLA 
 
 Các script đánh giá nằm trong:
 
